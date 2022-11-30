@@ -8,7 +8,7 @@ public class MemberVO {
     private String memberGender;
     private String memberAddress;
     private String memberPhone;
-
+    
 	public String getMemberId() {
 		return memberId;
 	}
