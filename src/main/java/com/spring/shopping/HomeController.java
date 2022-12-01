@@ -65,4 +65,11 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="/itemList", method = RequestMethod.GET)
+	public String getList(Locale locale,Model model) throws Exception{
+		List<ItemVO> list = itemService.list();
+		model.addAttribute("itemList",list);
+		return "itemList";
+	}
+	
 }

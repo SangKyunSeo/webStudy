@@ -9,4 +9,6 @@
             <typeAlias type="com.spring.dto.ItemVO" alias="itemVO"/>
         </typeAliases>
        
+       
     </configuration>
+ 

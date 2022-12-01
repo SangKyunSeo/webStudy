@@ -1,5 +1,7 @@
 package com.spring.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,5 +21,10 @@ public class ItemDAOImpl implements ItemDAO{
     @Override
     public void register(ItemVO itemVo) throws Exception{
     	sqlSession.insert(Namespace+".setitem",itemVo);
+    }
+    
+    @Override
+    public List<ItemVO> list() throws Exception{
+    	return sqlSession.selectList(Namespace+".selectItem");
     }
 }

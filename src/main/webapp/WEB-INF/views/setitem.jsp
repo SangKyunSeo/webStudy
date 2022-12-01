@@ -13,7 +13,7 @@
 		<form action="/setitem" method="post">
 			<div class="form-group has-feedback">
 				<label class="control-label" for="idItem">상품번호</label>
-				<input class="form-control" type="text" id="idItem" name="idItem">
+				<input class="form-control" type="number" id="idItem" name="idItem">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="nameItem">상품명</label>
@@ -29,11 +29,11 @@
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="priceItem">가격</label>
-				<input class="form-control" type="text" id="priceItem" name="priceItem">
+				<input class="form-control" type="number" id="priceItem" name="priceItem">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="stockItem">재고량</label>
-				<input class="form-control" type="text" id="stockItem" name="stockItem">
+				<input class="form-control" type="number" id="stockItem" name="stockItem">
 			</div>
 			<div class="form-group has-feedback">
 				<button class="btn btn-success" type="submit" id="submit">등록</button>
