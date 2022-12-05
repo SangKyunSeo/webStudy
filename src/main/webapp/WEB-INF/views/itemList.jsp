@@ -12,22 +12,35 @@
 
 <div class="container">
 	<c:forEach items="${itemList}"  var="list" >
-		<div class="col-lg-3 com md-6" style="border-radius: 5px;">
-			<div class="card" style="width: 18rem;">
-				<p class="card-text" style="text-align: center;">
+		<tr>
+			이미지
+		</tr>
+		<tr>
+			<td class="detail">
+				<div class="itemName">
 					상품명 : ${list.nameItem}
-					</p>
-				<p class="card-text" style="text-align: center;">
-					제조사 : ${list.madeItem}
-					</p>
-				<p class="card-text" style="text-align: center;">
-					가격 : ${list.priceItem}
-					</p>
-				<p class="card-text" style="text-align: center;">
-					재고량 : ${list.stockItem}
-					</p>
-					</div>
 				</div>
+				<div class="madeName">
+					제조사 : ${list.madeItem}
+				</div>
+				<div class="price">
+					가격 : ${list.priceItem}
+				</div>
+				<div class="stock">
+					재고량 : ${list.stockItem}
+				</div>
+				<div class="amount">
+				<label class="control-label" for="amountItem">수량</label>
+				<input type="number" id="amountItem" name="amountItem">
+				</div>
+				<div class="button">
+				<button class="btn btn-order" type="submit" id="order">주문</button>
+				<button class="btn btn-cart" type="submit" id="cart">장바구니</button>
+				<button class="cancle btn-danger" type="button">취소</button>
+				</div>
+				</td>
+			</tr>
+			<br><br><br>
 	</c:forEach>
 </div>
 
