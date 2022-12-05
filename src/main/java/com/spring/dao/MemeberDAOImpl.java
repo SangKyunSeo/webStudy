@@ -22,8 +22,16 @@ public class MemeberDAOImpl implements MemberDAO{
     }
     
     @Override
+    public MemberVO login(MemberVO memberVo) {
+    	return sqlSession.selectOne(Namespace+".login",memberVo);
+    }
+    @Override
     public String loginCheck(MemberVO memberVo) throws Exception{
     	return sqlSession.selectOne(Namespace+".login",memberVo);
     }
 
+    @Override
+    public MemberVO buyer(String id_member) throws Exception{
+    	return sqlSession.selectOne(Namespace+".buyer",id_member);
+    }
 }

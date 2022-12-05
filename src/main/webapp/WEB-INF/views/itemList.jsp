@@ -34,7 +34,7 @@
 				<input type="number" id="amountItem" name="amountItem">
 				</div>
 				<div class="button">
-				<button class="btn btn-order" type="submit" id="order">주문</button>
+				<a href="order"><button class="btn btn-order" type="submit" id="order">주문</button></a>
 				<button class="btn btn-cart" type="submit" id="cart">장바구니</button>
 				<button class="cancle btn-danger" type="button">취소</button>
 				</div>

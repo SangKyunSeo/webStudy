@@ -13,12 +13,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
+import com.spring.dto.OrderPageItemListVO;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
 /**
@@ -75,22 +78,26 @@ public class HomeController {
 		return "itemList";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String login() {
-		return "login";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String LoginPage() {
+	    return "login";
 	}
-	
-	@RequestMapping(value="login/check")
-	public ModelAndView login_check(@ModelAttribute MemberVO memberVo, HttpSession session) throws Exception {
-		String name = memService.loginCheck(memberVo, session);
-		ModelAndView mav = new ModelAndView();
-		if(name!=null) {
-			mav.setViewName("itemList");
-		}else {
-			mav.setViewName("login");
-			mav.addObject("message","Error");
+	  
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String login(MemberVO vo, HttpSession session,RedirectAttributes rttr) {
+		MemberVO login = memService.login(vo);
+		String path="";
+		if(login!=null) {
+			session.setAttribute("LoginVo", login);
+			return "redirect:itemList";
 		}
-		return mav;
+		else
+		{
+			session.setAttribute("LoginVo", null);
+			rttr.addFlashAttribute("msg",false);
+			path="login";
+		}
+		return path;
 	}
 	
 	@RequestMapping(value="/logout")
@@ -100,4 +107,9 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/order",method = RequestMethod.GET)
+	public void orderPageGet(HttpSession session, Model model) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("buyer",vo);
+	}
 }

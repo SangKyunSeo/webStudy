@@ -5,14 +5,28 @@
  
 <mapper namespace="com.spring.mapper.memberMapper">
  
+  <resultMap type="MemberVO" id="memberMap">
+ 	<result column="id_member" property="memberId"/>
+ 	<result column="pw_member" property="memberPw"/>
+ 	<result column="name_member" property="memberName"/>
+ 	<result column="age_member" property="memberAge"/>
+ 	<result column="gender_member" property="memberGender"/>
+ 	<result column="address_member" property="memberAddress"/>
+ 	<result column="phone_member" property="memberPhone"/>
+ </resultMap>
+ 
  <insert id="register">
  	INSERT INTO member(id_member,pw_member,name_member,age_member,gender_member,address_member,phone_member) 
  		VALUES(#{memberId},#{memberPw},#{memberName},#{memberAge},#{memberGender},#{memberAddress},#{memberPhone})
  </insert> 
  
  
-<select id="login" resultType="com.spring.dto.MemberVO">
-        SELECT id_member, name_member,phone_member FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
+<select id="login" resultMap="memberMap">
+        SELECT * FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
     </select>
+
+<select id="buyer" resultMap="memberMap">
+	SELECT * FROM member WHERE id_member = #{memberId}
+</select>
     
 </mapper>
