@@ -11,8 +11,8 @@
  </insert> 
  
  
- <select id="selectMember" resultType="memberVO">
-        SELECT IDUSER, NAME ,PASSWORD FROM user
+<select id="login" resultType="com.spring.dto.MemberVO">
+        SELECT id_member, name_member,phone_member FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
     </select>
     
 </mapper>

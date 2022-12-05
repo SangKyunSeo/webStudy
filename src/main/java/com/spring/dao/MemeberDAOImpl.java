@@ -20,5 +20,10 @@ public class MemeberDAOImpl implements MemberDAO{
     public void register(MemberVO memberVo) throws Exception{
     	sqlSession.insert(Namespace+".register",memberVo);
     }
+    
+    @Override
+    public String loginCheck(MemberVO memberVo) throws Exception{
+    	return sqlSession.selectOne(Namespace+".login",memberVo);
+    }
 
 }

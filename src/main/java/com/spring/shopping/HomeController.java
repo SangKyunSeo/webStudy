@@ -6,13 +6,16 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
@@ -70,6 +73,31 @@ public class HomeController {
 		List<ItemVO> list = itemService.list();
 		model.addAttribute("itemList",list);
 		return "itemList";
+	}
+	
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping(value="login/check")
+	public ModelAndView login_check(@ModelAttribute MemberVO memberVo, HttpSession session) throws Exception {
+		String name = memService.loginCheck(memberVo, session);
+		ModelAndView mav = new ModelAndView();
+		if(name!=null) {
+			mav.setViewName("itemList");
+		}else {
+			mav.setViewName("login");
+			mav.addObject("message","Error");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(HttpSession session, ModelAndView mav) {
+		mav.setViewName("login");
+		mav.addObject("message","logout");
+		return mav;
 	}
 	
 }
