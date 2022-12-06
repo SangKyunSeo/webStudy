@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.dto.CartVO;
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemVO;
 import com.spring.dto.OrderVO;
+import com.spring.service.CartService;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
 import com.spring.service.OrderService;
@@ -46,6 +49,8 @@ public class HomeController {
 	private ItemService itemService;
 	@Inject
 	private OrderService orderService;
+	@Inject
+	private CartService cartService;
 	
 	/**
      * Simply selects the home view to render by returning its name.
@@ -148,15 +153,27 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/registCart",method=RequestMethod.GET)
-	public String registCart(HttpSession session,@RequestParam(value="idItem")int idItem,@RequestParam(value="amountCart")int amountCart,RedirectAttributes redirectAttributes) throws Exception{
+	public String registCart(HttpSession session,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		ItemVO cartItem = itemService.cartItem(idItem);
 		redirectAttributes.addFlashAttribute("user",vo);
-		redirectAttributes.addFlashAttribute("carItem",cartItem);
-		redirectAttributes.addFlashAttribute("amountCart",amountCart);
+		redirectAttributes.addFlashAttribute("cartItem",cartItem);
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());
+		return "redirect:cart";
+	}
+	
+	@RequestMapping(value="/cart",method = RequestMethod.GET)
+	public void cart(HttpSession session, Model model,CartVO cartVo) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("user",vo);
+		model.addAttribute("date",currentDate.toString());
+	}
+	
+	@RequestMapping(value="/cartDetail", method=RequestMethod.POST)
+	public void registOrder(CartVO cartVo,Model model)throws Exception{
+		cartService.register(cartVo);
 		
-		return "redirect:cartDetail";
+		model.addAttribute("cart",cartVo);
 	}
 	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)

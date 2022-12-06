@@ -40,8 +40,6 @@
 				</form>
 				<form action="/registCart" method="GET">
 					<input type="hidden" name="idItem" value="${list.idItem}">
-					<label for="amount">수량</label>
-					<input type="number" name="amountCart" id="amountCart">
 					<input type="submit" value="장바구니">
 				</form>
 			</td>

@@ -3,15 +3,39 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-	<title>주문</title>
+	<title>장바구니</title>
 </head>
 <body>
 <h1>
-	상품 주문
+	장바구니 내역
 </h1>
-<form action="/detail" method="GET" class="order_form">
-	<input type="hidden" name="idItem" value="나">
-</form>
+<table border="1">
+	<tr>
+		<td>회원아이디</td>
+		<td>${cart.memberId}</td>
+	</tr>
+	<tr>
+		<td>상품번호</td>
+		<td>${cart.idItem}</td>
+	</tr>
+	<tr>
+		<td>상품명</td>
+		<td>${cart.nameCart}</td>
+	</tr>
+	<tr>
+		<td>상품수량</td>
+		<td>${cart.amountCart}</td>
+	</tr>
+	<tr>
+		<td>가격</td>
+		<td>${cart.priceCart}</td>
+	</tr>
+	<tr>
+		<td>담은날짜</td>
+		<td>${cart.dateCart}</td>
+	</tr>
+
+</table>
 
 </body>
 </html>

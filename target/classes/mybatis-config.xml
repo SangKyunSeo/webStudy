@@ -8,6 +8,7 @@
             <typeAlias type="com.spring.dto.MemberVO" alias="memberVO"/>
             <typeAlias type="com.spring.dto.ItemVO" alias="itemVO"/>
             <typeAlias type="com.spring.dto.OrderVO" alias="orderVO"/>
+            <typeAlias type="com.spring.dto.CartVO" alias="cartVO"/>
         </typeAliases>
        
        
