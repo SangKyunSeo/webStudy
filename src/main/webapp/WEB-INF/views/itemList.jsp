@@ -34,6 +34,10 @@
 					<input type="hidden" name="idItem" value="${list.idItem}">
 					<input type="submit" value="이동">
 				</form>
+				<form action="/delete" method="GET">
+					<input type="hidden" name="idItem" value="${list.idItem}">
+					<input type="submit" value="삭제">
+				</form>
 			</td>
 		</tr>
 			<br><br>

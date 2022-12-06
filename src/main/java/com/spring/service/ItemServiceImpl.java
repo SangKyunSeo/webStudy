@@ -28,4 +28,9 @@ public class ItemServiceImpl implements ItemService{
 	public ItemVO detailList(int idItem) throws Exception{
 		return itemdao.detailList(idItem);
 	}
+	
+	@Override
+	public void delete(int idItem) throws Exception{
+		itemdao.delete(idItem);
+	}
 }

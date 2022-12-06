@@ -149,4 +149,10 @@ public class HomeController {
 	public void itemDetail(Model model)throws Exception{
 		
 	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String deleteItem(@RequestParam(value="idItem")int idItem)throws Exception {
+		itemService.delete(idItem);
+		return "redirect:itemList";
+	}
 }

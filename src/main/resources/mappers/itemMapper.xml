@@ -26,6 +26,10 @@
     </select>
     
   <select id="selectDetail" resultMap="itemMap">
-  		SELECT * from item WHERE id_item = #{idItem}
+  		SELECT * FROM item WHERE id_item = #{idItem}
   </select>
+  
+  <delete id="deleteItem">
+  		DELETE FROM item WHERE id_item = #{idItem}
+  </delete>
 </mapper>

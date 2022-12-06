@@ -32,4 +32,9 @@ public class ItemDAOImpl implements ItemDAO{
     public ItemVO detailList(int idItem) throws Exception{
     	return sqlSession.selectOne(Namespace+".selectDetail",idItem);
     }
+    
+    @Override
+    public void delete(int idItem) throws Exception{
+    	sqlSession.delete(Namespace+".deleteItem",idItem);
+    }
 }
