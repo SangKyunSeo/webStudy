@@ -145,6 +145,20 @@ public class HomeController {
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());
 		return "redirect:order";
 	}
+	
+	
+	@RequestMapping(value="/registCart",method=RequestMethod.GET)
+	public String registCart(HttpSession session,@RequestParam(value="idItem")int idItem,@RequestParam(value="amountCart")int amountCart,RedirectAttributes redirectAttributes) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		ItemVO cartItem = itemService.cartItem(idItem);
+		redirectAttributes.addFlashAttribute("user",vo);
+		redirectAttributes.addFlashAttribute("carItem",cartItem);
+		redirectAttributes.addFlashAttribute("amountCart",amountCart);
+		redirectAttributes.addFlashAttribute("date",currentDate.toString());
+		
+		return "redirect:cartDetail";
+	}
+	
 	@RequestMapping(value="/detail",method=RequestMethod.GET)
 	public void itemDetail(Model model)throws Exception{
 		

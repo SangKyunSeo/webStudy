@@ -33,4 +33,9 @@ public class ItemServiceImpl implements ItemService{
 	public void delete(int idItem) throws Exception{
 		itemdao.delete(idItem);
 	}
+	
+	@Override
+	public ItemVO cartItem(int idItem) throws Exception{
+		return itemdao.cartItem(idItem);
+	}
 }
