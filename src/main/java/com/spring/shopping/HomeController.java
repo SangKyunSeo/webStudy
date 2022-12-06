@@ -14,14 +14,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemListVO;
+import com.spring.dto.OrderPageItemVO;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
 /**
@@ -111,5 +114,16 @@ public class HomeController {
 	public void orderPageGet(HttpSession session, Model model) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		model.addAttribute("buyer",vo);
+	}
+	
+	@RequestMapping(value="/orderParsing",method=RequestMethod.GET)
+	public String orderParsing(@RequestParam(value="idItem")int idItem,Model model)throws Exception{
+		ItemVO detailList = itemService.detailList(idItem);
+		model.addAttribute("detailList",detailList);
+		return "redirect:order";
+	}
+	@RequestMapping(value="/detail",method=RequestMethod.GET)
+	public void itemDetail(Model model)throws Exception{
+		
 	}
 }

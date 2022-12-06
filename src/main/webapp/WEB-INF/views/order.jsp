@@ -11,9 +11,10 @@
 </h1>
 
 </body>
+<h2>구매자 정보</h2>
 <table border="1">
 	<tr>
-		<td>이름</td>
+		<td>구매자</td>
 		<td>${buyer.memberName}</td>
 	</tr>
 	<tr>
@@ -24,5 +25,25 @@
 		<td>연락처</td>
 		<td>${buyer.memberPhone}</td>
 	</tr>
+</table>
+<h2>받는사람 정보</h2>
+<table border="1">
+	<tr>
+		<td>수령인</td>
+		<td>${buyer.memberName}</td>
+	</tr>
+	<tr>
+		<td>배송주소</td>
+		<td>${buyer.memberAddress}</td>
+	</tr>
+	<tr>
+		<td>연락처</td>
+		<td>${buyer.memberPhone}</td>
+	</tr>
+</table>
+<h2>상품 정보</h2>
+<table border="1">
+	<tr>
+		<td>상품명 : 
 </table>
 </html>

@@ -24,4 +24,8 @@
   <select id="selectItem" resultMap="itemMap">
         SELECT * FROM item
     </select>
+    
+  <select id="selectDetail" resultMap="itemMap">
+  		SELECT * from item WHERE id_item = #{idItem}
+  </select>
 </mapper>
