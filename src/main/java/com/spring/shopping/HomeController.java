@@ -1,6 +1,7 @@
 package com.spring.shopping;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -23,10 +24,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
-import com.spring.dto.OrderPageItemListVO;
 import com.spring.dto.OrderPageItemVO;
+import com.spring.dto.OrderVO;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
+import com.spring.service.OrderService;
 /**
  * Handles requests for the application home page.
  */
@@ -34,11 +36,17 @@ import com.spring.service.MemberService;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	private static int orderNumber = 0;
+	private static LocalDate currentDate = LocalDate.now(); 
 	
 	@Inject
 	private MemberService memService;
 	@Inject
 	private ItemService itemService;
+	@Inject
+	private OrderService orderService;
+	
 	/**
      * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -111,15 +119,30 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/order",method = RequestMethod.GET)
-	public void orderPageGet(HttpSession session, Model model) throws Exception{
+	public void orderPageGet(HttpSession session, Model model,OrderVO orderVo) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		model.addAttribute("buyer",vo);
+		model.addAttribute("orderNumber",orderNumber++);
+		model.addAttribute("date",currentDate.toString());
+	}
+	
+	@RequestMapping(value="/successOrder", method=RequestMethod.POST)
+	public void registOrder(OrderVO orderVo,Model model)throws Exception{
+		List<OrderVO> list = orderService.getMaxOrderId(orderVo);
+		if(list.size()==0)orderNumber++;
+		else orderNumber=list.get(list.size()-1).getIdOrder()+1;
+		orderVo.setIdOrder(orderNumber);
+		orderService.register(orderVo);
+		
+		model.addAttribute("order",orderVo);
 	}
 	
 	@RequestMapping(value="/orderParsing",method=RequestMethod.GET)
-	public String orderParsing(@RequestParam(value="idItem")int idItem,Model model)throws Exception{
+	public String orderParsing(@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes)throws Exception{
 		ItemVO detailList = itemService.detailList(idItem);
-		model.addAttribute("detailList",detailList);
+		redirectAttributes.addFlashAttribute("detailList",detailList);
+		redirectAttributes.addFlashAttribute("orderNumber",orderNumber++);
+		redirectAttributes.addFlashAttribute("date",currentDate.toString());
 		return "redirect:order";
 	}
 	@RequestMapping(value="/detail",method=RequestMethod.GET)

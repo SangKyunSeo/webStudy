@@ -44,6 +44,30 @@
 <h2>상품 정보</h2>
 <table border="1">
 	<tr>
-		<td>상품명 : 
+		<td>상품번호</td>
+		<td> ${detailList.idItem}</td>
+	</tr>
+	<tr>
+		<td>상품명</td>
+		<td> ${detailList.nameItem}</td>
+	</tr>
+	<tr>
+		<td>가격</td>
+		<td> ${detailList.priceItem}</td>
+	</tr>
 </table>
+	<form action="/successOrder" method="POST">
+		<input type="hidden" value="${orderNumber}" id="idOrder" name="idOrder">
+		<input type="hidden" value="${buyer.memberId}" id="memberId" name="memberId">
+		<input type="hidden" value="${buyer.memberAddress}" id="addressOrder" name="addressOrder">
+		<input type="hidden" value="${date}" id="dateOrder" name="dateOrder">
+		<input type="hidden" value="${detailList.idItem}" id="idItem" name="idItem">
+		<label for="amount">수량</label>
+		<input type="number" name="amountOrder" id="amountOrder">
+		<input type="hidden" value="${detailList.priceItem}" id="priceOrder" name="priceOrder">
+		<div class="form-group has-feedback">
+			<button class="btn btn-success" type="submit" id="submit">주문</button>
+			<button class="cancle btn-danger" type="button">취소</button>
+		</div>
+	</form>
 </html>
