@@ -12,4 +12,5 @@ public interface MemberService {
 	public MemberVO login(MemberVO memberVo);
 	public void logout(HttpSession session);
 	public MemberVO buyer(String id_member) throws Exception;
+	public void updateInfo(MemberVO memberVo) throws Exception;
 }

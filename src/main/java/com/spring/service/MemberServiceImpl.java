@@ -44,4 +44,9 @@ public class MemberServiceImpl implements MemberService {
     public MemberVO buyer(String id_member) throws Exception{
     	return dao.buyer(id_member);
     }
+    
+    @Override
+    public void updateInfo(MemberVO memberVo) throws Exception{
+    	dao.updateInfo(memberVo);
+    }
 }

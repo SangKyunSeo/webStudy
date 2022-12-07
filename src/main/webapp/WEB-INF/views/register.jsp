@@ -25,7 +25,7 @@
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberAge">나이</label>
-				<input class="form-control" type="text" id="memberAge" name="memberAge">
+				<input class="form-control" type="number" id="memberAge" name="memberAge">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberGender">성별</label>

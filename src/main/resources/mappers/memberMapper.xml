@@ -28,5 +28,9 @@
 <select id="buyer" resultMap="memberMap">
 	SELECT * FROM member WHERE id_member = #{memberId}
 </select>
+
+<update id="update">
+	UPDATE member SET pw_member=#{memberPw},address_member=#{memberAddress},phone_member=#{memberPhone} WHERE id_member = #{memberId}
+</update>
     
 </mapper>

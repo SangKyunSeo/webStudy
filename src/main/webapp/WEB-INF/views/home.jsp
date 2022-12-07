@@ -12,5 +12,11 @@
 <form action="/myCart" method="GET">
 	<input type="submit" value="내장바구니">
 </form>
+<br><br>
+<form action="/updateInfo" method="POST">
+	<input type="submit" value="내정보수정">
+</form>
+
+
 </body>
 </html>

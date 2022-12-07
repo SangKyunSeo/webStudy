@@ -57,9 +57,10 @@ public class HomeController {
 	 * @throws Exception 
      */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws Exception {
+	public String home(HttpSession session,Locale locale, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		if(vo==null)return "redirect:login";
 		return "home";
 	}
 	
@@ -200,5 +201,17 @@ public class HomeController {
 		List<CartVO> list = cartService.search(vo.getMemberId());
 		model.addAttribute("myCartList",list);
 		return "myCart";
+	}
+	
+	@RequestMapping(value="/updateInfo",method=RequestMethod.GET)
+	public void updateInfoGET(HttpSession session,Model model, MemberVO memberVo) throws Exception{
+		
+	}
+	@RequestMapping(value="/updateInfo",method=RequestMethod.POST)
+	public void updateInfo(HttpSession session,Model model, MemberVO memberVo) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("user",vo);
+		System.out.println(vo.getMemberAge());
+		memService.updateInfo(memberVo);
 	}
 }

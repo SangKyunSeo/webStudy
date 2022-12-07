@@ -34,4 +34,9 @@ public class MemeberDAOImpl implements MemberDAO{
     public MemberVO buyer(String id_member) throws Exception{
     	return sqlSession.selectOne(Namespace+".buyer",id_member);
     }
+    
+    @Override
+    public void updateInfo(MemberVO memberVo) throws Exception{
+    	sqlSession.update(Namespace+".update",memberVo);
+    }
 }
