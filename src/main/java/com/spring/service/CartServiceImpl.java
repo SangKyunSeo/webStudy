@@ -21,5 +21,10 @@ public class CartServiceImpl implements CartService {
     public void register(CartVO cartVo) throws Exception{
     	dao.register(cartVo);
     }
+    
+    @Override
+    public List<CartVO> search(String memberId) throws Exception{
+    	return dao.search(memberId);
+    }
  
 }

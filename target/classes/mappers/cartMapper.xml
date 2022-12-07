@@ -18,5 +18,9 @@
  	INSERT INTO cart(id_member,id_item,name_cart,amount_cart,price_cart,date_cart) 
  		VALUES(#{memberId},#{idItem},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
  </insert> 
+ 
+ <select id="search" resultType="cartMap">
+ 	SELECT * from cart WHERE id_member = #{memberId}
+ </select>
     
 </mapper>

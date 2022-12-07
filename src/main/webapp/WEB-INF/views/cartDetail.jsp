@@ -34,8 +34,10 @@
 		<td>담은날짜</td>
 		<td>${cart.dateCart}</td>
 	</tr>
-
 </table>
+	<form action="/myCart" method="GET">
+		<input type="submit" value="내 장바구니">
+	</form>
 
 </body>
 </html>

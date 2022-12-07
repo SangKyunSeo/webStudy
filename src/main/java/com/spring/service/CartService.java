@@ -7,5 +7,5 @@ import com.spring.dto.OrderVO;
 
 public interface CartService {
 	public void register(CartVO cartVo) throws Exception;
-
+	public List<CartVO> search(String memberId) throws Exception;
 }

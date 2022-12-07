@@ -25,6 +25,9 @@ public class CartDAOImpl implements CartDAO{
     	sqlSession.insert(Namespace+".register",cartVo);
     }
     
-    
+    @Override
+    public List<CartVO> search(String memberId) throws Exception{
+    	return sqlSession.selectList(Namespace+".search",memberId);
+    }
  
 }
