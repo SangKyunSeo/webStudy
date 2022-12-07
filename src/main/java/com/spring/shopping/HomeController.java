@@ -182,6 +182,12 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="/deleteCart",method=RequestMethod.GET)
+	public String deleteCart(@RequestParam(value="memberId")String memberId,@RequestParam(value="idItem")int idItem)throws Exception{
+		cartService.delete(memberId,idItem);
+		return"redirect:myCart";
+	}
+	
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String deleteItem(@RequestParam(value="idItem")int idItem)throws Exception {
 		itemService.delete(idItem);

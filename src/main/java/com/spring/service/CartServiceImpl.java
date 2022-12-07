@@ -27,4 +27,8 @@ public class CartServiceImpl implements CartService {
     	return dao.search(memberId);
     }
  
+    @Override
+    public void delete(String memberId, int idItem) throws Exception{
+    	dao.delete(memberId,idItem);
+    }
 }

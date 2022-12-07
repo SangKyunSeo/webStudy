@@ -22,5 +22,9 @@
  <select id="search" resultMap="cartMap">
  	SELECT * from cart WHERE id_member = #{memberId}
  </select>
+ 
+ <delete id="delete">
+ 	DELETE FROM cart WHERE id_member = #{memberId} and id_item = #{idItem}
+ </delete>
     
 </mapper>

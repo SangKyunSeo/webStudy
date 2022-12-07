@@ -1,6 +1,8 @@
 package com.spring.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,14 @@ public class CartDAOImpl implements CartDAO{
     @Override
     public List<CartVO> search(String memberId) throws Exception{
     	return sqlSession.selectList(Namespace+".search",memberId);
+    }
+    
+    @Override
+    public void delete(String memberId,int idItem) throws Exception{
+    	Map<String, Object> param = new HashMap<>();
+    	param.put("memberId", memberId);
+    	param.put("idItem", idItem);
+    	sqlSession.delete(Namespace+".delete",param);
     }
  
 }
