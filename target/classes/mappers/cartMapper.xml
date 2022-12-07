@@ -5,7 +5,7 @@
  
 <mapper namespace="com.spring.mapper.cartMapper">
  
-  <resultMap type="OrderVO" id="cartMap">
+  <resultMap type="CartVO" id="cartMap">
  	<result column="id_member" property="memberId"/>
  	<result column="id_item" property="idItem"/>
  	<result column="name_cart" property="nameCart"/>
@@ -19,7 +19,7 @@
  		VALUES(#{memberId},#{idItem},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
  </insert> 
  
- <select id="search" resultType="cartMap">
+ <select id="search" resultMap="cartMap">
  	SELECT * from cart WHERE id_member = #{memberId}
  </select>
     
