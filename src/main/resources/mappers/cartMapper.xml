@@ -6,8 +6,8 @@
 <mapper namespace="com.spring.mapper.cartMapper">
  
   <resultMap type="CartVO" id="cartMap">
- 	<result column="id_member" property="memberId"/>
- 	<result column="id_item" property="idItem"/>
+ 	<result column="cart_member" property="memberCart"/>
+ 	<result column="cart_item" property="idCart"/>
  	<result column="name_cart" property="nameCart"/>
  	<result column="amount_cart" property="amountCart"/>
  	<result column="price_cart" property="priceCart"/>
@@ -15,12 +15,12 @@
  </resultMap>
  
  <insert id="register">
- 	INSERT INTO cart(id_member,id_item,name_cart,amount_cart,price_cart,date_cart) 
- 		VALUES(#{memberId},#{idItem},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
+ 	INSERT INTO cart(cart_member,cart_item,name_cart,amount_cart,price_cart,date_cart) 
+ 		VALUES(#{memberCart},#{idCart},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
  </insert> 
  
  <select id="search" resultMap="cartMap">
- 	SELECT * from cart WHERE id_member = #{memberId}
+ 	SELECT * from cart WHERE cart_member = #{memberCart}
  </select>
  
  <delete id="delete">

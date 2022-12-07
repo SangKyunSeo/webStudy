@@ -27,8 +27,8 @@
 	</tr>
 </table>
 	<form action="/cartDetail" method="POST">
-		<input type="hidden" value="${user.memberId}" id="memberId" name="memberId">
-		<input type="hidden" value="${cartItem.idItem}" id="idItem" name="idItem">
+		<input type="hidden" value="${user.memberId}" id="memberCart" name="memberCart">
+		<input type="hidden" value="${cartItem.idItem}" id="idCart" name="idCart">
 		<input type="hidden" value="${cartItem.nameItem}" id="nameCart" name="nameCart">
 		<label for="amount">수량</label>
 		<input type="number" name="amountCart" id="amountCart">

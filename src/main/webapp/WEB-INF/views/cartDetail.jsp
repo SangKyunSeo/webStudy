@@ -12,11 +12,11 @@
 <table border="1">
 	<tr>
 		<td>회원아이디</td>
-		<td>${cart.memberId}</td>
+		<td>${cart.memberCart}</td>
 	</tr>
 	<tr>
 		<td>상품번호</td>
-		<td>${cart.idItem}</td>
+		<td>${cart.idCart}</td>
 	</tr>
 	<tr>
 		<td>상품명</td>

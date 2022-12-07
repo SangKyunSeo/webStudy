@@ -1,27 +1,27 @@
 package com.spring.dto;
 
 public class CartVO {
-    private String memberId;
-    private int idItem;
+    private String memberCart;
+    private int idCart;
     private String nameCart;
     private int amountCart;
     private int priceCart;
     private String dateCart;
     
-	public String getMemberId() {
-		return memberId;
+	public String getMemberCart() {
+		return memberCart;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemberCart(String memberCart) {
+		this.memberCart = memberCart;
 	}
 
-	public int getIdItem() {
-		return idItem;
+	public int getIdCart() {
+		return idCart;
 	}
 
-	public void setIdItem(int idItem) {
-		this.idItem = idItem;
+	public void setIdCart(int idCart) {
+		this.idCart = idCart;
 	}
 
 	public int getAmountCart() {
