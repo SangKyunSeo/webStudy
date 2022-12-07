@@ -16,18 +16,19 @@
 	<tr>
 		<td>상품명</td>
 		<td>${list.nameCart}</td>
-	</tr>
-	<tr>
 		<td>수량</td>
 		<td>${list.amountCart}</td>
-	</tr>
-	<tr>
 		<td>전체 가격</td>
 		<td>${list.priceCart}</td>
-	</tr>
-	<tr>
 		<td>장바구니에 담은 날짜</td>
 		<td>${list.dateCart}</td>
+	</tr>
+	<tr>
+		<form action="/deleteCart" method="GET">
+			<input type="hidden" name="memberId" value="${list.memberId}">
+			<input type="hidden" name="idItem" value="${list.idItem}">
+			<input type="submit" value="삭제">
+		</form>
 	</tr>
 
 </c:forEach>
