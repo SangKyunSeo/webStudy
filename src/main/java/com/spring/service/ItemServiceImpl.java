@@ -38,4 +38,9 @@ public class ItemServiceImpl implements ItemService{
 	public ItemVO cartItem(int idItem) throws Exception{
 		return itemdao.cartItem(idItem);
 	}
+	
+	@Override
+	public void update(ItemVO itemVo) throws Exception{
+		itemdao.update(itemVo);
+	}
 }

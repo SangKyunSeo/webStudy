@@ -30,6 +30,7 @@
 			<div>
 				<button class="btn btn-success" type="submit" id="submit">수정</button>
 				<button class="cancle btn-danger" type="button">취소</button>
+			
 			</div>
 	
 		</form>

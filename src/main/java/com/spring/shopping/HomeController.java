@@ -214,4 +214,12 @@ public class HomeController {
 		System.out.println(vo.getMemberAge());
 		memService.updateInfo(memberVo);
 	}
+	
+	@RequestMapping(value="/updateItem",method=RequestMethod.GET)
+	public void updateItem(@RequestParam(value="idItem")int idItem,Model model,ItemVO itemVo) throws Exception{
+		ItemVO detailList = itemService.detailList(idItem);
+		model.addAttribute("item",detailList);
+		itemService.update(itemVo);
+	}
+		
 }

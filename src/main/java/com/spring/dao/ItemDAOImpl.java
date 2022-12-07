@@ -42,4 +42,9 @@ public class ItemDAOImpl implements ItemDAO{
     public ItemVO cartItem(int idItem) throws Exception{
     	return sqlSession.selectOne(Namespace+".selectDetail",idItem);
     }
+    
+    @Override
+    public void update(ItemVO itemVo) throws Exception{
+    	sqlSession.update(Namespace+".update",itemVo);
+    }
 }

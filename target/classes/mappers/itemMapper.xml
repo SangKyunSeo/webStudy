@@ -32,4 +32,8 @@
   <delete id="deleteItem">
   		DELETE FROM item WHERE id_item = #{idItem}
   </delete>
+  
+  <update id="update">
+  		UPDATE item SET name_item=#{nameItem},made_item=#{madeItem},price_item=#{priceItem},stock_item=#{stockItem} WHERE id_item = #{idItem}
+  </update>
 </mapper>

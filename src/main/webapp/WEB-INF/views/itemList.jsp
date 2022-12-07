@@ -42,6 +42,10 @@
 					<input type="hidden" name="idItem" value="${list.idItem}">
 					<input type="submit" value="장바구니">
 				</form>
+				<form action="/updateItem" method="GET">
+					<input type="hidden" name="idItem" value="${list.idItem}">
+					<input type="submit" value="수정">
+				</form>
 			</td>
 		</tr>
 			<br><br>
