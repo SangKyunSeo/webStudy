@@ -190,6 +190,7 @@ public class HomeController {
 	@RequestMapping(value="/myCart",method=RequestMethod.GET)
 	public void myCartDetail(HttpSession session,Model model) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
-		cartService.search(vo.getMemberId());
+		List<CartVO> list = cartService.search(vo.getMemberId());
+		model.addAttribute("myCartList",list);
 	}
 }
