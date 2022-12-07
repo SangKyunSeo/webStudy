@@ -171,6 +171,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/cartDetail", method=RequestMethod.POST)
 	public void registOrder(CartVO cartVo,Model model)throws Exception{
+		cartVo.setPriceCart(cartVo.getAmountCart()*cartVo.getPriceCart());
 		cartService.register(cartVo);
 		
 		model.addAttribute("cart",cartVo);

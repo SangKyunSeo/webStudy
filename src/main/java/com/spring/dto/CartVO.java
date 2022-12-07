@@ -37,7 +37,7 @@ public class CartVO {
 	}
 
 	public void setPriceCart(int priceCart) {
-		this.priceCart = priceCart * amountCart;
+		this.priceCart = priceCart;
 	}
 
 	public String getDateCart() {
