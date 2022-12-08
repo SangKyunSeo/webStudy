@@ -32,7 +32,7 @@
 				</div>
 				<form action="/orderParsing" method="GET">
 					<input type="hidden" name="idItem" value="${list.idItem}">
-					<input type="submit" value="이동">
+					<input type="submit" value="주문">
 				</form>
 				<form action="/delete" method="GET">
 					<input type="hidden" name="idItem" value="${list.idItem}">

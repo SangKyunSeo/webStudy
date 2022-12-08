@@ -33,10 +33,10 @@ public class CartDAOImpl implements CartDAO{
     }
     
     @Override
-    public void delete(String memberId,int idItem) throws Exception{
+    public void delete(String memberCart,int itemCart) throws Exception{
     	Map<String, Object> param = new HashMap<>();
-    	param.put("memberId", memberId);
-    	param.put("idItem", idItem);
+    	param.put("memberCart", memberCart);
+    	param.put("itemCart", itemCart);
     	sqlSession.delete(Namespace+".delete",param);
     }
  

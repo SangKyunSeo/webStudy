@@ -2,7 +2,7 @@ package com.spring.dto;
 
 public class CartVO {
     private String memberCart;
-    private int idCart;
+    private int itemCart;
     private String nameCart;
     private int amountCart;
     private int priceCart;
@@ -16,12 +16,12 @@ public class CartVO {
 		this.memberCart = memberCart;
 	}
 
-	public int getIdCart() {
-		return idCart;
+	public int getItemCart() {
+		return itemCart;
 	}
 
-	public void setIdCart(int idCart) {
-		this.idCart = idCart;
+	public void setItemCart(int itemCart) {
+		this.itemCart = itemCart;
 	}
 
 	public int getAmountCart() {

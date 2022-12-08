@@ -7,7 +7,7 @@
  
   <resultMap type="CartVO" id="cartMap">
  	<result column="cart_member" property="memberCart"/>
- 	<result column="cart_item" property="idCart"/>
+ 	<result column="cart_item" property="itemCart"/>
  	<result column="name_cart" property="nameCart"/>
  	<result column="amount_cart" property="amountCart"/>
  	<result column="price_cart" property="priceCart"/>
@@ -16,7 +16,7 @@
  
  <insert id="register">
  	INSERT INTO cart(cart_member,cart_item,name_cart,amount_cart,price_cart,date_cart) 
- 		VALUES(#{memberCart},#{idCart},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
+ 		VALUES(#{memberCart},#{itemCart},#{nameCart},#{amountCart},#{priceCart},#{dateCart})
  </insert> 
  
  <select id="search" resultMap="cartMap">
@@ -24,7 +24,7 @@
  </select>
  
  <delete id="delete">
- 	DELETE FROM cart WHERE id_member = #{memberId} and id_item = #{idItem}
+ 	DELETE FROM cart WHERE cart_member = #{memberCart} and cart_item = #{itemCart}
  </delete>
     
 </mapper>

@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
     }
  
     @Override
-    public void delete(String memberId, int idItem) throws Exception{
-    	dao.delete(memberId,idItem);
+    public void delete(String memberCart, int itemCart) throws Exception{
+    	dao.delete(memberCart,itemCart);
     }
 }

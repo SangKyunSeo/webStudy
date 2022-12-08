@@ -8,5 +8,5 @@ import com.spring.dto.OrderVO;
 public interface CartService {
 	public void register(CartVO cartVo) throws Exception;
 	public List<CartVO> search(String memberId) throws Exception;
-	public void delete(String memberId, int idItem) throws Exception;
+	public void delete(String memberCart, int itemCart) throws Exception;
 }

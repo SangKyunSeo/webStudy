@@ -30,8 +30,8 @@
 				<td>
 					<div class="btn">
 						<form action="/deleteCart" method="GET">
-							<input type="hidden" name="memberId" value="${list.memberId}">
-							<input type="hidden" name="idItem" value="${list.idItem}">
+							<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
+							<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
 							<input type="submit" value="삭제">
 						</form>
 					</div>

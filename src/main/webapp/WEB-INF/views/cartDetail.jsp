@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td>상품번호</td>
-		<td>${cart.idCart}</td>
+		<td>${cart.itemCart}</td>
 	</tr>
 	<tr>
 		<td>상품명</td>
