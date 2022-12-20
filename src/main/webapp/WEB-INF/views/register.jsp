@@ -13,15 +13,15 @@
 		<form action="/register" method="post">
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
-				<input class="form-control" type="email" id="memberId" name="memberId">
+				<input class="form-control" type="email" id="memberId" name="memberId" placeholder="이메일을 입력해주세요">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
-				<input class="form-control" type="password" id="memberPw" name="memberPw">
+				<input class="form-control" type="password" id="memberPw" name="memberPw" placeholder="비밀번호를 입력해주세요">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberName">이름</label>
-				<input class="form-control" type="text" id="memberName" name="memberName">
+				<input class="form-control" type="text" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberAge">나이</label>

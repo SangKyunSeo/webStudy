@@ -1,8 +1,14 @@
 package com.spring.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class MemberVO {
+	
+	@NotBlank(message = "이메일은 필수 입력입니다.")
     private String memberId;
+	@NotBlank(message = "비밀번호는 필수 입력입니다.")
     private String memberPw;
+	@NotBlank(message = "이름은 필수 입력입니다.")
     private String memberName;
     private int memberAge;
     private String memberGender;
