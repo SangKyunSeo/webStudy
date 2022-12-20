@@ -1,7 +1,5 @@
 # webStudy
 
-* Check my branch "master"
-
 <br>
 
 * 쇼핑몰 웹사이트 제작
