@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
 	<title>회원가입</title>
@@ -14,7 +15,11 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
 				<input class="form-control" type="email" id="memberId" name="memberId" placeholder="이메일을 입력해주세요">
-				${valid_memberId}
+				<spring:hasBindErrors name="memberVO">
+				<c:if test="${errors.hasFieldErrors('memberId') }">
+					<strong>${errors.getFieldError('memberId').defaultMessage }</strong>
+                </c:if>
+                </spring:hasBindErrors>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
