@@ -18,8 +18,8 @@
 </tr>
 <tr>
  <td colspan="2" align="center">
- <button type="submit">로그인 </button>
- 	
+ <button type="submit">로그인 </button></td>
+</tr>
  <c:if test="${message == 'Error'}">
  <div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
  </div>
@@ -28,9 +28,11 @@
  <div style="color:red;"> 로그아웃되었습니다.
  </div>
 </c:if>
-</td>
-</tr>
+
 </table>
 </form>
+<div>
+	<button onclick="location='/register'">회원가입</button>
+</div>
 </body>
 </html>

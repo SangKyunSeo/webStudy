@@ -59,8 +59,6 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,Locale locale, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
-		if(vo==null)return "redirect:login";
 		return "home";
 	}
 	
