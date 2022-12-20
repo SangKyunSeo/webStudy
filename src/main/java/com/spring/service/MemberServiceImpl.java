@@ -1,11 +1,15 @@
 package com.spring.service;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
- 
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+
 import com.spring.dao.MemberDAO;
 import com.spring.dto.MemberVO;
 
@@ -48,5 +52,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateInfo(MemberVO memberVo) throws Exception{
     	dao.updateInfo(memberVo);
+    }
+    
+    @Override
+    public Map<String, String> validateHandling(Errors errors) throws Exception{
+    	Map<String, String> validatorResult = new HashMap<>();
+    	
+    	for(FieldError error : errors.getFieldErrors()) {
+    		String vaildKeyName =  String.format("vaild_%s",error.getField());
+    		validatorResult.put(vaildKeyName, error.getDefaultMessage());
+    	}
+    	return validatorResult;
+    	
     }
 }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,11 +72,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public void postRegister(@Valid MemberVO memberVo,BindingResult result) throws Exception{
-//		if(result.hasErrors()) {
-//			List<ObjectError> list = result.getAllErrors();
-//		}
+	public String postRegister(@Valid MemberVO memberVo,Errors errors,BindingResult result,Model model) throws Exception{
+		if(result.hasErrors()) {
+			Map<String,String> validatorResult = memService.validateHandling(errors);
+			for(String key:validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+			return "/register";
+		}
 		memService.register(memberVo);
+		return "redirect:/login";
 		
 	}
 
