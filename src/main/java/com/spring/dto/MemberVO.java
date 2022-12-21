@@ -1,5 +1,7 @@
 package com.spring.dto;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -15,9 +17,15 @@ public class MemberVO {
 	@NotBlank(message = "이름은 필수 입력입니다.")
     private String memberName;
 	
-    private int memberAge;
+	@NotBlank(message = "나이는 필수 입력입니다.")
+    private String memberAge;
+	
     private String memberGender;
+    
+    @NotBlank(message = "주소는 필수 입력입니다.")
     private String memberAddress;
+    
+    @NotBlank(message = "연락처는 필수 입력입니다.")
     private String memberPhone;
     
 	public String getMemberId() {
@@ -44,11 +52,11 @@ public class MemberVO {
 		this.memberName = memberName;
 	}
 
-	public int getMemberAge() {
+	public String getMemberAge() {
 		return memberAge;
 	}
 
-	public void setMemberAge(int memberAge) {
+	public void setMemberAge(String memberAge) {
 		this.memberAge = memberAge;
 	}
 
