@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
 	<title>회원가입</title>
@@ -11,15 +12,16 @@
 	회원가입
 </h1>
 	<section id="container">
-		<form action="/register" method="post">
+		<form action="/register" method="post" >
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
-				<input class="form-control" type="email" id="memberId" name="memberId" placeholder="이메일을 입력해주세요">
+				<input class="form-control" type="text" id="memberId" name="memberId" placeholder="이메일을 입력해주세요"/>
 				<spring:hasBindErrors name="memberVO">
-				<c:if test="${errors.hasFieldErrors('memberId') }">
-					<strong>${errors.getFieldError('memberId').defaultMessage }</strong>
-                </c:if>
-                </spring:hasBindErrors>
+            	<c:if test="${errors.hasFieldErrors('memberId') }">
+            	 <spring:message  code="${errors.getFieldError('memberId').codes[0]}" text="${errors.getFieldError('memberId' ).defaultMessage  }"/>                                           
+				</c:if>
+
+</spring:hasBindErrors>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
