@@ -99,6 +99,9 @@
 					if(data==1){
 						$(".result .msg").text("아이디가 중복되었습니다.");
 						$(".result .msg").attr("style","color:#f00");
+					}else if(data==2){
+						$(".result .msg").text("아이디를 입력하세요.");
+						$(".result .msg").attr("style","color:#f00");
 					}else{
 						$(".result .msg").text("사용가능");
 						$(".result .msg").attr("style","color:#00f");
