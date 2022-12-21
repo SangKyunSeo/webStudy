@@ -63,6 +63,10 @@ public class MemberServiceImpl implements MemberService {
     		validatorResult.put(vaildKeyName, error.getDefaultMessage());
     	}
     	return validatorResult;
-    	
+    }
+    
+    @Override
+    public MemberVO idcheck(String id_member) throws Exception{
+    	return dao.idcheck(id_member);
     }
 }

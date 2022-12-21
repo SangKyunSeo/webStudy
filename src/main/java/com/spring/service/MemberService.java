@@ -17,4 +17,5 @@ public interface MemberService {
 	public MemberVO buyer(String id_member) throws Exception;
 	public void updateInfo(MemberVO memberVo) throws Exception;
 	public Map<String, String> validateHandling(Errors errors) throws Exception;
+	public MemberVO idcheck(String id_member) throws Exception;
 }

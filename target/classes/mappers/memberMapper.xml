@@ -32,5 +32,9 @@
 <update id="update">
 	UPDATE member SET pw_member=#{memberPw},address_member=#{memberAddress},phone_member=#{memberPhone} WHERE id_member = #{memberId}
 </update>
+
+<select id="idchk" resultMap="memberMap">
+	SELECT id_member FROM member WHERE id_member = #{memberId} 
+</select>
     
 </mapper>

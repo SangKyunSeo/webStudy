@@ -10,4 +10,5 @@ public interface MemberDAO {
 	public MemberVO buyer(String id_member) throws Exception;
 	public MemberVO login(MemberVO memberVo);
 	public void updateInfo(MemberVO memberVo) throws Exception;
+	public MemberVO idcheck(String id_member) throws Exception;
 }

@@ -3,10 +3,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <html>
 <head>
 	<title>회원가입</title>
 </head>
+
+
 <body>
 <h1>
 	회원가입
@@ -16,6 +19,10 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
 				<input class="form-control" type="text" id="memberId" name="memberId" placeholder="이메일을 입력해주세요"/>
+				<button type="button" id="idCheck">중복확인</button>
+				<p class="result">
+					<span class="msg">이메일을 확인해주세요</span>
+				</p>
 				<spring:hasBindErrors name="memberVO">
             	<c:if test="${errors.hasFieldErrors('memberId') }">
             	 <spring:message  code="${errors.getFieldError('memberId').codes[0]}" text="${errors.getFieldError('memberId' ).defaultMessage  }"/>                                           
@@ -79,6 +86,27 @@
 		</form>
 	
 	</section>
+	
+	<script>
+		$("#idCheck").on("click",function(){
+			var query = {id_member : $("#memberId").val()};
+			
+			$.ajax({
+				url : "/idchk",
+				type : "post",
+				data : query,
+				success : function(data){
+					if(data==1){
+						$(".result .msg").text("아이디가 중복되었습니다.");
+						$(".result .msg").attr("style","color:#f00");
+					}else{
+						$(".result .msg").text("사용가능");
+						$(".result .msg").attr("style","color:#00f");
+					}
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>
