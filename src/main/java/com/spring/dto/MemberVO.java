@@ -5,8 +5,8 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class MemberVO {
 	
-	@NotBlank
-	@Email
+	@NotBlank(message = "이메일은 필수 입력입니다.")
+	@Email(message = "이메일 형식으로 입력하세요.")
     private String memberId;
 	
 	@NotBlank(message = "비밀번호는 필수 입력입니다.")
