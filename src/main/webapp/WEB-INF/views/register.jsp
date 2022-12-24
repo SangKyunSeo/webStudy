@@ -88,7 +88,7 @@
 	</section>
 	
 	<script>
-		$("#idCheck").on("click",function(){
+		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
 			
 			$.ajax({
