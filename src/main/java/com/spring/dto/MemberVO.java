@@ -1,6 +1,7 @@
 package com.spring.dto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -12,6 +13,7 @@ public class MemberVO {
     private String memberId;
 	
 	@NotBlank(message = "비밀번호는 필수 입력입니다.")
+	@Pattern(regexp=" ^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,20}$",message = "비밀번호는 최소 8자리 이상,영문자와 특수문자를 포함시켜주세요.")
     private String memberPw;
 	
 	@NotBlank(message = "이름은 필수 입력입니다.")

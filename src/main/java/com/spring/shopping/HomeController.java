@@ -92,7 +92,6 @@ public class HomeController {
 	public int idcheck(HttpServletRequest req) throws Exception{
 		String id_member = req.getParameter("id_member");
 		if(id_member.equals(""))return 2;
-		
 		MemberVO idCheck = memService.idcheck(id_member);
 		if(idCheck!=null)return 1;
 		return 0;
