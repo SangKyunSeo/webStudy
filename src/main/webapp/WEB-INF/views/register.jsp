@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 	<title>회원가입</title>
 </head>
@@ -15,15 +15,12 @@
 	회원가입
 </h1>
 	<section id="container">
-		<form th:action="/register" method="post" th:object="${memberVO}" >
+		<form action="/register" method="post" >
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
 				<input class="form-control" type="text" id="memberId" name="memberId" placeholder="이메일을 입력해주세요"/>
-				<button type="button" id="idCheck">중복확인</button>
-				<p class="result">
-					<span class="msg">이메일을 확인해주세요</span>
-				</p>
-				 <div class="emailHelp help" th:errors="*{memberId}">이메일 오류</div>
+				<span id = "emailChk"></span>
+				
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
@@ -84,27 +81,37 @@
 	</section>
 	
 	<script>
+	$(function(){
+		var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var chk1 = false;
 		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
 			
-			$.ajax({
-				url : "/idchk",
-				type : "post",
-				data : query,
-				success : function(data){
-					if(data==1){
-						$(".result .msg").text("이메일이 중복되었습니다.");
-						$(".result .msg").attr("style","color:#f00");
-					}else if(data==2){
-						$(".result .msg").text("이메일을 입력하세요.");
-						$(".result .msg").attr("style","color:#f00");
-					}else{
-						$(".result .msg").text("사용가능");
-						$(".result .msg").attr("style","color:#00f");
+			if($("#memberId").val()===null||$("#memberId").val()===''||$("#memberId").val()==null||$("#memberId").val()=='' ) {
+		           $("#emailChk").html('<b style="font-size: 14px; color: red"> [아이디는 필수값입니다.]</b>'); 
+		           chk1 = false;
+		    }else if(!email_rule.test($("#memberId").val())){
+	            $("#emailChk").html('<b style="font-size: 14px; color: red"> [이메일 형식으로 입력하세요.]</b>');
+	            chk1 = false;
+	        }else{
+				$.ajax({
+					url : "/idchk",
+					type : "post",
+					data : query,
+					success : function(data){
+						if(data==1){
+							$("#emailChk").html('<b style="font-size: 14px; color: red">[이메일 중복]</b>');
+				            
+							chk1=false;
+						}else{
+							$("#emailChk").html('<b style="font-size: 14px; color: blue">[사용가능]</b>');
+							chk1=true;
+						}
 					}
-				}
-			});
+				});
+			}
 		});
+	});
 	</script>
 
 </body>

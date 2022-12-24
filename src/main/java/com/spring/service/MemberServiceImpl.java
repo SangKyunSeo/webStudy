@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
     	Map<String, String> validatorResult = new HashMap<>();
     	
     	for(FieldError error : errors.getFieldErrors()) {
-    		String vaildKeyName =  String.format("vaild_%s",error.getField());
+    		String vaildKeyName =  String.format("valid_%s",error.getField());
     		validatorResult.put(vaildKeyName, error.getDefaultMessage());
     	}
     	return validatorResult;

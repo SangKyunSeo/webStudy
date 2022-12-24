@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,10 +77,11 @@ public class HomeController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String postRegister(@Valid MemberVO memberVo,BindingResult result,Model model) throws Exception{
 		if(result.hasErrors()) {
-//			Map<String,String> validatorResult = memService.validateHandling(errors);
-//			for(String key:validatorResult.keySet()) {
-//				model.addAttribute(key, validatorResult.get(key));
-//			}
+			Map<String,String> validatorResult = memService.validateHandling(result);
+			
+			for(String key:validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
 			return "/register";
 		}
 		memService.register(memberVo);
@@ -91,9 +93,9 @@ public class HomeController {
 	@RequestMapping(value="/idchk", method = RequestMethod.POST)
 	public int idcheck(HttpServletRequest req) throws Exception{
 		String id_member = req.getParameter("id_member");
-		if(id_member.equals(""))return 2;
 		MemberVO idCheck = memService.idcheck(id_member);
 		if(idCheck!=null)return 1;
+		
 		return 0;
 	}
 
