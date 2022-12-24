@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>회원가입</title>
 </head>
@@ -15,7 +15,7 @@
 	회원가입
 </h1>
 	<section id="container">
-		<form action="/register" method="post" >
+		<form th:action="/register" method="post" th:object="${memberVO}" >
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberId">이메일</label>
 				<input class="form-control" type="text" id="memberId" name="memberId" placeholder="이메일을 입력해주세요"/>
@@ -23,11 +23,7 @@
 				<p class="result">
 					<span class="msg">이메일을 확인해주세요</span>
 				</p>
-				<spring:hasBindErrors name="memberVO">
-            	<c:if test="${errors.hasFieldErrors('memberId') }">
-            	 <spring:message  code="${errors.getFieldError('memberId').codes[0]}" text="${errors.getFieldError('memberId' ).defaultMessage  }"/>                                           
-				</c:if>
-				</spring:hasBindErrors>
+				 <div class="emailHelp help" th:errors="*{memberId}">이메일 오류</div>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
