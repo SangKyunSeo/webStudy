@@ -20,22 +20,21 @@
 				<label class="control-label" for="memberId">이메일</label>
 				<input class="form-control" type="text" id="memberId" name="memberId" placeholder="이메일을 입력해주세요"/>
 				<span id = "emailChk"></span>
-				
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
 				<input class="form-control" type="password" id="memberPw" name="memberPw" placeholder="비밀번호를 입력해주세요">
 				<span id = "pwChk"></span>
 			</div>
+			<div class="form-group check password">
+				<label class="control-label" for="pw_check" >패스워드 확인</label>
+				<input class="form-control" type="password" id="pw_check" name="pw_check" placeholder="비밀번호를 다시 입력해주세요">
+				<span id = "rpwChk"></span>
+			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberName">이름</label>
 				<input class="form-control" type="text" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
 				<span id = "nameChk"></span>
-				<spring:hasBindErrors name="memberVO">
-            	<c:if test="${errors.hasFieldErrors('memberName') }">
-            	 <spring:message  code="${errors.getFieldError('memberName').codes[0]}" text="${errors.getFieldError('memberName' ).defaultMessage  }"/>                                           
-				</c:if>
-				</spring:hasBindErrors>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberAge">나이</label>
@@ -85,6 +84,7 @@
 		var email_chk = false;
 		var pw_chk = false;
 		var name_chk = false;
+		var rpw_chk = false;
 		
 		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
@@ -129,6 +129,19 @@
 	        }
 		});
 		
+		$("#pw_check").keyup(function(){
+			if($("#pw_check").val()===null||$("#pw_check").val()===''||$("#pw_check").val()==null||$("#pw_check").val()=='' ) {
+				   $("#rpwChk").html('<b style="font-size: 14px; color: red"> [비밀번호는 필수값입니다.]</b>'); 
+				   rpw_chk = false;
+			}else if($("#pw_check").val()!=$("#memberPw").val()){
+			    $("#rpwChk").html('<b style="font-size: 14px; color: red"> [비밀번호가 일치 하지 않습니다.]</b>');
+			    rpw_chk = false;
+			}else{
+				$("#rpwChk").html('<b style="font-size: 14px; color: blue"> [비밀번호가 일치 합니다.]</b>');
+			    rpw_chk = true;
+			}
+		});
+	
 		$("#memberName").keyup(function(){
 			var query = {id_member : $("#memberPw").val()};
 			
