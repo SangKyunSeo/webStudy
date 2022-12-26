@@ -26,15 +26,11 @@
 				<label class="control-label" for="memberPw">패스워드</label>
 				<input class="form-control" type="password" id="memberPw" name="memberPw" placeholder="비밀번호를 입력해주세요">
 				<span id = "pwChk"></span>
-				<spring:hasBindErrors name="memberVO">
-            	<c:if test="${errors.hasFieldErrors('memberPw') }">
-            	 <spring:message  code="${errors.getFieldError('memberPw').codes[0]}" text="${errors.getFieldError('memberPw' ).defaultMessage  }"/>                                           
-				</c:if>
-				</spring:hasBindErrors>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberName">이름</label>
 				<input class="form-control" type="text" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
+				<span id = "nameChk"></span>
 				<spring:hasBindErrors name="memberVO">
             	<c:if test="${errors.hasFieldErrors('memberName') }">
             	 <spring:message  code="${errors.getFieldError('memberName').codes[0]}" text="${errors.getFieldError('memberName' ).defaultMessage  }"/>                                           
@@ -85,8 +81,10 @@
 	$(function(){
 		var email_rule =  /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/i;
 		var pw_rule = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+		var name_rule = /^[가-힣a-zA-Z]+$/;
 		var email_chk = false;
 		var pw_chk = false;
+		var name_chk = false;
 		
 		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
@@ -128,6 +126,21 @@
 	        }else{
 	        	$("#pwChk").html('<b style="font-size: 14px; color: blue"> [사용가능]</b>');
 	        	pw_chk = true;
+	        }
+		});
+		
+		$("#memberName").keyup(function(){
+			var query = {id_member : $("#memberPw").val()};
+			
+			if($("#memberName").val()===null||$("#memberName").val()===''||$("#memberName").val()==null||$("#memberName").val()=='' ) {
+		           $("#nameChk").html('<b style="font-size: 14px; color: red"> [이름은 필수값입니다.]</b>'); 
+		           name_chk = false;
+		    }else if(!name_rule.test($("#memberName").val())){
+	            $("#nameChk").html('<b style="font-size: 14px; color: red"> [이름 형식이 맞지 않습니다. 한글 또는 영문자 입력을 확인해주세요.]</b>');
+	            name_chk = false;
+	        }else{
+	        	$("#nameChk").html('<b style="font-size: 14px; color: blue"> [제대로 된 입력입니다.]</b>');
+	        	name_chk = true;
 	        }
 		});
 	});
