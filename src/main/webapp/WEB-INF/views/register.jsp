@@ -83,16 +83,16 @@
 	<script>
 	$(function(){
 		var email_rule =  /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/i;
-		var chk1 = false;
+		var email_chk = false;
 		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
 			
 			if($("#memberId").val()===null||$("#memberId").val()===''||$("#memberId").val()==null||$("#memberId").val()=='' ) {
 		           $("#emailChk").html('<b style="font-size: 14px; color: red"> [아이디는 필수값입니다.]</b>'); 
-		           chk1 = false;
+		           email_chk = false;
 		    }else if(!email_rule.test($("#memberId").val())){
 	            $("#emailChk").html('<b style="font-size: 14px; color: red"> [이메일 형식으로 입력하세요.]</b>');
-	            chk1 = false;
+	            email_chk = false;
 	        }else{
 				$.ajax({
 					url : "/idchk",
@@ -102,10 +102,10 @@
 						if(data==1){
 							$("#emailChk").html('<b style="font-size: 14px; color: red">[이메일 중복]</b>');
 				            
-							chk1=false;
+							email_chk=false;
 						}else{
 							$("#emailChk").html('<b style="font-size: 14px; color: blue">[사용가능]</b>');
-							chk1=true;
+							email_chk=true;
 						}
 					}
 				});
