@@ -25,6 +25,7 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="memberPw">패스워드</label>
 				<input class="form-control" type="password" id="memberPw" name="memberPw" placeholder="비밀번호를 입력해주세요">
+				<span id = "pwChk"></span>
 				<spring:hasBindErrors name="memberVO">
             	<c:if test="${errors.hasFieldErrors('memberPw') }">
             	 <spring:message  code="${errors.getFieldError('memberPw').codes[0]}" text="${errors.getFieldError('memberPw' ).defaultMessage  }"/>                                           
@@ -83,7 +84,10 @@
 	<script>
 	$(function(){
 		var email_rule =  /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/i;
+		var pw_rule = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 		var email_chk = false;
+		var pw_chk = false;
+		
 		$("#memberId").keyup(function(){
 			var query = {id_member : $("#memberId").val()};
 			
@@ -110,6 +114,21 @@
 					}
 				});
 			}
+		});
+		
+		$("#memberPw").keyup(function(){
+			var query = {id_member : $("#memberPw").val()};
+			
+			if($("#memberPw").val()===null||$("#memberPw").val()===''||$("#memberPw").val()==null||$("#memberPw").val()=='' ) {
+		           $("#pwChk").html('<b style="font-size: 14px; color: red"> [비밀번호는 필수값입니다.]</b>'); 
+		           pw_chk = false;
+		    }else if(!pw_rule.test($("#memberPw").val())){
+	            $("#pwChk").html('<b style="font-size: 14px; color: red"> [비밀번호는 최소 8자리 이상 20자리 이하,영문자와 특수문자를 포함시켜주세요.]</b>');
+	            pw_chk = false;
+	        }else{
+	        	$("#pwChk").html('<b style="font-size: 14px; color: blue"> [사용가능]</b>');
+	        	pw_chk = true;
+	        }
 		});
 	});
 	</script>
