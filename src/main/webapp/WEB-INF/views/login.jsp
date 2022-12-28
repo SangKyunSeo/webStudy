@@ -25,7 +25,7 @@
 </tr>
 <tr>
  <td colspan="2" align="center">
- <button type="submit" id="btnLogin">로그인 </button></td>
+ <button type="button" id="btnLogin">로그인 </button></td>
 </tr>
  <c:if test="${msg == 'Error'}">
  <div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
@@ -35,7 +35,6 @@
  <div style="color:red;"> 로그아웃되었습니다.
  </div>
 </c:if>
-
 </table>
 </form>
 <div>
@@ -47,23 +46,24 @@
 		$("#btnLogin").click(function(){
 			var memberId=$("#memberId").val();
 			var memberPw=$("#memberPw").val();
-			
+			var chk1 = false;
+			var chk2 = false;
 			if(memberId==""||memberId==''||memberId==null){
 				$("#emailChk").html('<b style="font-size: 14px; color: red"> [이메일을 입력해주세요]</b>');
-			    $("#memberId").focus();
-			    return;
-			}
+			    chk1 = false;
+			}else chk1 = true;
 			
-			if(memberPw==""){
+			if(memberPw==""||memberPw==''||memberPw==null){
 				$("#pwChk").html('<b style="font-size: 14px; color: red"> [비밀번호를 입력해주세요]</b>');
-			    $("#memberPw").focus();
-			    return;
-			}
+			    chk2 = false;
+			}else chk2 = true;
 			
-			document.form1.action= "/loginCheck";
-			document.form1.submit();
-		})
-	})
+			if(chk1 && chk2){
+				document.form1.action= "/loginCheck";
+				document.form1.submit();
+			}
+		});
+	});
 </script>
 </body>
 </html>

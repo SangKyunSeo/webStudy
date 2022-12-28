@@ -17,9 +17,11 @@
 	</form>
 </div>
 
-<form action="/updateInfo" method="POST">
-	<input type="submit" value="로그아웃">
-</form>
+<div class ="login_class" id="logout">
+	<form action="/logout" method="POST">
+		<input type="submit" value="로그아웃">
+	</form>
+</div>
 
 <form action="/myCart" method="GET">
 	<input type="submit" value="내장바구니">
@@ -33,8 +35,11 @@
 		var user = '${user}';
 		if(user==null||user==''||user==""){
 			$("#login").show();
-		}else
+			$("#logout").hide();
+		}else{
 			$("#login").hide();
+			$("#logout").show();
+		}
 	});
 </script>
 

@@ -136,10 +136,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/logout")
-	public ModelAndView logout(HttpSession session, ModelAndView mav) {
-		mav.setViewName("login");
-		mav.addObject("message","logout");
-		return mav;
+	public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+		memService.logout(session);
+		redirectAttributes.addFlashAttribute("msg","logout");
+		return "redirect:login";
 	}
 	
 	@RequestMapping(value="/order",method = RequestMethod.GET)
