@@ -25,9 +25,10 @@ public class MemberServiceImpl implements MemberService {
     
     @Override
     public String loginCheck(MemberVO memberVo, HttpSession session) throws Exception{
+    	MemberVO login = dao.login(memberVo);
     	String email = dao.loginCheck(memberVo);
     	if(email!=null) {
-    		session.setAttribute("id_member", memberVo.getMemberId());
+    		session.setAttribute("LoginVo", login);
     	}
     	return email;
     }
