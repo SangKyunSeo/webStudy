@@ -25,6 +25,10 @@
         SELECT * FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
     </select>
 
+<select id="loginCheck" resultType="String">
+        SELECT id_member FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
+    </select>
+
 <select id="buyer" resultMap="memberMap">
 	SELECT * FROM member WHERE id_member = #{memberId}
 </select>

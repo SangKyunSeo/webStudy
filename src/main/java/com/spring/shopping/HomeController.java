@@ -120,19 +120,20 @@ public class HomeController {
 	  
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session,RedirectAttributes rttr) {
-		MemberVO login = memService.login(vo);
-		String path="";
-		if(login!=null) {
-			session.setAttribute("LoginVo", login);
-			return "redirect:itemList";
+		return "login";
+	}
+	
+	@RequestMapping(value="/loginCheck", method = RequestMethod.POST)
+	public ModelAndView login_check(@ModelAttribute MemberVO vo, HttpSession session)throws Exception {
+		String email = memService.loginCheck(vo, session);
+		ModelAndView mav = new ModelAndView();
+		if(email!=null) {
+			mav.setViewName("/home");
+		}else {
+			mav.setViewName("/login");
+			mav.addObject("msg","Error");
 		}
-		else
-		{
-			session.setAttribute("LoginVo", null);
-			rttr.addFlashAttribute("msg",false);
-			path="login";
-		}
-		return path;
+		return mav;
 	}
 	
 	@RequestMapping(value="/logout")

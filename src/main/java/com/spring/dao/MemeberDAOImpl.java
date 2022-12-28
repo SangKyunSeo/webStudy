@@ -27,7 +27,7 @@ public class MemeberDAOImpl implements MemberDAO{
     }
     @Override
     public String loginCheck(MemberVO memberVo) throws Exception{
-    	return sqlSession.selectOne(Namespace+".login",memberVo);
+    	return sqlSession.selectOne(Namespace+".loginCheck",memberVo);
     }
 
     @Override
