@@ -77,11 +77,6 @@ public class HomeController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String postRegister(@Valid MemberVO memberVo,BindingResult result,Model model) throws Exception{
 		if(result.hasErrors()) {
-			Map<String,String> validatorResult = memService.validateHandling(result);
-			
-			for(String key:validatorResult.keySet()) {
-				model.addAttribute(key, validatorResult.get(key));
-			}
 			return "/register";
 		}
 		memService.register(memberVo);

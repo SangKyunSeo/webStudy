@@ -8,26 +8,19 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class MemberVO {
 	
-	@NotBlank(message = "이메일은 필수 입력입니다.")
-	@Email(message = "이메일 형식으로 입력하세요.")
+	@NotNull
     private String memberId;
-	
-	@NotBlank(message = "비밀번호는 필수 입력입니다.")
-	@Pattern(regexp=" ^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,20}$",message = "비밀번호는 최소 8자리 이상,영문자와 특수문자를 포함시켜주세요.")
-    private String memberPw;
-	
-	@NotBlank(message = "이름은 필수 입력입니다.")
+	@NotNull
+	private String memberPw;
+	@NotNull
     private String memberName;
-	
-	@NotBlank(message = "나이는 필수 입력입니다.")
+	@NotNull
     private String memberAge;
-	
+	@NotNull
     private String memberGender;
-    
-    @NotBlank(message = "주소는 필수 입력입니다.")
+	@NotNull
     private String memberAddress;
-    
-    @NotBlank(message = "연락처는 필수 입력입니다.")
+	@NotNull
     private String memberPhone;
     
 	public String getMemberId() {
