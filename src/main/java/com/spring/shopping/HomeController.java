@@ -65,7 +65,8 @@ public class HomeController {
      */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,Locale locale, Model model) throws Exception {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("user",vo);
 		return "home";
 	}
 	
@@ -124,16 +125,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/loginCheck", method = RequestMethod.POST)
-	public ModelAndView login_check(@ModelAttribute MemberVO vo, HttpSession session)throws Exception {
+	public String login_check(@ModelAttribute MemberVO vo, HttpSession session,RedirectAttributes redirectAttributes)throws Exception {
 		String email = memService.loginCheck(vo, session);
-		ModelAndView mav = new ModelAndView();
 		if(email!=null) {
-			mav.setViewName("/home");
+			return "redirect:/";
 		}else {
-			mav.setViewName("/login");
-			mav.addObject("msg","Error");
+			redirectAttributes.addFlashAttribute("msg","Error");
+			return "redirect:/login";
 		}
-		return mav;
 	}
 	
 	@RequestMapping(value="/logout")
