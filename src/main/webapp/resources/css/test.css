@@ -1,0 +1,31 @@
+.inline_view {
+        display: inline-block;
+}
+
+.searchParent{
+	position: relative;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.search {
+	width: 100%;
+	border: 1px solid #bbb;
+	height: 35px;
+	font-size: 14px;
+}
+
+.searchIcon {
+	position:absolute;
+	background-image: url("images/search2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+    background-color: #CFFFE5;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #bbb;
+	cursor:pointer;
+	outline: 0;
+
+}
