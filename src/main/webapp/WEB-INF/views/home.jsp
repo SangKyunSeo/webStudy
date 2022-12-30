@@ -45,11 +45,11 @@
 
 <div class="container">
 	<c:forEach items="${itemList}"  var="list" varStatus="status" >
-		<tr>
-			이미지
-		</tr>
-		<tr>
-			<td class="detail">
+		<form class="itemForm" method="GET" id="itemCard"  name="itemCard">
+			<div id="itemClick" class="itemListCard">
+				<div class="imageItem">
+					이미지
+				</div>
 				<div class="itemName">
 					상품명 : ${list.nameItem}
 				</div>
@@ -62,16 +62,8 @@
 				<div class="stock">
 					재고량 : ${list.stockItem}
 				</div>
-				<form action="/orderParsing" method="GET">
-					<input type="hidden" name="idItem" value="${list.idItem}">
-					<input type="submit" value="주문">
-				</form>
-				<form action="/registCart" method="GET">
-					<input type="hidden" name="idItem" value="${list.idItem}">
-					<input type="submit" value="장바구니">
-				</form>
-			</td>
-		</tr>
+			</div>
+		</form>
 			<br><br>
 	</c:forEach>
 </div>
@@ -105,6 +97,12 @@
 					$("#nameItem").val("");
 				}
 			}
+		});
+		
+		$("#itemClick").click(function(){
+			alert('');
+			document.itemForm.action="/itemdetail";
+			document.itemForm.submit();
 		});
 	});
 </script>
