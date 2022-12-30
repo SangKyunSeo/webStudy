@@ -23,8 +23,11 @@
  
   <select id="selectItem" resultMap="itemMap">
         SELECT * FROM item
-    </select>
+  </select>
     
+  <select id="searchItems" resultMap="itemMap">
+  	SELECT * FROM item WHERE name_item LIKE CONCAT('%', #{nameItem}, '%')
+  </select>
   <select id="selectDetail" resultMap="itemMap">
   		SELECT * FROM item WHERE id_item = #{idItem}
   </select>

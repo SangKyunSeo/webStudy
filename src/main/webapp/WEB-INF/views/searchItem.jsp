@@ -5,44 +5,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <html>
 <head>
-	<title>Home</title>
-	<script src="${path}/resources/js/test.js"></script>
-	<link href="${path}/resources/css/test.css" rel="stylesheet"/> 	
+	<title>물품 검색</title>
 </head>
 <body>
 <br><br><br>
 <div class="header"  id="main_top">
 	<h1 class="inline_view" >
-		메인
+		'${name}' 검색 결과
 	</h1>
-	<div class="inline_view searchParent" id="search">
-		<form action ="/searchItem" method="GET" id="searchForm">
-			<input type="text" class="search" id="nameItem" name="nameItem" placeholder="검색어를 입력하세요">
-			<input type="submit" class="searchIcon" value="">
-		</form>
-	</div>
 </div>
-
-<div class ="login_class" id="login">
-	<form action="/login" method="POST">
-		<input type="submit" value="로그인">
-	</form>
-</div>
-
-<div class ="login_class" id="logout">
-	<form action="/logout" method="POST">
-		<input type="submit" value="로그아웃">
-	</form>
-</div>
-
-<form action="/myCart" method="GET">
-	<input type="submit" value="내장바구니">
-</form>
-<br><br>
-<form action="/updateInfo" method="POST">
-	<input type="submit" value="내정보수정">
-</form>
-
 <div class="container">
 	<c:forEach items="${itemList}"  var="list" varStatus="status" >
 		<tr>

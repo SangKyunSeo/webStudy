@@ -29,6 +29,11 @@ public class ItemDAOImpl implements ItemDAO{
     }
     
     @Override
+    public List<ItemVO> searchItems(String nameItem) throws Exception{
+    	return sqlSession.selectList(Namespace+".searchItems",nameItem);
+    }
+    
+    @Override
     public ItemVO detailList(int idItem) throws Exception{
     	return sqlSession.selectOne(Namespace+".selectDetail",idItem);
     }

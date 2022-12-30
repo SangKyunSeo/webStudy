@@ -109,6 +109,14 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="/searchItem", method = RequestMethod.GET)
+	public String getSearchItem(@RequestParam(required=false,value="nameItem")String nameItem,Model model) throws Exception {
+		List<ItemVO> list = itemService.searchItems(nameItem);
+		model.addAttribute("name",nameItem);
+		model.addAttribute("itemList",list);
+		return "/searchItem";
+	}
+	//관리자 페이지
 	@RequestMapping(value="/itemList", method = RequestMethod.GET)
 	public String getList(Locale locale,Model model) throws Exception{
 		List<ItemVO> list = itemService.list();

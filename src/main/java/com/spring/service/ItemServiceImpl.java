@@ -25,6 +25,11 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
+	public List<ItemVO> searchItems(String nameItem) throws Exception{
+		return itemdao.searchItems(nameItem);
+	}
+	
+	@Override
 	public ItemVO detailList(int idItem) throws Exception{
 		return itemdao.detailList(idItem);
 	}
