@@ -66,6 +66,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,Locale locale, Model model) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		List<ItemVO> list = itemService.list();
+		model.addAttribute("itemList",list);
 		model.addAttribute("user",vo);
 		return "home";
 	}
