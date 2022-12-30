@@ -16,9 +16,9 @@
 		메인
 	</h1>
 	<div class="inline_view searchParent" id="search">
-		<form action ="/searchItem" method="GET" id="searchForm">
+		<form action="/" method="GET" id="searchForm" name="searchForm">
 			<input type="text" class="search" id="nameItem" name="nameItem" placeholder="검색어를 입력하세요">
-			<input type="submit" class="searchIcon" value="">
+			<input type="submit" class="searchIcon" value="" id="searchButton">
 		</form>
 	</div>
 </div>
@@ -86,6 +86,26 @@
 			$("#login").hide();
 			$("#logout").show();
 		}
+		
+		$("#searchButton").click(function(){
+			var nameItem = $("#nameItem").val();
+			if(nameItem==''){
+				alert('검색어를 입력하세요.');
+				return false;
+			}else{
+				document.searchForm.action= "/searchItem";
+				document.searchform.submit();
+			}
+			
+		});
+		
+		$(document).ready(function(){
+			window.onpageshow = function (event){
+				if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+					$("#nameItem").val("");
+				}
+			}
+		});
 	});
 </script>
 

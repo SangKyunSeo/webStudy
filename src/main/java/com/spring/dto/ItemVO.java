@@ -1,7 +1,11 @@
 package com.spring.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class ItemVO {
 	private int idItem;
+	
+	@NotNull
 	private String nameItem;
 	private String madeItem;
 	private String imageItem;
