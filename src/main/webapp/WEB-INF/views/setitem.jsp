@@ -12,10 +12,6 @@
 	<section id="container">
 		<form action="/setitem" method="post">
 			<div class="form-group has-feedback">
-				<label class="control-label" for="idItem">상품번호</label>
-				<input class="form-control" type="number" id="idItem" name="idItem">
-			</div>
-			<div class="form-group has-feedback">
 				<label class="control-label" for="nameItem">상품명</label>
 				<input class="form-control" type="text" id="nameItem" name="nameItem">
 			</div>

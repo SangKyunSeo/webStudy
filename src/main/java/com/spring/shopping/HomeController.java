@@ -210,8 +210,8 @@ public class HomeController {
 		model.addAttribute("cart",cartVo);
 	}
 	
-	@RequestMapping(value="/itemdetail",method=RequestMethod.GET)
-	public void itemDetail(Model model)throws Exception{
+	@RequestMapping(value="/itemdetail/{idItem}",method=RequestMethod.GET)
+	public void itemDetail(@PathVariable("idItem")int idItem, Model model)throws Exception{
 		
 	}
 	
