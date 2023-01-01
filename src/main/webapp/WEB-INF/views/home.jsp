@@ -46,23 +46,25 @@
 <div class="container">
 	<c:forEach items="${itemList}"  var="list" varStatus="status" >
 		<form class="itemForm" method="GET" id="itemCard"  name="itemCard">
-			<div id="itemClick" class="itemListCard">
-				<div class="imageItem">
-					이미지
+				<div id="itemClick" class="itemListCard">
+					<p>
+						<a href="/itemdetail/${list.idItem}">
+							<img src="/resources/img/iphone8.png" width="150" height="100">
+						</a>
+					</p>
+					<div class="itemName">
+						상품명 : ${list.nameItem}
+					</div>
+					<div class="madeName">
+						제조사 : ${list.madeItem}
+					</div>
+					<div class="price">
+						가격 : ${list.priceItem}
+					</div>
+					<div class="stock">
+						재고량 : ${list.stockItem}
+					</div>
 				</div>
-				<div class="itemName">
-					상품명 : ${list.nameItem}
-				</div>
-				<div class="madeName">
-					제조사 : ${list.madeItem}
-				</div>
-				<div class="price">
-					가격 : ${list.priceItem}
-				</div>
-				<div class="stock">
-					재고량 : ${list.stockItem}
-				</div>
-			</div>
 		</form>
 			<br><br>
 	</c:forEach>
@@ -97,12 +99,6 @@
 					$("#nameItem").val("");
 				}
 			}
-		});
-		
-		$("#itemClick").click(function(){
-			alert('');
-			document.itemForm.action="/itemdetail";
-			document.itemForm.submit();
 		});
 	});
 </script>
