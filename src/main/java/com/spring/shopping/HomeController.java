@@ -69,6 +69,10 @@ public class HomeController {
 	public String test(HttpSession session,Locale locale, Model model) throws Exception {
 		return "test";
 	}
+	@RequestMapping(value = "/testitemdetail", method = RequestMethod.GET)
+	public String testitemdetail(HttpSession session,Locale locale, Model model) throws Exception {
+		return "testitemdetail";
+	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,Locale locale, Model model) throws Exception {
