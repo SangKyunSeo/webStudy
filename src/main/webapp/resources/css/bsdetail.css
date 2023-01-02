@@ -4604,6 +4604,9 @@ textarea.form-control-lg {
   border-radius: calc(0.25rem - 1px);
 }
 
+.prod-img{
+	width: 55%;
+}
 .card-img,
 .card-img-top,
 .card-img-bottom {

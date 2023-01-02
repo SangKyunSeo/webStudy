@@ -11,8 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>상세 페이지</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -80,6 +79,51 @@
                 </div>
             </div>
         </section>
+        
+        <div class="container px-8 px-lg-8">
+        	<div class="navbar navbar-expand-lg navbar-light bg-light">
+        		상품정보
+        	</div>
+        </div> 
+        <!-- 상품 이미지 -->
+		<div class="row gx-4 gx-lg-5 align-items-center">
+        	<div class="col-md-12">
+        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        	</div>
+        	<div class="col-md-12">
+        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        	</div>
+        	<div class="col-md-12">
+        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        	</div>
+        	<div class="col-md-12">
+        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        	</div>
+        	<div class="col-md-12">
+        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        	</div>
+        </div>
+        
+        <!-- 메뉴바 -->
+        <div class="container px-4 px-lg-5">
+	        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-nav">
+			  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+			    <li class="nav-item">
+			    	<a href="#" class="nav-link"><div>상품평</div> </a>
+			    </li>
+			    <li class="nav-item">
+			    	<a href="#" class="nav-link"><div>상품문의</div> </a>
+			    </li>
+			    <li class="nav-item">
+			    	<a href="#" class="nav-link"><div>배송/교환/반품</div> </a>
+			    </li>
+			  </ul>
+			</nav>
+		</div>
+		
+		
+                   
+		
         <!-- Related items section-->
         <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
@@ -193,7 +237,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     </body>
 </html>
