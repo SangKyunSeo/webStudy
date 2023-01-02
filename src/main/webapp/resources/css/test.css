@@ -29,3 +29,35 @@
 	outline: 0;
 
 }
+
+.item-content{
+	width:980px;
+	margin: 0 auto;
+	padding-top: 10px;
+	position:relative;
+}
+.tab{
+	position:relative;
+}
+.tab-titles{
+	border-top:2px solid #555;
+	border-bottom:1px solid #ccc;
+	border-left:1px solid #ccc;
+	list-style-type:none;
+	font-size:0;
+	position: absolute;
+	top:0;
+	width:100%;
+}
+.tab-titles>li{
+	display:inline-block;
+	padding:15px 20px 14px;
+	width:25%;
+	border-right:1px solid #ccc;
+	background-color:#fafafa;
+	text-align: center;
+	color:#555;
+	font-weight: bold;
+	font-size: 16px;
+	box-sizing: border-box;
+}

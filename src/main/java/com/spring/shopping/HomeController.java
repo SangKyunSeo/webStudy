@@ -64,6 +64,12 @@ public class HomeController {
      * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
      */
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(HttpSession session,Locale locale, Model model) throws Exception {
+		return "test";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session,Locale locale, Model model) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
