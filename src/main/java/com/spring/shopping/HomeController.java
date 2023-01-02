@@ -2,6 +2,7 @@ package com.spring.shopping;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -211,8 +212,15 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/itemdetail/{idItem}",method=RequestMethod.GET)
-	public void itemDetail(@PathVariable("idItem")int idItem, Model model)throws Exception{
+	public String itemDetail(@PathVariable("idItem")int idItem, Model model, HttpSession session)throws Exception{
+		// id 이용해서 아이템 정보 가져오기
+		// 주문,장바구니 위해 세션에서 로그인 정보 가져오기
+		ItemVO detailItem = itemService.detailList(idItem);
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		
+		model.addAttribute("user",vo);
+		model.addAttribute("item",detailItem);
+		return "itemdetail";
 	}
 	
 	@RequestMapping(value="/deleteCart",method=RequestMethod.GET)
