@@ -37,6 +37,14 @@
 					</div>
 				</div>
 		</form>
+		<form action="/orderParsing" method="GET">
+			<input type="hidden" name="idItem" value="${item.idItem}">
+			<input type="submit" value="주문">
+		</form>
+		<form action="/registCart" method="GET">
+			<input type="hidden" name="idItem" value="${item.idItem}">
+			<input type="submit" value="장바구니">
+		</form>
 		<br><br>
 </div>
 
