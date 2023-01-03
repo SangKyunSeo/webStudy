@@ -36,10 +36,12 @@ import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemVO;
 import com.spring.dto.OrderVO;
+import com.spring.dto.ReviewVO;
 import com.spring.service.CartService;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
 import com.spring.service.OrderService;
+import com.spring.service.ReviewService;
 /**
  * Handles requests for the application home page.
  */
@@ -59,6 +61,8 @@ public class HomeController {
 	private OrderService orderService;
 	@Inject
 	private CartService cartService;
+	@Inject
+	private ReviewService reviewService;
 	
 	/**
      * Simply selects the home view to render by returning its name.
@@ -270,6 +274,11 @@ public class HomeController {
 		ItemVO detailList = itemService.detailList(idItem);
 		model.addAttribute("item",detailList);
 		itemService.update(itemVo);
+	}
+	
+	@RequestMapping(value="/registReview",method=RequestMethod.GET)
+	public void registReview(ReviewVO reviewVo) throws Exception{
+		reviewService.regReview(reviewVo);
 	}
 		
 }
