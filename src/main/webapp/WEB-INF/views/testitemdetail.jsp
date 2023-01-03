@@ -86,7 +86,7 @@
         	</div>
         </div> 
         <!-- 상품 이미지 -->
-		<div class="row gx-4 gx-lg-5 align-items-center">
+		<div class="container px-8 px-lg-8 align-items-center">
         	<div class="col-md-12">
         		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
         	</div>
@@ -145,18 +145,28 @@
 					<div>필터</div>
 				</div>
 				<hr>
-				<div class="review-write">
-					<button type="button" name="reviewWrite" id="reviewWrite">글쓰기</button>
-				</div>
+				<form id="myform" method="GET" action="/regReview" target="childForm">
+					<div class="review-write">
+						<input type="hidden" id="parentIdItem" value="${item.idItem}">
+						<button type="button" name="reviewWrite" id="reviewWrite">글쓰기</button>
+					</div>
+				</form>
+				
+				<form name="registReviewForm" action="/regReview" method="POST">
+					<div class="form-group has-feedback">
+						<input type="hidden" id="memberId" name="memberId">
+						<input type="hidden" id="idItem" name="idItem">
+						<input type="hidden" id="contentReview" name="contentReview">
+						<input type="hidden" id="scoreReview" name="scoreReview">
+						<input type="hidden" id="dateReview" name="dateReview">
+					</div>
+				</form>
 				<div class="review_list">
 					<ul>
 						<li><input type="text" id="reviewContent"/></li>
 					</ul>
 				</div>
 			</div>
-			
-			
-			
 		</div>
 		
                    
@@ -279,7 +289,9 @@
         	$(function(){
         		$("#reviewWrite").click(function(){
         			window.name = "parentForm";
-        			window.open("regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
+        			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
+        			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
+        		
         		});
         	});
         </script>

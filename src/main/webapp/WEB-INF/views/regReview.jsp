@@ -15,22 +15,39 @@
 	리뷰 작성
 </h1>
 	<section id="container">
-		<form action="/register" method="post" >
+		<form name="registReviewForm" action="/regReview" method="POST">
 			<div class="form-group has-feedback">
-				<label class="control-label" for="memberId">내용</label>
+				<input type="hidden" id="idItem" name="idItem" value="1">
+				<input type="hidden" id="memberId" name="memberId" value="${user.memberId}">
+				<input type="hidden" id="dateReview" name="dateReview" value="${date}">
+				<label class="control-label" for="contentReview">내용</label>
 				<input class="form-control" type="text" id="contentReview" name="contentReview"/>
+				<select name="scoreReview" id="scoreReview">
+					<option value="">점수</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
 				<input type="button" value="완료" id="complete" name="complete"/>
 			</div>
-			<div class="form-group has-feedback">
-				<input type="button" value="취소" id="cancel" name="cancel"/>
-			</div>
 		</form>
+		<div class="form-group has-feedback">
+			<input type="button" value="취소" id="cancel" name="cancel"/>
+		</div>
 	</section>
 	
 	<script>
 		$(function(){
 			$("#complete").click(function(){
-				opener.document.getElementById("reviewContent").value = document.getElementById("contentReview").value;
+				opener.document.getElementById("idItem").value = document.getElementById("idItem").value;
+				opener.document.getElementById("memberId").value = document.getElementById("memberId").value;
+				opener.document.getElementById("dateReview").value = document.getElementById("dateReview").value;
+				opener.document.getElementById("contentReview").value = document.getElementById("contentReview").value;
+				opener.document.getElementById("scoreReview").value = document.getElementById("scoreReview").value;
+				opener.location.href="/regReview"
+				opener.document.registReviewForm.submit();
 				window.close();
 			});
 			

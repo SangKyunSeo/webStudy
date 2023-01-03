@@ -75,6 +75,9 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/testitemdetail", method = RequestMethod.GET)
 	public String testitemdetail(HttpSession session,Locale locale, Model model) throws Exception {
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("user",vo);
+		model.addAttribute("date",currentDate.toString());
 		return "testitemdetail";
 	}
 	
@@ -277,8 +280,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/regReview",method=RequestMethod.GET)
-	public void registReview(ReviewVO reviewVo) throws Exception{
+	public void registReview(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		model.addAttribute("user",vo);
+		model.addAttribute("date",currentDate.toString());
+	}
+	
+	@RequestMapping(value="/regReview",method=RequestMethod.POST)
+	public String registReviewPost(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
 		reviewService.regReview(reviewVo);
+		return "testitemdetail";
 	}
 		
 }

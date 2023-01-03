@@ -7,11 +7,15 @@
  
   <resultMap type="ReviewVO" id="reviewMap">
  	<result column="id_review" property="idReview"/>
- 	<result column="id_item" property="idItem"/>
  	<result column="id_member" property="memberId"/>
+ 	<result column="id_item" property="idItem"/>
  	<result column="content_review" property="contentReview"/>
  	<result column="score_review" property="scoreReview"/>
  	<result column="date_review" property="dateReview"/>
  </resultMap>
-
+	
+	<insert id="regReview" useGeneratedKeys="true" keyProperty="id_review">
+		INSERT INTO review(id_member,id_item,content_review,score_review,date_review) 
+ 			VALUES(#{memberId},#{idItem},#{contentReview},#{scoreReview},#{dateReview})
+	</insert>
 </mapper>

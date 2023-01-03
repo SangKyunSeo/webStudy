@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
     
     @Override
     public void regReview(ReviewVO reviewVo) throws Exception{
-    	
+    	dao.regReview(reviewVo);
     }
   
 }
