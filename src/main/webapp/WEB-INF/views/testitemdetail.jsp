@@ -145,12 +145,12 @@
 					<div>필터</div>
 				</div>
 				<hr>
-				<div class="reviewWrite">
+				<div class="review-write">
 					<button type="button" name="reviewWrite" id="reviewWrite">글쓰기</button>
 				</div>
 				<div class="review_list">
 					<ul>
-						<li>리뷰</li>
+						<li><input type="text" id="reviewContent"/></li>
 					</ul>
 				</div>
 			</div>
@@ -275,5 +275,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+        	$(function(){
+        		$("#reviewWrite").click(function(){
+        			window.name = "parentForm";
+        			window.open("regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
+        		});
+        	});
+        </script>
     </body>
 </html>

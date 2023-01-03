@@ -276,7 +276,7 @@ public class HomeController {
 		itemService.update(itemVo);
 	}
 	
-	@RequestMapping(value="/registReview",method=RequestMethod.GET)
+	@RequestMapping(value="/regReview",method=RequestMethod.GET)
 	public void registReview(ReviewVO reviewVo) throws Exception{
 		reviewService.regReview(reviewVo);
 	}
