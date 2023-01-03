@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.spring.mapper.reviewMapper">
+ 
+  <resultMap type="ReviewVO" id="reviewMap">
+ 	<result column="id_review" property="idReview"/>
+ 	<result column="id_item" property="idItem"/>
+ 	<result column="id_member" property="memberId"/>
+ 	<result column="content_review" property="contentReview"/>
+ 	<result column="score_review" property="scoreReview"/>
+ 	<result column="date_review" property="dateReview"/>
+ </resultMap>
+ 
+ <insert id="register">
+ 	INSERT INTO member(id_member,pw_member,name_member,age_member,gender_member,address_member,phone_member) 
+ 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberAge},#{memberGender},#{memberAddress},#{memberPhone})
+ </insert> 
+ 
+ 
+<select id="login" resultMap="memberMap">
+        SELECT * FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
+    </select>
+
+<select id="loginCheck" resultType="String">
+        SELECT id_member FROM member WHERE id_member = #{memberId} and pw_member = #{memberPw}
+    </select>
+
+<select id="buyer" resultMap="memberMap">
+	SELECT * FROM member WHERE id_member = #{memberId}
+</select>
+
+<update id="update">
+	UPDATE member SET pw_member=#{memberPw},address_member=#{memberAddress},phone_member=#{memberPhone} WHERE id_member = #{memberId}
+</update>
+
+<select id="idchk" resultMap="memberMap">
+	SELECT id_member FROM member WHERE id_member = #{memberId} 
+</select>
+    
+</mapper>
