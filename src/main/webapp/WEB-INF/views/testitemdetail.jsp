@@ -109,7 +109,7 @@
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-nav">
 			  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 			    <li class="nav-item">
-			    	<a href="#" class="nav-link"><div>상품평</div> </a>
+			    	<a href="#itemReview" class="nav-link"><div>상품평</div> </a>
 			    </li>
 			    <li class="nav-item">
 			    	<a href="#" class="nav-link"><div>상품문의</div> </a>
@@ -121,6 +121,43 @@
 			</nav>
 		</div>
 		
+		<!-- 상품평 -->
+		<div class="container px-4 px-lg-5" id="itemReview">
+			<h2>상품평</h2>
+			<hr>
+			<h5><strong>0</strong>건의 후기가 있습니다.</h5>
+			<div class="start">
+				별점 들어가는 곳
+			</div>
+			<hr>
+			<div class="review_photo">
+				<h5>사진<em>0</em></h5>
+				<div class="photh_list">
+					<ul>
+						<li>사진들</li>
+					</ul>
+				</div>
+			</div>
+			<div class="review_wrap">
+				<div class="title_area">
+					<h5>전체후기<em>0</em></h5>
+					<div>베스트/최신순</div>
+					<div>필터</div>
+				</div>
+				<hr>
+				<div class="reviewWrite">
+					<button type="button" name="reviewWrite" id="reviewWrite">글쓰기</button>
+				</div>
+				<div class="review_list">
+					<ul>
+						<li>리뷰</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			
+		</div>
 		
                    
 		

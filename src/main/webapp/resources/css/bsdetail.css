@@ -4604,8 +4604,14 @@ textarea.form-control-lg {
   border-radius: calc(0.25rem - 1px);
 }
 
+
+.review-total{
+	font-size:22px;
+	line-height: 36px;
+}
 .prod-img{
 	width: 55%;
+	position:fixed;
 }
 .card-img,
 .card-img-top,
