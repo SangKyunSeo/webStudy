@@ -76,6 +76,12 @@
 	<script>
 		$(function(){
 			$("#complete").click(function(){
+				if($("#secretItemInquiry").is(":checked")){
+					opener.registQnaForm.secretItemInquiry.value = 1;
+				}else{
+					opener.registQnaForm.secretItemInquiry.value = 0;
+					
+				}
 				opener.registQnaForm.idItem.value = document.getElementById("idItem").value;
 				opener.registQnaForm.memberId.value = document.getElementById("memberId").value;
 				opener.registQnaForm.answerItemInquiry.value = 0;
@@ -83,8 +89,7 @@
 				opener.registQnaForm.contentItemInquiry.value = document.getElementById("contentItemInquiry").value;
 				opener.registQnaForm.titleItemInquiry.value = document.getElementById("titleItemInquiry").value;
 				opener.registQnaForm.dateItemInquiry.value = document.getElementById("dateItemInquiry").value;
-				opener.registQnaForm.secretItemInquiry.value = document.getElementById("secretItemInquiry").value;
-				
+	
 				opener.location.href="/regQna"
 				opener.document.registQnaForm.submit();
 				window.close();
