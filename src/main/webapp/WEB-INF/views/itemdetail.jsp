@@ -51,7 +51,7 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="../resources${item.imageItem}" alt="..." /></div>
                     <div class="col-md-6">
                         <div class="small mb-1">상품번호: ${item.idItem}</div>
                         <h1 class="display-5 fw-bolder">${item.nameItem}</h1>
@@ -88,19 +88,19 @@
         <!-- 상품 이미지 -->
 		<div class="container px-8 px-lg-8 align-items-center">
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="/resources/img/iphone8.png" alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
         </div>
         

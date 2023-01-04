@@ -136,11 +136,11 @@ public class HomeController {
 		String webappRoot = servletContext.getRealPath("/");
 		String relativeFolder = File.separator + "resources" + File.separator + "img" + File.separator;
 		UUID uuid = UUID.randomUUID();
-		String fileName= webappRoot + relativeFolder + uuid.toString() + "_" + file.getOriginalFilename();
+		String fileName= uuid.toString() + "_" + file.getOriginalFilename();
 		
-		FileCopyUtils.copy(file.getBytes(),new File(fileName));
+		FileCopyUtils.copy(file.getBytes(),new File(webappRoot + relativeFolder + fileName));
 		
-		itemVo.setImageItem(fileName);
+		itemVo.setImageItem(File.separator + "img" + File.separator + fileName);
 		itemService.register(itemVo);
 		
 	}
