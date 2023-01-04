@@ -295,7 +295,7 @@ public class HomeController {
 	@RequestMapping(value="/regReview",method=RequestMethod.POST)
 	public String registReviewPost(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
 		reviewService.regReview(reviewVo);
-		return "testitemdetail";
+		return "redirect:testitemdetail";
 	}
 	
 	@RequestMapping(value="/regQna",method=RequestMethod.GET)
@@ -311,7 +311,7 @@ public class HomeController {
 	public String registQnaPost(InquiryVO inquiryVo, Model model, HttpSession session) throws Exception{
 		inquiryService.regQna(inquiryVo);
 		
-		return "testitemdetail";
+		return "redirect:testitemdetail";
 	}
 		
 }
