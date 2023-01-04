@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
@@ -134,10 +135,11 @@ public class HomeController {
 		ServletContext servletContext = req.getSession().getServletContext(); 
 		String webappRoot = servletContext.getRealPath("/");
 		String relativeFolder = File.separator + "resources" + File.separator + "img" + File.separator;
-		
-		String fileName= webappRoot + relativeFolder + file.getOriginalFilename();
+		UUID uuid = UUID.randomUUID();
+		String fileName= webappRoot + relativeFolder + uuid.toString() + "_" + file.getOriginalFilename();
 		
 		FileCopyUtils.copy(file.getBytes(),new File(fileName));
+		
 		itemVo.setImageItem(fileName);
 		itemService.register(itemVo);
 		
