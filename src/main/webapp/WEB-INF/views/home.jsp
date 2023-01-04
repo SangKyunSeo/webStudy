@@ -1,107 +1,160 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<html>
-<head>
-	<title>Home</title>
-	<script src="${path}/resources/js/test.js"></script>
-	<link href="${path}/resources/css/test.css" rel="stylesheet"/> 	
-</head>
-<body>
-<br><br><br>
-<div class="header"  id="main_top">
-	<h1 class="inline_view" >
-		메인
-	</h1>
-	<div class="inline_view searchParent" id="search">
-		<form action="/" method="GET" id="searchForm" name="searchForm">
-			<input type="text" class="search" id="nameItem" name="nameItem" placeholder="검색어를 입력하세요">
-			<input type="submit" class="searchIcon" value="" id="searchButton">
-		</form>
-	</div>
-</div>
-
-<div class ="login_class" id="login">
-	<form action="/login" method="POST">
-		<input type="submit" value="로그인">
-	</form>
-</div>
-
-<div class ="login_class" id="logout">
-	<form action="/logout" method="POST">
-		<input type="submit" value="로그아웃">
-	</form>
-</div>
-
-<form action="/myCart" method="GET">
-	<input type="submit" value="내장바구니">
-</form>
-<br><br>
-<form action="/updateInfo" method="POST">
-	<input type="submit" value="내정보수정">
-</form>
-
-<div class="container">
-	<c:forEach items="${itemList}"  var="list" varStatus="status" >
-		<form class="itemForm" method="GET" id="itemCard"  name="itemCard">
-				<div id="itemClick" class="itemListCard">
-					<p>
-						<a href="/itemdetail/${list.idItem}">
-							<img src="/resources/img/iphone8.png" width="150" height="100">
-						</a>
-					</p>
-					<div class="itemName">
-						상품명 : ${list.nameItem}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shoppingmall</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <c:set var="path" value="${pageContext.request.contextPath}"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${path}/resources/css/bs1.css" rel="stylesheet"/> 	
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">쇼핑몰 이름</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">홈</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">모든 제품</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">여성 의류</a></li>
+                                <li><a class="dropdown-item" href="#!">남성 의류</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="inline_view searchParent" id="search">
+						<form action="/test" method="GET" id="searchForm" name="searchForm">
+							<input type="text" class="search" id="nameItem" name="nameItem" placeholder="검색어를 입력하세요">
+							<input type="submit" class="searchIcon" value="" id="searchButton">
+						</form>
 					</div>
-					<div class="madeName">
-						제조사 : ${list.madeItem}
+					<div class ="login_class" id="login">
+						<form class="d-flex" action="/login" method="POST">
+	                        <button class="btn btn-outline-dark" type="submit">
+	                            로그인
+	                        </button>
+	                    </form>
+	                   
+                    </div>
+                    <div class ="login_class" id="logout">
+	                    <form class="d-flex" action="/logout" method="POST">
+	                        <button class="btn btn-outline-dark" type="submit">
+	                            로그아웃
+	                        </button>
+	                    </form>
+	                </div>
+	                <div class ="login_class" id="myinfo">
+		                <form action="/updateInfo" method="POST">
+							<button class="btn btn-outline-dark" type="submit">
+							내 정보
+							</button>
+						</form>
 					</div>
-					<div class="price">
-						가격 : ${list.priceItem}
-					</div>
-					<div class="stock">
-						재고량 : ${list.stockItem}
-					</div>
-				</div>
-		</form>
-			<br><br>
-	</c:forEach>
-</div>
-
-<script>
-	$(function(){
-		var user = '${user}';
-		if(user==null||user==''||user==""){
-			$("#login").show();
-			$("#logout").hide();
-		}else{
-			$("#login").hide();
-			$("#logout").show();
-		}
-		
-		$("#searchButton").click(function(){
-			var nameItem = $("#nameItem").val();
-			if(nameItem==''){
-				alert('검색어를 입력하세요.');
-				return false;
-			}else{
-				document.searchForm.action= "/searchItem";
-				document.searchform.submit();
-			}
-			
-		});
-		
-		$(document).ready(function(){
-			window.onpageshow = function (event){
-				if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
-					$("#nameItem").val("");
+                    <form class="d-flex" >
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            장바구니
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                     <c:forEach items="${itemList}"  var="list" varStatus="status" >
+	                    <div class="col mb-5">
+	                        <div class="card h-100">
+	                            <!-- Product image-->
+	                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+	                            <!-- Product details-->
+	                            <div class="card-body p-4">
+	                                <div class="text-center">
+	                                    <!-- Product name-->
+	                                    <h5 class="fw-bolder">${list.nameItem}</h5>
+	                                    <!-- Product price-->
+	                                    ${list.priceItem}
+	                                </div>
+	                            </div>
+	                            <!-- Product actions-->
+	                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+	                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/itemdetail/${list.idItem}">상세정보</a></div>
+	                            </div>
+	                        </div>
+	                    </div>
+                    </c:forEach>
+                </div>
+        	</div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        
+        <script>
+			$(function(){
+				var user = '${user}';
+				if(user==null||user==''||user==""){
+					$("#login").show();
+					$("#logout").hide();
+					$("#myinfo").hide();
+				}else{
+					$("#login").hide();
+					$("#logout").show();
+					$("#myinfo").show();
 				}
-			}
-		});
-	});
-</script>
-
-</body>
+				
+				$("#searchButton").click(function(){
+					var nameItem = $("#nameItem").val();
+					if(nameItem==''){
+						alert('검색어를 입력하세요.');
+						return false;
+					}else{
+						document.searchForm.action= "/searchItem";
+						document.searchform.submit();
+					}
+					
+				});
+				
+				$(document).ready(function(){
+					window.onpageshow = function (event){
+						if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+							$("#nameItem").val("");
+						}
+					}
+				});
+			});
+		</script>
+    </body>
 </html>
