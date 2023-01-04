@@ -1,5 +1,6 @@
 package com.spring.shopping;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,14 +10,17 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -67,6 +72,7 @@ public class HomeController {
 	private ReviewService reviewService;
 	@Inject
 	private InquiryService inquiryService;
+
 	/**
      * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -123,8 +129,16 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/setitem", method = RequestMethod.POST)
-	public void postSetItem(ItemVO itemVo) throws Exception{
+	public void postSetItem(@RequestParam("file")MultipartFile file,ItemVO itemVo,HttpServletRequest req) throws Exception{
 		logger.info("post Set Item");
+		ServletContext servletContext = req.getSession().getServletContext(); 
+		String webappRoot = servletContext.getRealPath("/");
+		String relativeFolder = File.separator + "resources" + File.separator + "img" + File.separator;
+		
+		String fileName= webappRoot + relativeFolder + file.getOriginalFilename();
+		
+		FileCopyUtils.copy(file.getBytes(),new File(fileName));
+		itemVo.setImageItem(fileName);
 		itemService.register(itemVo);
 		
 	}

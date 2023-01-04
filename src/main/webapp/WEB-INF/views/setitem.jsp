@@ -22,7 +22,7 @@
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="imageItem">이미지</label>
-				<input class="form-control" type="file" id="imageItem" name="imageItem">
+				<input class="form-control" type="file" id="file" name="file">
 			</div>
 			<div class="select_img"><img src=""/></div>
 			<div class="form-group has-feedback">
@@ -41,9 +41,8 @@
 		</form>
 	
 	</section>
-
 <script>
-	$("#imageItem").change(function(){
+	$("#file").change(function(){
 		if(this.files && this.files[0]){
 			var reader = new FileReader;
 			reader.onload = function(data){
