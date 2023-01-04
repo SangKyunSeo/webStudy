@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <html>
 <head>
 	<title>상품등록</title>
@@ -10,7 +11,7 @@
 	상품등록
 </h1>
 	<section id="container">
-		<form action="/setitem" method="post">
+		<form action="/setitem" enctype="multipart/form-data"method="post">
 			<div class="form-group has-feedback">
 				<label class="control-label" for="nameItem">상품명</label>
 				<input class="form-control" type="text" id="nameItem" name="nameItem">
@@ -23,6 +24,7 @@
 				<label class="control-label" for="imageItem">이미지</label>
 				<input class="form-control" type="file" id="imageItem" name="imageItem">
 			</div>
+			<div class="select_img"><img src=""/></div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="priceItem">가격</label>
 				<input class="form-control" type="number" id="priceItem" name="priceItem">
@@ -35,10 +37,21 @@
 				<button class="btn btn-success" type="submit" id="submit">등록</button>
 				<button class="cancle btn-danger" type="button">취소</button>
 			</div>
-		
+			
 		</form>
 	
 	</section>
 
+<script>
+	$("#imageItem").change(function(){
+		if(this.files && this.files[0]){
+			var reader = new FileReader;
+			reader.onload = function(data){
+				$(".select_img img").attr("src",data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+		}
+	});
+</script>
 </body>
 </html>
