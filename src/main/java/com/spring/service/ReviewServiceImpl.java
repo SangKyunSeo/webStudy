@@ -21,5 +21,10 @@ public class ReviewServiceImpl implements ReviewService {
     public void regReview(ReviewVO reviewVo) throws Exception{
     	dao.regReview(reviewVo);
     }
+    
+    @Override
+    public List<ReviewVO> reviewList() throws Exception{
+    	return dao.reviewList();
+    }
   
 }

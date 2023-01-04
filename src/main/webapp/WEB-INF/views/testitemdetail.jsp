@@ -162,9 +162,27 @@
 					</div>
 				</form>
 				<div class="review_list">
-					<ul>
-						<li><input type="text" id="reviewContent"/></li>
-					</ul>
+					<c:forEach items="${reviewList}"  var="list" varStatus="status" >
+						<ul>
+							<li class="detail">
+								<div class="itemName">
+									작성자 : ${list.memberId}
+								</div>
+								<div class="madeName">
+									상품 : ${list.idItem}
+								</div>
+								<div class="price">
+									내용 : ${list.contentReview}
+								</div>
+								<div class="stock">
+									평점 : ${list.scoreReview}
+								</div>
+								<div class="stock">
+									작성일 : ${list.dateReview}
+								</div>
+							</li>
+						</ul>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

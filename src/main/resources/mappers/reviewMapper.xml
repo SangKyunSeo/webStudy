@@ -18,4 +18,8 @@
 		INSERT INTO review(id_member,id_item,content_review,score_review,date_review) 
  			VALUES(#{memberId},#{idItem},#{contentReview},#{scoreReview},#{dateReview})
 	</insert>
+	
+	<select id="reviewList" resultMap="reviewMap">
+		SELECT * FROM review
+	</select>
 </mapper>

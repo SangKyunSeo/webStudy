@@ -24,4 +24,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 	public void regReview(ReviewVO reviewVo) throws Exception{
     	sqlSession.insert(Namespace+".regReview",reviewVo);
     }
+    
+    @Override
+    public List<ReviewVO> reviewList() throws Exception{
+    	return sqlSession.selectList(Namespace+".reviewList");
+    }
 }
