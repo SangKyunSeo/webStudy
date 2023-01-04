@@ -32,12 +32,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dto.CartVO;
+import com.spring.dto.InquiryVO;
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemVO;
 import com.spring.dto.OrderVO;
 import com.spring.dto.ReviewVO;
 import com.spring.service.CartService;
+import com.spring.service.InquiryService;
 import com.spring.service.ItemService;
 import com.spring.service.MemberService;
 import com.spring.service.OrderService;
@@ -63,7 +65,8 @@ public class HomeController {
 	private CartService cartService;
 	@Inject
 	private ReviewService reviewService;
-	
+	@Inject
+	private InquiryService inquiryService;
 	/**
      * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
@@ -284,7 +287,6 @@ public class HomeController {
 	@RequestMapping(value="/regReview",method=RequestMethod.GET)
 	public void registReview(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
-		
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
 	
@@ -293,6 +295,22 @@ public class HomeController {
 	@RequestMapping(value="/regReview",method=RequestMethod.POST)
 	public String registReviewPost(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
 		reviewService.regReview(reviewVo);
+		return "testitemdetail";
+	}
+	
+	@RequestMapping(value="/regQna",method=RequestMethod.GET)
+	public void registQna(InquiryVO inquiryVo, Model model, HttpSession session) throws Exception{
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		
+		
+		model.addAttribute("user",vo);
+		model.addAttribute("date",currentDate.toString());
+	}
+	
+	@RequestMapping(value="/regQna",method=RequestMethod.POST)
+	public String registQnaPost(InquiryVO inquiryVo, Model model, HttpSession session) throws Exception{
+		inquiryService.regQna(inquiryVo);
+		
 		return "testitemdetail";
 	}
 		

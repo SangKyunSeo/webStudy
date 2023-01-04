@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.spring.mapper.inquiryMapper">
+ 
+  <resultMap type="InquiryVO" id="inquiryMap">
+ 	<result column="id_item_inquiry" property="idItemInquiry"/>
+ 	<result column="id_member" property="memberId"/>
+ 	<result column="id_item" property="idItem"/>
+ 	<result column="answer_item_inquiry" property="answerItemInquiry"/>
+ 	<result column="category_item_inquiry" property="categoryItemInquiry"/>
+ 	<result column="content_item_inquiry" property="contentItemInquiry"/>
+ 	<result column="title_item_inquiry" property="titleItemInquiry"/>
+ 	<result column="date_item_inquiry" property="dateItemInquiry"/>
+ 	<result column="secret_item_inquiry" property="secretItemInquiry"/>
+ 	
+ </resultMap>
+	
+	<insert id="regQna" useGeneratedKeys="true" keyProperty="id_item_inquiry">
+		INSERT INTO item_inquiry(id_member,id_item,answer_item_inquiry,category_item_inquiry,
+			content_item_inquiry,title_item_inquiry,date_item_inquiry,secret_item_inquiry) 
+ 				VALUES(#{memberId},#{idItem},#{answerItemInquiry},#{categoryItemInquiry},
+ 				#{contentItemInquiry},#{titleItemInquiry},#{dateItemInquiry},#{secretItemInquiry})
+	</insert>
+</mapper>

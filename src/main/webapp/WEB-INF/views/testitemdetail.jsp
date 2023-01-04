@@ -186,8 +186,35 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 		
-                   
+		<!-- 상품 문의 -->
+		<div class="container px-4 px-lg-5" id="itemqna">
+			<h2>상품문의  <em>0</em></h2>
+			<hr>
+			<form id="myform" method="GET" action="/regQna" target="itemQnaForm">
+				<input type="hidden" id="idItem" name="idItem" value="${item.idItem}">
+				<button type="button" name="qnaWrite" id="qnaWrite">문의하기</button>
+			</form>
+			
+			<form name="registQnaForm" action="/regQna" method="POST">
+					<div class="form-group has-feedback">
+						<input type="hidden" id="memberId" name="memberId">
+						<input type="hidden" id="idItem" name="idItem">
+						<input type="hidden" id="answerItemInquiry" name="answerItemInquiry">
+						<input type="hidden" id="categoryItemInquiry" name="categoryItemInquiry">
+						<input type="hidden" id="contentItemInquiry" name="contentItemInquiry">
+						<input type="hidden" id="titleItemInquiry" name="titleItemInquiry">
+						<input type="hidden" id="dateItemInquiry" name="dateItemInquiry">
+						<input type="hidden" id="secretItemInquiry" name="secretItemInquiry">
+					</div>
+				</form>
+		</div>
+		
+		
+		
+		
+		
 		
         <!-- Related items section-->
         <section class="py-5 bg-light">
@@ -311,6 +338,14 @@
         			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
         		
         		});
+        		
+        		$("#qnaWrite").click(function(){
+        			window.name = "parentForm";
+        			openWin = window.open("/regQna","itemQnaForm","width=600,height=400,resizable=no,scrollbars=no")
+        			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
+            		
+        		});
+        		
         	});
         </script>
     </body>
