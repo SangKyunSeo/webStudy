@@ -250,7 +250,12 @@ public class HomeController {
 	public String myCartDetail(HttpSession session,Model model) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		List<CartVO> list = cartService.search(vo.getMemberId());
+		int total = 0;
+		for(int i=0;i<list.size();i++) {
+			total+=list.get(i).getPriceCart();
+		}
 		model.addAttribute("myCartList",list);
+		model.addAttribute("total",total);
 		return "myCart";
 	}
 	

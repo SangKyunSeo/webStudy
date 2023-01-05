@@ -6,40 +6,43 @@
 	<title>내 장바구니</title>
 </head>
 <body>
-<h1>
-	내 장바구니 내역
-</h1>
+	<h1>
+		내 장바구니 내역
+	</h1>
 
-</body>
-<table border="1">
-	<thead>
-		<tr>
-			<th>상품명</th>
-			<th>수량</th>
-			<th>전체 가격</th>
-			<th>장바구니에 담은 날짜</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${myCartList}"  var="list" varStatus="status" >
+
+	<table border="1">
+		<thead>
 			<tr>
-				<td>${list.nameCart}</td>
-				<td>${list.amountCart}</td>
-				<td>${list.priceCart}</td>
-				<td>${list.dateCart}</td>
-				<td>
-					<div class="btn">
-						<form action="/deleteCart" method="GET">
-							<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
-							<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
-							<input type="submit" value="삭제">
-						</form>
-					</div>
-				</td>
+				<th>상품명</th>
+				<th>수량</th>
+				<th>전체 가격</th>
+				<th>장바구니에 담은 날짜</th>
 			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-
-
+		</thead>
+		<tbody>
+			<c:forEach items="${myCartList}"  var="list" varStatus="status" >
+				<tr>
+					<td>${list.nameCart}</td>
+					<td>${list.amountCart}</td>
+					<td>${list.priceCart}</td>
+					<td>${list.dateCart}</td>
+					<td>
+						<div class="btn">
+							<form action="/deleteCart" method="GET">
+								<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
+								<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
+								<input type="submit" value="삭제">
+							</form>
+						</div>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	<div class="total_price">
+		총 금액: <span>${total}</span>
+	</div>
+</body>
 </html>
