@@ -222,9 +222,10 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/registCart",method=RequestMethod.GET)
-	public String registCart(HttpSession session,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes) throws Exception{
+	public String registCart(HttpSession session,@RequestParam(value="idItem")int idItem,@RequestParam(value="amountCart")int amountCart,RedirectAttributes redirectAttributes) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		ItemVO cartItem = itemService.cartItem(idItem);
+		System.out.println(amountCart);
 		redirectAttributes.addFlashAttribute("user",vo);
 		redirectAttributes.addFlashAttribute("cartItem",cartItem);
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());

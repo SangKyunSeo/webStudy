@@ -82,7 +82,7 @@ $(function(){
 		IMP.request_pay({
 		    pg : "html5_inicis",
 		    pay_method : "card",
-		    merchant_uid: "10", // 상점에서 관리하는 주문 번호를 전달
+		    merchant_uid: "11", // 상점에서 관리하는 주문 번호를 전달
 		    name : "주문명:결제테스트",
 		    amount : ${detailList.priceItem} / ${detailList.priceItem} + 100,
 		    buyer_email : "${buyer.memberId}",

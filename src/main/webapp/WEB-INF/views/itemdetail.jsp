@@ -61,19 +61,17 @@
                         <p class="lead">상품 설명</p>
                         <div class="d-flex">
                         	<!-- 수량 입력 -->
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <form action="/orderParsing" method="GET">
+                            <input class="form-control text-center me-3" id="amount" name="amount" type="number" style="max-width: 3rem" />
+                            <form action="/orderParsing" id="buyForm" method="GET">
+                            	<input type="hidden" name="amountItem" id="amountItem">
 								<input type="hidden" name="idItem" value="${item.idItem}">
 								<input class="btn btn-outline-dark flex-shrink-0" type="submit" value="주문">
 							</form>
-							<form action="/registCart" method="GET">
+							<form action="/registCart" name="cartForm" method="GET">
+								<input type="hidden" name="amountCart" id="amountCart">
 								<input type="hidden" name="idItem" value="${item.idItem}">
-								<input class="btn btn-outline-dark flex-shrink-0" type="submit" value="장바구니">
+								<input class="btn btn-outline-dark flex-shrink-0" type="button" name="cart" id="cart" value="장바구니">
 							</form>
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -344,6 +342,14 @@
         			openWin = window.open("/regQna","itemQnaForm","width=600,height=400,resizable=no,scrollbars=no")
         			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
             		
+        		});
+        		$("#amount").change(function(){
+        			var amount = $("#amount").val();
+        			$("#amountCart").val(amount);
+        		})
+        		$("#cart").click(function(){
+        			document.cartForm.action = "/registCart";
+        			document.cartForm.submit();
         		});
         		
         	});
