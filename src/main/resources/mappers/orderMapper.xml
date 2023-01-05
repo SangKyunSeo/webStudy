@@ -21,7 +21,7 @@
  </insert> 
  
  <select id="search" resultMap="orderMap">
- 	SELECT id_order FROM shoppingmall.order
+ 	SELECT id_order FROM shoppingmall.order ORDER BY id_order
  </select>
     
 </mapper>
