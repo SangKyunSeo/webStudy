@@ -39,5 +39,11 @@ public class CartDAOImpl implements CartDAO{
     	param.put("itemCart", itemCart);
     	sqlSession.delete(Namespace+".delete",param);
     }
+    
+    @Override
+    public int calCount(String memberId) throws Exception{
+    	return sqlSession.selectOne(Namespace+".calCount",memberId);
+    
+    }
  
 }

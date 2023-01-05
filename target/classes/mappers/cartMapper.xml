@@ -26,5 +26,9 @@
  <delete id="delete">
  	DELETE FROM cart WHERE cart_member = #{memberCart} and cart_item = #{itemCart}
  </delete>
+ 
+ <select id="calCount" resultType="_int">
+ 	SELECT COUNT(*) FROM CART WHERE cart_member = #{memberCart}
+ </select>
     
 </mapper>

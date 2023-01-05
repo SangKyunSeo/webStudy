@@ -9,4 +9,5 @@ public interface CartDAO {
 	public void register(CartVO cartVo) throws Exception;
 	public List<CartVO> search(String memberId) throws Exception;
 	public void delete(String memberCart,int itemCart) throws Exception;
+	public int calCount(String memberId) throws Exception;
 }

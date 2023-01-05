@@ -82,9 +82,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(HttpSession session,Locale locale, Model model) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		int cartCount = 0;
+		if(vo!=null) {
+			cartCount = cartService.calCount(vo.getMemberId());
+		}
+		
 		List<ItemVO> list = itemService.list();
 		model.addAttribute("itemList",list);
 		model.addAttribute("user",vo);
+		model.addAttribute("cartCount",cartCount);
 		return "home";
 	}
 	@RequestMapping(value = "itemdetail/{idItem}", method = RequestMethod.GET)
