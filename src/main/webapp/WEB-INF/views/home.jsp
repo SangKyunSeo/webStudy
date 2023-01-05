@@ -66,7 +66,7 @@
 						</form>
 					</div>
                     <form class="d-flex" >
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button class="btn btn-outline-dark" id="cartButton" name="cartButton" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             장바구니
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${cartCount}</span>
@@ -145,6 +145,10 @@
 						document.searchform.submit();
 					}
 					
+				});
+				
+				$("#cartButton").click(function(){
+					location.href="/myCart";
 				});
 				
 				$(document).ready(function(){
