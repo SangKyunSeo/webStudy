@@ -68,8 +68,12 @@
 								<input class="btn btn-outline-dark flex-shrink-0" type="submit" value="주문">
 							</form>
 							<form action="/registCart" name="cartForm" method="GET">
+								<input type="hidden" name="memberCart" id="memberCart" value="${user.memberId}">
+								<input type="hidden" name="itemCart" id="itemCart" value="${item.idItem}">
+								<input type="hidden" name="nameCart" id="nameCart" value="${item.nameItem}">
 								<input type="hidden" name="amountCart" id="amountCart">
-								<input type="hidden" name="idItem" value="${item.idItem}">
+								<input type="hidden" name="priceCart" id="priceCart" value="${item.priceItem}">
+								<input type="hidden" name="dateCart" id="dateCart" value="${date}">
 								<input class="btn btn-outline-dark flex-shrink-0" type="button" name="cart" id="cart" value="장바구니">
 							</form>
                         </div>
@@ -348,8 +352,13 @@
         			$("#amountCart").val(amount);
         		})
         		$("#cart").click(function(){
-        			document.cartForm.action = "/registCart";
-        			document.cartForm.submit();
+        			if(window.confirm("상품이 장바구니에 담겼습니다.\n 바로 확인하시겠습니까?")){
+        				document.cartForm.action = "/registCart";
+            			document.cartForm.submit();
+        			}else{
+        				location.href("/itemdetail/${item.idItem}");
+        			}
+        			
         		});
         		
         	});
