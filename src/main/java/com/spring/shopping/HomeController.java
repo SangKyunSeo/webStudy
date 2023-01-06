@@ -218,11 +218,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/orderParsing",method=RequestMethod.GET)
-	public String orderParsing(@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes)throws Exception{
+	public String orderParsing(@RequestParam(value="amountItem")int amountItem,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes)throws Exception{
 		ItemVO detailList = itemService.detailList(idItem);
 		redirectAttributes.addFlashAttribute("detailList",detailList);
 		redirectAttributes.addFlashAttribute("orderNumber",orderNumber++);
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());
+		redirectAttributes.addFlashAttribute("amountItem",amountItem);
 		return "redirect:order";
 	}
 	

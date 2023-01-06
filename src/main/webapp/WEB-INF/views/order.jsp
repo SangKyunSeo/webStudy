@@ -65,17 +65,19 @@
 		<input type="hidden" value="${buyer.memberAddress}" id="addressOrder" name="addressOrder">
 		<input type="hidden" value="${date}" id="dateOrder" name="dateOrder">
 		<input type="hidden" value="${detailList.idItem}" id="idItem" name="idItem">
-		<label for="amount">수량</label>
-		<input type="number" name="amountOrder" id="amountOrder">
+		<label for="amount">수량 : <span>${amountItem}</span></label>
+		<input type="hidden" name="amountOrder" id="amountOrder">
 		<input type="hidden" value="${detailList.priceItem}" id="priceOrder" name="priceOrder">
 		<div class="form-group has-feedback">
 			<button class="btn btn-success" type="button" id="buy" name="buy" >결제</button>
-			<button class="cancle btn-danger" type="button">취소</button>
+			<button class="cancle btn-danger" type="button" id="cancel" name="cancel">취소</button>
 		</div>
 	</form>
 </body>
 <script>
 $(function(){
+	var amountOrder = ${amountItem};
+	$("#amountOrder").val(amountOrder); 
 	IMP.init('imp01501022');
 	$("#buy").click(function(){
 		
@@ -109,6 +111,11 @@ $(function(){
 		});
 	
 	});
+	
+	$("#cancel").click(function(){
+		location.href="/itemdetail/${detailList.idItem}";
+	})
+	
 });
 </script>
 
