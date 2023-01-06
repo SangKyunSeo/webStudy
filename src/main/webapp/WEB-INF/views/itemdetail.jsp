@@ -64,7 +64,7 @@
                             <input class="form-control text-center me-3" id="amount" name="amount" type="number" style="max-width: 3rem" />
                             <form action="/orderParsing" id="buyForm" method="GET">
                             	<input type="hidden" name="amountItem" id="amountItem">
-								<input type="hidden" name="idItem" value="${item.idItem}">
+								<input type="hidden" name="idItem" id="idItem" value="${item.idItem}">
 								<input class="btn btn-outline-dark flex-shrink-0" type="submit" value="주문">
 							</form>
 							<form action="/registCart" name="cartForm" method="GET">
