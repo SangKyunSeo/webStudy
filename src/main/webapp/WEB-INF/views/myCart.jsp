@@ -128,96 +128,79 @@
 	<div class="container">
 		<h2>장바구니</h2>
 		<form action="/successOrder" name="orderForm" id="orderForm" method="POST">
-				<table class="orderInfo">
-                  <thead>
-                    <th>선택</th>
+			<table class="orderInfo">
+            	<thead>
+                	<th>선택</th>
                     <th>이미지</th>
                     <th>상품명</th>
                     <th>수량</th>
                     <th>상품금액</th>
                     <th>배송비</th>
                     <th>삭제</th>
-                   </thead>
-                   <c:forEach items="${myCartList}"  var="list" varStatus="status" >
-             				<tr>
-             					<td>
-                        <div class="selectItem">
-                					<label>
-                						<input type="checkbox" class="selectItemCheckbox" id="selectItem" name="selectItem">
-                					</label>
-                				</div>
-                      </td>
-             					<td>${list.amountCart}</td>
-             					<td>${list.nameCart}</td>
-             					<td>${list.amountCart}</td>
-                      <td>${list.priceCart}</td>
-                      <td>0</td>
-             					<td>
-             						<div class="btn">
-             							<form action="/deleteCart" method="GET">
-             								<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
-             								<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
-             								<input type="submit" value="삭제">
-             							</form>
-             						</div>
-             					</td>
-             				</tr>
-             			</c:forEach>
+                </thead>
+                <c:forEach items="${myCartList}"  var="list" varStatus="status" >
+                <input type="hidden" id="index" name="index" value="${status.index}">
+             		<tr>
+             			<td class="selectItemInfo">
+                        <div class="selectItemDiv">
+                			<label>
+                				<input type="hidden" class="individualPriceCart" value="${list.priceCart}">
+                				<input type="checkbox" class="selectItemCheckbox" id="selectItem" name="selectItem">
+                			</label>
+                		</div>
+                      	</td>
+             			<td>${list.amountCart}</td>
+             			<td>${list.nameCart}</td>
+             			<td>${list.amountCart}</td>
+                      	<td>${list.priceCart}</td>
+                      	<td>0</td>
+             			<td>
+             				<div class="btn">
+             					<form action="/deleteCart" method="GET">
+             						<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
+             						<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
+             						<input type="submit" value="삭제">
+             					</form>
+             				</div>
+             			</td>
+             		</tr>
+             	</c:forEach>
                 </table>
-      <h2>총 주문 금액</h2>
-				<table>
-              <tr>
-                <td><input type="text" name="recName" id="recName"></td>
-              </tr>
-          </table>
-			<div class="centered">
-				<input type="submit" name="buy" id="buy" value="결제">
-				<input type="button" name="cancel" id="cancel" value="취소">
-			</div>
+	<h2>총 주문 금액</h2>
+		<table>
+        	<tr>
+        		<td>
+        		<span>(상품금액)</span><span id="priceItem"></span>
+        		<span>+ (배송비)</span><span id="shippingFee"></span>
+        		<span> = </span><span id="totalPrice"></span>
+        		</td>
+            </tr>
+        </table>
+		<div class="centered">
+			<input type="submit" name="buy" id="buy" value="결제">
+			<input type="button" name="cancel" id="cancel" value="취소">
+		</div>
 		</form>
 	</div>
 </body>
 <script>
 $(function(){
-	var amountOrder = ${amountItem};
-	$("#amountOrder").val(amountOrder);
-	IMP.init('imp01501022');
-	$("#buy").click(function(){
-
-		IMP.request_pay({
-		    pg : "html5_inicis",
-		    pay_method : "card",
-		    merchant_uid: "11", // 상점에서 관리하는 주문 번호를 전달
-		    name : "주문명:결제테스트",
-		    amount : ${detailList.priceItem} / ${detailList.priceItem} + 100,
-		    buyer_email : "${buyer.memberId}",
-		    buyer_name : "${buyer.memberName}",
-		    buyer_tel : "${buyer.memberPhone}",
-		    buyer_addr : "${buyer.memberAddress}",
-		    buyer_postcode : "16548"
-		}, function(rsp) { // callback 로직
-			if(rsp.success){
-				var msg = "결제가 완료 되었습니다.";
-				msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
-				alert(msg);
-				document.orderForm.action= "/successOrder";
-				document.orderForm.submit();
-			}else{
-				var msg = "결제가 실패하였습니다.";
-				msg += rsp.error_code + " 에러내용: " + rsp.error_msg;
-				alert(msg);
-				location.href="/itemdetail/${detailList.idItem}";
-			}
-		});
-
-	});
-
+	
 	$("#cancel").click(function(){
 		location.href="/itemdetail/${detailList.idItem}";
-	})
+	});
+	
+	$(".selectItemCheckbox").on("change",function(){
+		var price = 0;
+		
+		$(".selectItemInfo").each(function(index,element){
+			if($(element).find(".selectItemCheckbox").is(":checked")){
+				price+=parseInt($(element).find(".individualPriceCart").val());
+			}
+		});
+		$("#priceItem").html(price);
+	});
+
 
 });
 </script>
