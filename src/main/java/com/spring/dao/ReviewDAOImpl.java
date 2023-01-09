@@ -26,7 +26,7 @@ public class ReviewDAOImpl implements ReviewDAO{
     }
     
     @Override
-    public List<ReviewVO> reviewList() throws Exception{
-    	return sqlSession.selectList(Namespace+".reviewList");
+    public List<ReviewVO> reviewList(int idItem) throws Exception{
+    	return sqlSession.selectList(Namespace+".reviewList",idItem);
     }
 }

@@ -15,9 +15,8 @@
 	리뷰 작성
 </h1>
 	<section id="container">
-		<form name="registReviewForm" action="/regReview" method="POST">
+		<form name="childForm" action="/regReview" method="POST">
 			<div class="form-group has-feedback">
-				<input type="hidden" id="idItem" name="idItem" value="1">
 				<input type="hidden" id="memberId" name="memberId" value="${user.memberId}">
 				<input type="hidden" id="dateReview" name="dateReview" value="${date}">
 				<label class="control-label" for="contentReview">내용</label>
@@ -41,7 +40,6 @@
 	<script>
 		$(function(){
 			$("#complete").click(function(){
-				opener.document.getElementById("idItem").value = document.getElementById("idItem").value;
 				opener.document.getElementById("memberId").value = document.getElementById("memberId").value;
 				opener.document.getElementById("dateReview").value = document.getElementById("dateReview").value;
 				opener.document.getElementById("contentReview").value = document.getElementById("contentReview").value;

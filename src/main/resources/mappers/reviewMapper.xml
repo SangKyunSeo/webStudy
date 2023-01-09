@@ -20,6 +20,6 @@
 	</insert>
 	
 	<select id="reviewList" resultMap="reviewMap">
-		SELECT * FROM review
+		SELECT * FROM review where id_item = #{idItem}
 	</select>
 </mapper>

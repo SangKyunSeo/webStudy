@@ -147,9 +147,9 @@
 					<div>필터</div>
 				</div>
 				<hr>
-				<form id="myform" method="GET" action="/regReview" target="childForm">
+				<form id="myform" method="GET" action="/regReview" target="registReviewForm">
 					<div class="review-write">
-						<input type="hidden" id="parentIdItem" value="${item.idItem}">
+						<input type="hidden" id="parentIdItem" name="parentIdItem" value="${item.idItem}">
 						<button type="button" name="reviewWrite" id="reviewWrite">글쓰기</button>
 					</div>
 				</form>
@@ -157,7 +157,7 @@
 				<form name="registReviewForm" action="/regReview" method="POST">
 					<div class="form-group has-feedback">
 						<input type="hidden" id="memberId" name="memberId">
-						<input type="hidden" id="idItem" name="idItem">
+						<input type="hidden" id="idItem" name="idItem" value="${item.idItem}">
 						<input type="hidden" id="contentReview" name="contentReview">
 						<input type="hidden" id="scoreReview" name="scoreReview">
 						<input type="hidden" id="dateReview" name="dateReview">
@@ -335,9 +335,8 @@
         <script>
         	$(function(){
         		$("#reviewWrite").click(function(){
-        			window.name = "parentForm";
+        			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
-        			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
         		
         		});
         		

@@ -97,7 +97,7 @@ public class HomeController {
 	public String testitemdetail(@PathVariable("idItem")int idItem,HttpSession session, Model model) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		ItemVO detailItem = itemService.detailList(idItem);
-		List<ReviewVO> reviewList = reviewService.reviewList();
+		List<ReviewVO> reviewList = reviewService.reviewList(idItem);
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
 		model.addAttribute("reviewList",reviewList);
@@ -255,6 +255,7 @@ public class HomeController {
 		for(int i=0;i<list.size();i++) {
 			total+=list.get(i).getPriceCart();
 		}
+		model.addAttribute("user",vo);
 		model.addAttribute("myCartList",list);
 		model.addAttribute("total",total);
 		return "myCart";
@@ -284,13 +285,14 @@ public class HomeController {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
-	
 	}
 	
 	@RequestMapping(value="/regReview",method=RequestMethod.POST)
 	public String registReviewPost(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
 		reviewService.regReview(reviewVo);
-		return "redirect:testitemdetail";
+		String param = "/" + reviewVo.getIdItem();
+		String url = "redirect:itemdetail"+param;
+		return url;
 	}
 	
 	@RequestMapping(value="/regQna",method=RequestMethod.GET)
@@ -306,7 +308,7 @@ public class HomeController {
 	public String registQnaPost(InquiryVO inquiryVo, Model model, HttpSession session) throws Exception{
 		inquiryService.regQna(inquiryVo);
 		
-		return "redirect:testitemdetail";
+		return "redirect:itemdetail";
 	}
 		
 }

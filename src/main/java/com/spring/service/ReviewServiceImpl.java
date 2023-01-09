@@ -23,8 +23,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
     
     @Override
-    public List<ReviewVO> reviewList() throws Exception{
-    	return dao.reviewList();
+    public List<ReviewVO> reviewList(int idItem) throws Exception{
+    	return dao.reviewList(idItem);
     }
   
 }
