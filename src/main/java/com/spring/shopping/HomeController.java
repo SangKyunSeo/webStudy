@@ -2,6 +2,7 @@ package com.spring.shopping;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,6 +92,7 @@ public class HomeController {
 		model.addAttribute("itemList",list);
 		model.addAttribute("user",vo);
 		model.addAttribute("cartCount",cartCount);
+	
 		return "home";
 	}
 	@RequestMapping(value = "itemdetail/{idItem}", method = RequestMethod.GET)
@@ -99,11 +101,29 @@ public class HomeController {
 		ItemVO detailItem = itemService.detailList(idItem);
 		List<ReviewVO> reviewList = reviewService.reviewList(idItem);
 		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
+		double sumReview =0;
+		double avgReview =0;
+		if(!reviewList.isEmpty()) {
+			for(int i=0;i<reviewList.size();i++) {
+				sumReview+=reviewList.get(i).getScoreReview();
+			}
+			avgReview = sumReview/reviewList.size();
+		}
+		DecimalFormat formatter = new DecimalFormat("#.#");
+		DecimalFormat priceForm = new DecimalFormat("###,###,###");
+		if(avgReview!=0) {
+			model.addAttribute("avgReview",formatter.format(avgReview));
+		}else {
+			model.addAttribute("avgReview",0);
+		}
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
 		model.addAttribute("reviewList",reviewList);
 		model.addAttribute("inquiryList",inquiryList);
 		model.addAttribute("item",detailItem);
+		model.addAttribute("priceItem",priceForm.format(detailItem.getPriceItem()));
+		model.addAttribute("reviewSize",reviewList.size());
+		model.addAttribute("inquirySize",inquiryList.size());
 		return "itemdetail";
 	}
 	

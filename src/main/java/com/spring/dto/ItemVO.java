@@ -1,5 +1,7 @@
 package com.spring.dto;
 
+import java.text.DecimalFormat;
+
 import javax.validation.constraints.NotNull;
 
 public class ItemVO {
@@ -11,7 +13,6 @@ public class ItemVO {
 	private String imageItem;
 	private int priceItem;
 	private int stockItem;
-	
 	
 	public int getIdItem() {
 		return idItem;
@@ -41,6 +42,7 @@ public class ItemVO {
 		return priceItem;
 	}
 	public void setPriceItem(int priceItem) {
+		
 		this.priceItem = priceItem;
 	}
 	public int getStockItem() {

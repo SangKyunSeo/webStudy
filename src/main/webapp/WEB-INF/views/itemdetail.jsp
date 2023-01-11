@@ -56,7 +56,7 @@
                         <div class="small mb-1">상품번호: ${item.idItem}</div>
                         <h1 class="display-5 fw-bolder">${item.nameItem}</h1>
                         <div class="fs-5 mb-5">
-                            <span>${item.priceItem}</span>
+                            <span>가격: ${priceItem}</span>
                         </div>
                         <p class="lead">상품 설명</p>
                         <div class="d-flex">
@@ -82,13 +82,13 @@
             </div>
         </section>
         
-        <div class="container px-8 px-lg-8">
+        <div class="container px-4 px-lg-4">
         	<div class="navbar navbar-expand-lg navbar-light bg-light">
         		상품정보
         	</div>
         </div> 
         <!-- 상품 이미지 -->
-		<div class="container px-8 px-lg-8 align-items-center">
+		<div class="container px-4 px-lg-4 align-items-center">
         	<div class="col-md-12">
         		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
         	</div>
@@ -107,7 +107,7 @@
         </div>
         
         <!-- 메뉴바 -->
-        <div class="container px-4 px-lg-5">
+        <div class="container px-4 px-lg-4">
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-nav">
 			  <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 			    <li class="nav-item">
@@ -122,16 +122,22 @@
 			  </ul>
 			</nav>
 		</div>
-		
+		<br><br>
 		<!-- 상품평 -->
 		<div class="container px-4 px-lg-5" id="itemReview">
 			<h2>상품평</h2>
 			<hr>
-			<h5><strong>0</strong>건의 후기가 있습니다.</h5>
-			<div class="start">
-				별점 들어가는 곳
-			</div>
-			<hr>
+			<h5><strong>${reviewSize}</strong>건의 후기가 있습니다.</h5>
+			<br>
+			<span style="padding:50px"><em style="font-size:25px">${avgReview}</em></span>
+			<br>
+			<span class="star">
+				<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+			</span>
+			<span class="real-star" style="width:${avgReview*30}px">
+				<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+			</span>
+			<br><br><br><br>
 			<div class="review_photo">
 				<h5>사진<em>0</em></h5>
 				<div class="photh_list">
@@ -142,7 +148,7 @@
 			</div>
 			<div class="review_wrap">
 				<div class="title_area">
-					<h5>전체후기<em>0</em></h5>
+					<h5>전체후기</h5>
 					<div>베스트/최신순</div>
 					<div>필터</div>
 				</div>
@@ -192,7 +198,7 @@
 		
 		<!-- 상품 문의 -->
 		<div class="container px-4 px-lg-5" id="itemqna">
-			<h2>상품문의  <em>0</em></h2>
+			<h2>상품문의  <em>${inquirySize}</em></h2>
 			<hr>
 			<form id="myform" method="GET" action="/regQna" target="itemQnaForm">
 				<input type="hidden" id="idItem" name="idItem" value="${item.idItem}">
@@ -356,8 +362,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/9fc17accaa.js" crossorigin="anonymous"></script>
         <script>
         	$(function(){
+        		
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
@@ -385,7 +393,11 @@
         			
         		});
         		
+        		
+        	
         	});
         </script>
     </body>
 </html>
+
+
