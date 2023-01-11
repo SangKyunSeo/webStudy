@@ -98,9 +98,11 @@ public class HomeController {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		ItemVO detailItem = itemService.detailList(idItem);
 		List<ReviewVO> reviewList = reviewService.reviewList(idItem);
+		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
 		model.addAttribute("reviewList",reviewList);
+		model.addAttribute("inquiryList",inquiryList);
 		model.addAttribute("item",detailItem);
 		return "itemdetail";
 	}
@@ -307,8 +309,9 @@ public class HomeController {
 	@RequestMapping(value="/regQna",method=RequestMethod.POST)
 	public String registQnaPost(InquiryVO inquiryVo, Model model, HttpSession session) throws Exception{
 		inquiryService.regQna(inquiryVo);
-		
-		return "redirect:itemdetail";
+		String param = "/" + inquiryVo.getIdItem();
+		String url = "redirect:itemdetail" + param;
+		return url;
 	}
 		
 }

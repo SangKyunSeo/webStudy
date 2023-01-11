@@ -8,5 +8,5 @@ import com.spring.dto.ReviewVO;
 
 public interface InquiryService {
 	public void regQna(InquiryVO inquiryVo) throws Exception;
-
+	public List<InquiryVO> inquiryList(int idItem) throws Exception;
 }

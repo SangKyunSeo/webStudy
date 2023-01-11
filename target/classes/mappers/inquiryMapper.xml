@@ -24,4 +24,8 @@
  				VALUES(#{memberId},#{idItem},#{answerItemInquiry},#{categoryItemInquiry},
  				#{contentItemInquiry},#{titleItemInquiry},#{dateItemInquiry},#{secretItemInquiry})
 	</insert>
+	
+	<select id="inquiryList" resultMap="inquiryMap">
+		SELECT * FROM item_inquiry WHERE id_item = #{idItem}
+	</select>
 </mapper>

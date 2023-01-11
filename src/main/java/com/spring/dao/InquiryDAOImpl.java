@@ -25,5 +25,10 @@ public class InquiryDAOImpl implements InquiryDAO{
 	public void regQna(InquiryVO inquiryVo) throws Exception{
     	sqlSession.insert(Namespace+".regQna",inquiryVo);
     }
+    
+    @Override
+    public List<InquiryVO> inquiryList(int idItem) throws Exception{
+    	return sqlSession.selectList(Namespace+".inquiryList",idItem);
+    }
    
 }

@@ -17,7 +17,6 @@
 	<section id="container">
 		<form name="registQnaForm" action="/regQna" method="POST">
 			<input type="hidden" id="memberId" name="memberId" value="${user.memberId}">
-			<input type="hidden" id="idItem" name="idItem" value="1">
 			<input type="hidden" id="dateItemInquiry" name="dateItemInquiry" value="${date}">
 			<div class="form-group has-feedback">
 				<table summary="판매자 문의 하기 입력폼">
@@ -82,7 +81,6 @@
 					opener.registQnaForm.secretItemInquiry.value = 0;
 					
 				}
-				opener.registQnaForm.idItem.value = document.getElementById("idItem").value;
 				opener.registQnaForm.memberId.value = document.getElementById("memberId").value;
 				opener.registQnaForm.answerItemInquiry.value = 0;
 				opener.registQnaForm.categoryItemInquiry.value = document.getElementById("categoryItemInquiry").value;

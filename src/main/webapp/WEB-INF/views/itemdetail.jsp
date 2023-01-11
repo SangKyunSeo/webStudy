@@ -202,7 +202,7 @@
 			<form name="registQnaForm" action="/regQna" method="POST">
 					<div class="form-group has-feedback">
 						<input type="hidden" id="memberId" name="memberId">
-						<input type="hidden" id="idItem" name="idItem">
+						<input type="hidden" id="idItem" name="idItem" value="${item.idItem}">
 						<input type="hidden" id="answerItemInquiry" name="answerItemInquiry">
 						<input type="hidden" id="categoryItemInquiry" name="categoryItemInquiry">
 						<input type="hidden" id="contentItemInquiry" name="contentItemInquiry">
@@ -211,6 +211,30 @@
 						<input type="hidden" id="secretItemInquiry" name="secretItemInquiry">
 					</div>
 				</form>
+				
+				<div class="review_list">
+					<c:forEach items="${inquiryList}"  var="list" varStatus="status" >
+						<ul>
+							<li class="detail">
+								<div class="itemName">
+									작성자 : ${list.memberId}
+								</div>
+								<div class="madeName">
+									상품 : ${list.idItem}
+								</div>
+								<div class="price">
+									카테코리 : ${list.categoryItemInquiry}
+								</div>
+								<div class="stock">
+									제목 : ${list.titleItemInquiry}
+								</div>
+								<div class="stock">
+									작성일 : ${list.dateItemInquiry}
+								</div>
+							</li>
+						</ul>
+					</c:forEach>
+				</div>
 		</div>
 		
 		
@@ -343,8 +367,7 @@
         		$("#qnaWrite").click(function(){
         			window.name = "parentForm";
         			openWin = window.open("/regQna","itemQnaForm","width=600,height=400,resizable=no,scrollbars=no")
-        			//openWin.document.getElementById("idItem").value = document.getElementById("parentIdItem").value;
-            		
+      
         		});
         		$("#amount").change(function(){
         			var amount = $("#amount").val();

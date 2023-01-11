@@ -23,6 +23,11 @@ public class InquiryServiceImpl implements InquiryService {
     public void regQna(InquiryVO inquiryVo) throws Exception{
     	dao.regQna(inquiryVo);
     }
+    
+    @Override
+    public List<InquiryVO> inquiryList(int idItem) throws Exception{
+    	return dao.inquiryList(idItem);
+    }
 
   
 }
