@@ -169,32 +169,25 @@
 						<input type="hidden" id="dateReview" name="dateReview">
 					</div>
 				</form>
-				<div class="review_list">
-					<c:forEach items="${reviewList}"  var="list" varStatus="status" >
-						<ul>
-							<li class="detail">
-								<div class="itemName">
-									작성자 : ${list.memberId}
-								</div>
-								<div class="madeName">
-									상품 : ${list.idItem}
-								</div>
-								<div class="price">
-									내용 : ${list.contentReview}
-								</div>
-								<div class="stock">
-									평점 : ${list.scoreReview}
-								</div>
-								<div class="stock">
-									작성일 : ${list.dateReview}
-								</div>
-							</li>
-						</ul>
-					</c:forEach>
-				</div>
+				
+				<div class="row d-flex justify-content-center">
+						<ul class="list-style-none">
+							<c:forEach items="${reviewList}"  var="list" varStatus="status" >
+	                                <li class="d-flex flex-column no-block card-body border-bottom">
+	                                    <div>
+	                                        <span style="font-size:30px">${list.scoreReview}</span><br>
+	                                        <span class="text-muted" style="font-size:8px">상품: ${list.idItem}</span>
+	                                        <span class="text-muted font-16" style="float:right;font-size:14px" >${list.memberId}|${list.dateReview}</span>
+	                                    </div>
+	                                    <div>
+	                                    	${list.contentReview}
+	                                    </div>
+	                                </li>   
+	                    	</c:forEach>
+	                    </ul>
+                </div>
 			</div>
 		</div>
-		<hr>
 		
 		<!-- 상품 문의 -->
 		<div class="container px-4 px-lg-5" id="itemqna">
@@ -217,6 +210,8 @@
 						<input type="hidden" id="secretItemInquiry" name="secretItemInquiry">
 					</div>
 				</form>
+				
+				
 				
 				<div class="review_list">
 					<c:forEach items="${inquiryList}"  var="list" varStatus="status" >
