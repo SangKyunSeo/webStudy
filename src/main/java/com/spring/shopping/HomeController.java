@@ -44,6 +44,7 @@ import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemVO;
 import com.spring.dto.OrderVO;
+import com.spring.dto.PagingVO;
 import com.spring.dto.ReviewVO;
 import com.spring.service.CartService;
 import com.spring.service.InquiryService;
@@ -109,6 +110,14 @@ public class HomeController {
 			}
 			avgReview = sumReview/reviewList.size();
 		}
+		
+		int total = reviewService.countReview(idItem);
+		int nowPage = 1;
+		PagingVO pagingVo = new PagingVO(total,nowPage);
+		List<ReviewVO> list = reviewService.selectReview(pagingVo, idItem);
+		model.addAttribute("paging",pagingVo);
+		model.addAttribute("pagingList",list);
+		
 		DecimalFormat formatter = new DecimalFormat("#.#");
 		DecimalFormat priceForm = new DecimalFormat("###,###,###");
 		if(avgReview!=0) {
@@ -118,7 +127,6 @@ public class HomeController {
 		}
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());
-		model.addAttribute("reviewList",reviewList);
 		model.addAttribute("inquiryList",inquiryList);
 		model.addAttribute("item",detailItem);
 		model.addAttribute("priceItem",priceForm.format(detailItem.getPriceItem()));
@@ -333,5 +341,22 @@ public class HomeController {
 		String url = "redirect:itemdetail" + param;
 		return url;
 	}
+	
+	@RequestMapping(value="/reviewList",method=RequestMethod.POST)
+	public String reviewList(PagingVO pagingVo, Model model,@RequestParam(value="nowPage")String nowPage,@RequestParam(value="idItem")int idItem) throws Exception {
+		int total = reviewService.countReview(idItem);
 		
+		if(nowPage==null) {
+			nowPage="1";
+		}
+		
+		pagingVo = new PagingVO(total,Integer.parseInt(nowPage));
+		List<ReviewVO> list = reviewService.selectReview(pagingVo, idItem);
+		model.addAttribute("paging",pagingVo);
+		model.addAttribute("paginglist",list);
+		String param = "/"+idItem;
+		
+		return "itemdetail" + param;
+			
+	}
 }

@@ -23,12 +23,12 @@
 		SELECT * FROM review where id_item = #{idItem}
 	</select>
 	
-	<select id="countReview" resultType="_int">
-		SELECT COUNT(*) FROM review
+	<select id="countReview" resultType="int">
+		SELECT COUNT(*) FROM review WHERE id_item = #{idItem}
 	</select>
 	
 	<select id="selectReview" resultMap="reviewMap">
-		SELECT * FROM review WHERE id_item = #{idItem} ORDER BY id_item DESC limit #{cntPerPage} OFFSET #{start}
+		SELECT * FROM review WHERE id_item = #{idItem} ORDER BY id_review DESC limit #{vo.cntPerPage} OFFSET #{vo.start}
 	</select>
 	
 </mapper>

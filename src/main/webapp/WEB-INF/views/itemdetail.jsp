@@ -172,7 +172,7 @@
 				
 				<div class="row d-flex justify-content-center">
 						<ul class="list-style-none">
-							<c:forEach items="${reviewList}"  var="list" varStatus="status" >
+							<c:forEach items="${pagingList}"  var="list" varStatus="status" >
 	                                <li class="d-flex flex-column no-block card-body border-bottom">
 	                                    <div>
 	                                        <span style="font-size:30px">${list.scoreReview}</span><br>
@@ -186,6 +186,25 @@
 	                    	</c:forEach>
 	                    </ul>
                 </div>
+                
+                <div style="display: block; text-align: center;">		
+					<c:if test="${paging.startPage != 1 }">
+						<a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					</c:if>
+					<c:forEach begin="${paging.startPage}" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p}</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="#">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.totalPage}">
+						<a href="#">&gt;</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 		
@@ -360,7 +379,6 @@
         <script src="https://kit.fontawesome.com/9fc17accaa.js" crossorigin="anonymous"></script>
         <script>
         	$(function(){
-        		
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")

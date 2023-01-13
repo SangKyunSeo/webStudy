@@ -22,7 +22,7 @@ public class PagingVO {
 	}
 	
 	public void calTotalPage(int totalCnt,int cntPerPage) {
-		setTotalPage((int)Math.ceil(totalCnt/cntPerPage));
+		setTotalPage((int)Math.ceil((double)totalCnt/(double)cntPerPage));
 	}
 	
 	public void calStartEndPage(int nowPage,int cntPage) {
