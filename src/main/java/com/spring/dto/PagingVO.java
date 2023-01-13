@@ -38,7 +38,7 @@ public class PagingVO {
 	
 	public void calStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage + 1);
+		setStart(getEnd() - cntPerPage);
 	}
 
 	public int getNowPage() {
