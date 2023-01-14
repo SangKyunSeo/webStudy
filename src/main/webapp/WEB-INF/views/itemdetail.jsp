@@ -147,7 +147,7 @@
 				</div>
 			</div>
 			<div class="review_wrap">
-				<div class="title_area">
+				<div class="title_area" id="title-area">
 					<h5>전체후기</h5>
 					<div>베스트/최신순</div>
 					<div>필터</div>
@@ -171,6 +171,7 @@
 				</form>
 				
 				<div class="row d-flex justify-content-center">
+					<div class="list-data">
 						<ul class="list-style-none">
 							<c:forEach items="${pagingList}"  var="list" varStatus="status" >
 	                                <li class="d-flex flex-column no-block card-body border-bottom">
@@ -185,11 +186,12 @@
 	                                </li>   
 	                    	</c:forEach>
 	                    </ul>
+	            	</div>
                 </div>
                 
-                <div style="display: block; text-align: center;">		
+                <div style="display: block; text-align: center;" class="page-data">		
 					<c:if test="${paging.startPage != 1 }">
-						<a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+						<a href="javacript:void(0)"onclick="fn_goPage(${paging.startPage-1});">&lt;</a>
 					</c:if>
 					<c:forEach begin="${paging.startPage}" end="${paging.endPage }" var="p">
 						<c:choose>
@@ -197,12 +199,12 @@
 								<b>${p}</b>
 							</c:when>
 							<c:when test="${p != paging.nowPage }">
-								<a href="#">${p}</a>
+								<a href="javascript:void(0)" onclick="fn_goPage(${p});">${p}</a>
 							</c:when>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${paging.endPage != paging.totalPage}">
-						<a href="#">&gt;</a>
+						<a href="javacript:void(0)" onclick="fn_goPage(${paging.endPage+1})">&gt;</a>
 					</c:if>
 				</div>
 			</div>
@@ -378,7 +380,60 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/9fc17accaa.js" crossorigin="anonymous"></script>
         <script>
+        	function fn_goPage(page){
+    			var query = {nowPage : page, idItem : ${item.idItem} };
+    			
+    			$.ajax({
+    				url:"/reviewList",
+    				type : "POST",
+    				data : query,
+    				success: function(data){
+    					var list = new Array;
+    					list = data.paginglist;
+    					var paging = data.paging;
+    					var code = '';
+    					var pageCode = '';
+    					
+    					$.each(list,function(key,value){
+    						code+='<li class="d-flex flex-column no-block card-body border-bottom">';
+                            code+='<div>';
+                            code+='<span style="font-size:30px">'+value.scoreReview+'</span><br>';
+                            code+='<span class="text-muted" style="font-size:8px">상품:' + value.idItem + '</span>';
+                            code+='<span class="text-muted font-16" style="float:right;font-size:14px" >'+value.memberId+'|'+value.dateReview+'</span>';
+                            code+='</div>'
+                            code+='<div>'
+                           	code+=value.contentReview;
+                            code+='</div>';
+                        	code+='</li>';   
+    					});
+    					$(".list-data").html(code);
+    					
+    					if(paging.startPage != 1){
+    						var prev = paging.startPage - 1;
+    						pageCode += '<a href="javacript:void(0)" onclick=" fn_goPage('+ prev + ')">&lt;</a>';
+    					}
+    					
+    					for(var num=paging.startPage;num<=paging.endPage;num++){
+    						if(num==paging.nowPage){
+    							pageCode += '<b>' + num + '</b>';
+    						}else{
+    							pageCode += '<a href="javascript:void(0)" onclick="fn_goPage(' + num + ');">'+ num +'</a>'
+    						}
+    					}
+    					
+    					if(paging.endPage != paging.totalPage){
+    						var next = paging.endPage + 1;
+    						pageCode += '<a href="javascript:void(0)" onclick="fn_goPage(' + next + ');">&gt;</a>';
+    					}
+    					
+    					$(".page-data").html(pageCode);
+    				}
+    				
+    			});
+    			document.getElementById('title-area').scrollIntoView();
+        	}
         	$(function(){
+        		
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")

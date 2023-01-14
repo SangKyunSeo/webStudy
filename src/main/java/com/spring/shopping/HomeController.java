@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -342,21 +343,24 @@ public class HomeController {
 		return url;
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/reviewList",method=RequestMethod.POST)
-	public String reviewList(PagingVO pagingVo, Model model,@RequestParam(value="nowPage")String nowPage,@RequestParam(value="idItem")int idItem) throws Exception {
+	public Map<String,Object> reviewList(Model model,HttpServletRequest req) throws Exception {
+		int idItem = Integer.parseInt(req.getParameter("idItem"));
 		int total = reviewService.countReview(idItem);
-		
+		String nowPage = req.getParameter("nowPage");
 		if(nowPage==null) {
 			nowPage="1";
 		}
 		
-		pagingVo = new PagingVO(total,Integer.parseInt(nowPage));
+		Map<String,Object> result = new HashMap<>();
+		PagingVO pagingVo = new PagingVO(total,Integer.parseInt(nowPage));
 		List<ReviewVO> list = reviewService.selectReview(pagingVo, idItem);
-		model.addAttribute("paging",pagingVo);
-		model.addAttribute("paginglist",list);
+		result.put("paging",pagingVo);
+		result.put("paginglist",list);
 		String param = "/"+idItem;
 		
-		return "itemdetail" + param;
+		return result;
 			
 	}
 }
