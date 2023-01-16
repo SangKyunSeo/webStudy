@@ -212,13 +212,12 @@
 		
 		<!-- 상품 문의 -->
 		<div class="container px-4 px-lg-5" id="itemqna">
-			<h2>상품문의  <em>${inquirySize}</em></h2>
-			<hr>
-			<form id="myform" method="GET" action="/regQna" target="itemQnaForm">
+			<h2 style="display:inline;">상품문의  <em>${inquirySize}</em></h2>
+			<form style="display:inline;float:right;" id="myform" method="GET" action="/regQna" target="itemQnaForm">
 				<input type="hidden" id="idItem" name="idItem" value="${item.idItem}">
-				<button type="button" name="qnaWrite" id="qnaWrite">문의하기</button>
+				<button type="button" name="qnaWrite" id="qnaWrite" class="oneLine">문의하기</button>
 			</form>
-			
+			<hr>
 			<form name="registQnaForm" action="/regQna" method="POST">
 					<div class="form-group has-feedback">
 						<input type="hidden" id="memberId" name="memberId">
@@ -231,6 +230,45 @@
 						<input type="hidden" id="secretItemInquiry" name="secretItemInquiry">
 					</div>
 				</form>
+				
+				
+				<div class="row d-flex justify-content-center">
+					<div class="list-data">
+						<ul class="list-style-none">
+							<c:forEach items="${qnaList}"  var="list" varStatus="status" >
+	                                <li class="d-flex flex-column no-block card-body border-bottom">
+	                                    <div>
+	                                        <span class="text-muted" style="font-size:10px">상품: ${list.idItem}</span>
+	                                        <span class="text-muted" style="font-size:10px">카테고리: ${list.categoryItemInquiry}</span>
+	                                        <span class="text-muted font-16" style="float:right;font-size:14px" >${list.memberId} | ${list.dateItemInquiry}</span>
+	                                    </div>
+	                                    <div>
+	                                    	${list.titleItemInquiry}
+	                                    </div>
+	                                </li>   
+	                    	</c:forEach>
+	                    </ul>
+	            	</div>
+                </div>
+                
+                <div style="display: block; text-align: center;" class="page-data">		
+					<c:if test="${qnaPaging.startPage != 1 }">
+						<a href="javacript:void(0)"onclick="fn_qna_goPage(${qnaPaging.startPage-1});">&lt;</a>
+					</c:if>
+					<c:forEach begin="${qnaPaging.startPage}" end="${qnaPaging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == qnaPaging.nowPage }">
+								<b>${p}</b>
+							</c:when>
+							<c:when test="${p != qnaPaging.nowPage }">
+								<a href="javascript:void(0)" onclick="fn_qna_goPage(${p});">${p}</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${qnaPaging.endPage != qnaPaging.totalPage}">
+						<a href="javacript:void(0)" onclick="fn_qna_goPage(${qnaPaging.endPage+1})">&gt;</a>
+					</c:if>
+				</div>
 				
 				
 				
@@ -260,116 +298,6 @@
 		</div>
 		
 		
-		
-		
-		
-		
-        <!-- Related items section-->
-        <section class="py-5 bg-light">
-            <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Related products</h2>
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $40.00 - $80.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

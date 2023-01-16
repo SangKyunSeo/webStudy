@@ -11369,3 +11369,8 @@ ul.list-style-none li a {
 .w-30px {
     width: 30px;
 }
+
+.oneLine h2,
+.oneLine button{
+	display:inline;
+}

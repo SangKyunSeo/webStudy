@@ -28,4 +28,8 @@
 	<select id="inquiryList" resultMap="inquiryMap">
 		SELECT * FROM item_inquiry WHERE id_item = #{idItem}
 	</select>
+	
+	<select id="selectInquiry" resultMap="inquiryMap">
+		SELECT * FROM item_inquiry WHERE id_item = #{idItem} ORDER BY id_item_inquiry DESC limit #{vo.cntPerPage} OFFSET #{vo.start}
+	</select>
 </mapper>

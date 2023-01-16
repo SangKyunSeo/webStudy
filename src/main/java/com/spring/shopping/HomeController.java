@@ -113,11 +113,16 @@ public class HomeController {
 		}
 		
 		int total = reviewService.countReview(idItem);
+		int qnaTotal = inquiryList.size();
 		int nowPage = 1;
 		PagingVO pagingVo = new PagingVO(total,nowPage);
+		PagingVO qnaPagingVo = new PagingVO(qnaTotal,nowPage);
 		List<ReviewVO> list = reviewService.selectReview(pagingVo, idItem);
+		List<InquiryVO> qnaList = inquiryService.selectInquiry(qnaPagingVo,idItem);
 		model.addAttribute("paging",pagingVo);
 		model.addAttribute("pagingList",list);
+		model.addAttribute("qnaList",qnaList);
+		model.addAttribute("qnaPaging",qnaPagingVo);
 		
 		DecimalFormat formatter = new DecimalFormat("#.#");
 		DecimalFormat priceForm = new DecimalFormat("###,###,###");
