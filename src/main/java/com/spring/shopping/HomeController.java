@@ -368,4 +368,27 @@ public class HomeController {
 		return result;
 			
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/inquiryList",method=RequestMethod.POST)
+	public Map<String,Object> inquiryList(Model model,HttpServletRequest req) throws Exception {
+		int idItem = Integer.parseInt(req.getParameter("idItem"));
+		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
+		int total = inquiryList.size();
+		String nowPage = req.getParameter("nowPage");
+		if(nowPage==null) {
+			nowPage="1";
+		}
+		
+		Map<String,Object> result = new HashMap<>();
+		PagingVO pagingVo = new PagingVO(total,Integer.parseInt(nowPage));
+		List<InquiryVO> list = inquiryService.selectInquiry(pagingVo, idItem);
+		result.put("paging",pagingVo);
+		result.put("paginglist",list);
+		String param = "/"+idItem;
+		
+		return result;
+			
+	}
+	
 }

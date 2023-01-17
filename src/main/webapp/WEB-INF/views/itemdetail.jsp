@@ -233,7 +233,7 @@
 				
 				
 				<div class="row d-flex justify-content-center">
-					<div class="list-data">
+					<div class="list-inquiry-data">
 						<ul class="list-style-none">
 							<c:forEach items="${qnaList}"  var="list" varStatus="status" >
 	                                <li class="d-flex flex-column no-block card-body border-bottom">
@@ -251,7 +251,7 @@
 	            	</div>
                 </div>
                 
-                <div style="display: block; text-align: center;" class="page-data">		
+                <div style="display: block; text-align: center;" class="page-inquiry-data">		
 					<c:if test="${qnaPaging.startPage != 1 }">
 						<a href="javacript:void(0)"onclick="fn_qna_goPage(${qnaPaging.startPage-1});">&lt;</a>
 					</c:if>
@@ -268,32 +268,6 @@
 					<c:if test="${qnaPaging.endPage != qnaPaging.totalPage}">
 						<a href="javacript:void(0)" onclick="fn_qna_goPage(${qnaPaging.endPage+1})">&gt;</a>
 					</c:if>
-				</div>
-				
-				
-				
-				<div class="review_list">
-					<c:forEach items="${inquiryList}"  var="list" varStatus="status" >
-						<ul>
-							<li class="detail">
-								<div class="itemName">
-									작성자 : ${list.memberId}
-								</div>
-								<div class="madeName">
-									상품 : ${list.idItem}
-								</div>
-								<div class="price">
-									카테코리 : ${list.categoryItemInquiry}
-								</div>
-								<div class="stock">
-									제목 : ${list.titleItemInquiry}
-								</div>
-								<div class="stock">
-									작성일 : ${list.dateItemInquiry}
-								</div>
-							</li>
-						</ul>
-					</c:forEach>
 				</div>
 		</div>
 		
@@ -360,6 +334,60 @@
     			});
     			document.getElementById('title-area').scrollIntoView();
         	}
+        	
+        	function fn_qna_goPage(page){
+    			var query = {nowPage : page, idItem : ${item.idItem} };
+    			
+    			$.ajax({
+    				url:"/inquiryList",
+    				type : "POST",
+    				data : query,
+    				success: function(data){
+    					var list = new Array;
+    					list = data.paginglist;
+    					var paging = data.paging;
+    					var code = '';
+    					var pageCode = '';
+    					
+    					$.each(list,function(key,value){
+    						code+='<li class="d-flex flex-column no-block card-body border-bottom">';
+                            code+='<div>';
+                            code+='<span class="text-muted" style="font-size:10px">상품: '+value.idItem+'</span><br>';
+                            code+='<span class="text-muted" style="font-size:10px">카테고리:' + value.categoryItemInquiry + '</span>';
+                            code+='<span class="text-muted font-16" style="float:right;font-size:14px" >'+value.memberId+'|'+value.dateItemInquiry+'</span>';
+                            code+='</div>'
+                            code+='<div>'
+                           	code+=value.titleItemInquiry;
+                            code+='</div>';
+                        	code+='</li>';   
+    					});
+    					$(".list-inquiry-data").html(code);
+    					
+    					if(paging.startPage != 1){
+    						var prev = paging.startPage - 1;
+    						pageCode += '<a href="javacript:void(0)" onclick=" fn_qna_goPage('+ prev + ')">&lt;</a>';
+    					}
+    					
+    					for(var num=paging.startPage;num<=paging.endPage;num++){
+    						if(num==paging.nowPage){
+    							pageCode += '<b>' + num + '</b>';
+    						}else{
+    							pageCode += '<a href="javascript:void(0)" onclick="fn_qna_goPage(' + num + ');">'+ num +'</a>'
+    						}
+    					}
+    					
+    					if(paging.endPage != paging.totalPage){
+    						var next = paging.endPage + 1;
+    						pageCode += '<a href="javascript:void(0)" onclick="fn_qna_goPage(' + next + ');">&gt;</a>';
+    					}
+    					
+    					$(".page-inquiry-data").html(pageCode);
+    				}
+    				
+    			});
+    			document.getElementById('itemqna').scrollIntoView();
+        	}
+        	
         	$(function(){
         		
         		$("#reviewWrite").click(function(){
