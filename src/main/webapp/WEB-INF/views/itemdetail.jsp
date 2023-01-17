@@ -242,8 +242,13 @@
 	                                        <span class="text-muted" style="font-size:10px">카테고리: ${list.categoryItemInquiry}</span>
 	                                        <span class="text-muted font-16" style="float:right;font-size:14px" >${list.memberId} | ${list.dateItemInquiry}</span>
 	                                    </div>
-	                                    <div>
-	                                    	${list.titleItemInquiry}
+	                                    <div class="qnaContent">
+		                                    <div class="qnaTitle" id="qnaTitle">
+		                                    	${list.titleItemInquiry}
+		                                    </div>
+			                                <div class="answer" style="display:none">
+			                                   	${list.contentItemInquiry}
+			                                </div>
 	                                    </div>
 	                                </li>   
 	                    	</c:forEach>
@@ -270,7 +275,6 @@
 					</c:if>
 				</div>
 		</div>
-		
 		
         <!-- Footer-->
         <footer class="py-5 bg-dark">
@@ -355,9 +359,14 @@
                             code+='<span class="text-muted" style="font-size:10px">상품: '+value.idItem+'</span><br>';
                             code+='<span class="text-muted" style="font-size:10px">카테고리:' + value.categoryItemInquiry + '</span>';
                             code+='<span class="text-muted font-16" style="float:right;font-size:14px" >'+value.memberId+'|'+value.dateItemInquiry+'</span>';
-                            code+='</div>'
-                            code+='<div>'
+                            code+='</div>';
+                            code+='<div class="qnaContent">';
+                            code+='<div class="qnaTitle" id="qnaTitle">';
                            	code+=value.titleItemInquiry;
+                            code+='</div>';
+                            code+='<div class="answer" style="display:none">';
+                            code+=value.contentItemInquiry;
+                            code+='</div>';
                             code+='</div>';
                         	code+='</li>';   
     					});
@@ -382,6 +391,16 @@
     					}
     					
     					$(".page-inquiry-data").html(pageCode);
+    					
+    					$(".qnaContent").each(function(index,element){
+    	        			$(element).find(".qnaTitle").click(function(){
+    	        				if($(element).find(".answer").is(":visible")){
+    	        					$(element).find(".answer").slideUp();
+    	        				}else{
+    	        					$(element).find(".answer").slideDown();
+    	        				}
+    	        			});
+    	        		});
     				}
     				
     			});
@@ -416,7 +435,16 @@
         			}
         			
         		});
-        		
+
+        		$(".qnaContent").each(function(index,element){
+        			$(element).find(".qnaTitle").click(function(){
+        				if($(element).find(".answer").is(":visible")){
+        					$(element).find(".answer").slideUp();
+        				}else{
+        					$(element).find(".answer").slideDown();
+        				}
+        			});
+        		});
         		
         	
         	});
