@@ -246,6 +246,7 @@
 		                                    <div class="qnaTitle" id="qnaTitle">
 		                                    	${list.titleItemInquiry}
 		                                    </div>
+		                                    <input type="hidden" class="secret" id="secret" name="secret" value="${list.secretItemInquiry}">
 			                                <div class="answer" style="display:none">
 			                                   	${list.contentItemInquiry}
 			                                </div>
@@ -255,7 +256,7 @@
 	                    </ul>
 	            	</div>
                 </div>
-                
+                <br>
                 <div style="display: block; text-align: center;" class="page-inquiry-data">		
 					<c:if test="${qnaPaging.startPage != 1 }">
 						<a href="javacript:void(0)"onclick="fn_qna_goPage(${qnaPaging.startPage-1});">&lt;</a>
@@ -364,6 +365,7 @@
                             code+='<div class="qnaTitle" id="qnaTitle">';
                            	code+=value.titleItemInquiry;
                             code+='</div>';
+                            code+='<input type="hidden" class="secret" id="secret" name="secret" value="' + value.secretItemInquiry + '">';
                             code+='<div class="answer" style="display:none">';
                             code+=value.contentItemInquiry;
                             code+='</div>';
@@ -395,9 +397,11 @@
     					$(".qnaContent").each(function(index,element){
     	        			$(element).find(".qnaTitle").click(function(){
     	        				if($(element).find(".answer").is(":visible")){
-    	        					$(element).find(".answer").slideUp();
+    	        					$(element).find(".answer").slideUp();	
     	        				}else{
-    	        					$(element).find(".answer").slideDown();
+    	        					if($(element).find(".secret").val()=="false"){
+    	        						$(element).find(".answer").slideDown();
+    	        					}
     	        				}
     	        			});
     	        		});
@@ -408,7 +412,6 @@
         	}
         	
         	$(function(){
-        		
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
@@ -439,9 +442,11 @@
         		$(".qnaContent").each(function(index,element){
         			$(element).find(".qnaTitle").click(function(){
         				if($(element).find(".answer").is(":visible")){
-        					$(element).find(".answer").slideUp();
+        					$(element).find(".answer").slideUp();	
         				}else{
-        					$(element).find(".answer").slideDown();
+        					if($(element).find(".secret").val()=="false"){
+        						$(element).find(".answer").slideDown();
+        					}
         				}
         			});
         		});
