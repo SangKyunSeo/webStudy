@@ -371,7 +371,8 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/inquiryList",method=RequestMethod.POST)
-	public Map<String,Object> inquiryList(Model model,HttpServletRequest req) throws Exception {
+	public Map<String,Object> inquiryList(Model model,HttpServletRequest req,HttpSession session) throws Exception {
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		int idItem = Integer.parseInt(req.getParameter("idItem"));
 		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
 		int total = inquiryList.size();
@@ -385,6 +386,7 @@ public class HomeController {
 		List<InquiryVO> list = inquiryService.selectInquiry(pagingVo, idItem);
 		result.put("paging",pagingVo);
 		result.put("paginglist",list);
+		result.put("user", vo);
 		String param = "/"+idItem;
 		
 		return result;

@@ -244,8 +244,14 @@
 	                                    </div>
 	                                    <div class="qnaContent">
 		                                    <div class="qnaTitle" id="qnaTitle">
-		                                    	${list.titleItemInquiry}
+		                                    	<c:if test="${list.secretItemInquiry eq 'true'}">
+		                                    		<span>비밀글입니다.</span>
+			                                	</c:if>
+			                                	<c:if test="${list.secretItemInquiry eq 'false'}">
+			                                		<span>${list.titleItemInquiry}</span>
+			                                	</c:if>
 		                                    </div>
+		                                    <input type="hidden" class="writer" id="writer" name="writer" value="${list.memberId}">
 		                                    <input type="hidden" class="secret" id="secret" name="secret" value="${list.secretItemInquiry}">
 			                                <div class="content" style="display:none">
 			                                   	${list.contentItemInquiry}
@@ -353,7 +359,10 @@
     					var paging = data.paging;
     					var code = '';
     					var pageCode = '';
-    					
+    					if(data.user!=null){
+    						var user = data.user.memberId;	
+    					}else
+    						var user = null;
     					$.each(list,function(key,value){
     						code+='<li class="d-flex flex-column no-block card-body border-bottom">';
                             code+='<div>';
@@ -363,14 +372,19 @@
                             code+='</div>';
                             code+='<div class="qnaContent">';
                             code+='<div class="qnaTitle" id="qnaTitle">';
-                           	code+=value.titleItemInquiry;
+                            if(value.secretItemInquiry==true){
+                            	code+='<span>비밀글입니다.</span>';
+                            }else{
+                            	code+='<span>'+value.titleItemInquiry+'</span>';
+                            }
                             code+='</div>';
+                            code+='<input type="hidden" class="writer" id="writer" name="writer" value="'+value.memberId+'">';
                             code+='<input type="hidden" class="secret" id="secret" name="secret" value="' + value.secretItemInquiry + '">';
                             code+='<div class="content" style="display:none">';
                             code+=value.contentItemInquiry;
                             code+='</div>';
                             code+='</div>';
-                        	code+='</li>';   
+                        	code+='</li>';
     					});
     					$(".list-inquiry-data").html(code);
     					
@@ -401,7 +415,10 @@
     	        				}else{
     	        					if($(element).find(".secret").val()=="false"){
     	        						$(element).find(".content").slideDown();
+    	        					}else if($(element).find(".secret").val()=="true" && $(element).find(".writer").val()==user){
+    	        						$(element).find(".content").slideDown();
     	        					}
+    	        					
     	        				}
     	        			});
     	        		});
@@ -412,6 +429,7 @@
         	}
         	
         	$(function(){
+        		var user = "${user.memberId}";
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
@@ -445,6 +463,8 @@
         					$(element).find(".content").slideUp();	
         				}else{
         					if($(element).find(".secret").val()=="false"){
+        						$(element).find(".content").slideDown();
+        					}else if($(element).find(".secret").val()=="true" && $(element).find(".writer").val()==user){
         						$(element).find(".content").slideDown();
         					}
         				}
