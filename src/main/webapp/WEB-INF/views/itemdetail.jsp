@@ -247,7 +247,7 @@
 		                                    	${list.titleItemInquiry}
 		                                    </div>
 		                                    <input type="hidden" class="secret" id="secret" name="secret" value="${list.secretItemInquiry}">
-			                                <div class="answer" style="display:none">
+			                                <div class="content" style="display:none">
 			                                   	${list.contentItemInquiry}
 			                                </div>
 	                                    </div>
@@ -366,7 +366,7 @@
                            	code+=value.titleItemInquiry;
                             code+='</div>';
                             code+='<input type="hidden" class="secret" id="secret" name="secret" value="' + value.secretItemInquiry + '">';
-                            code+='<div class="answer" style="display:none">';
+                            code+='<div class="content" style="display:none">';
                             code+=value.contentItemInquiry;
                             code+='</div>';
                             code+='</div>';
@@ -396,11 +396,11 @@
     					
     					$(".qnaContent").each(function(index,element){
     	        			$(element).find(".qnaTitle").click(function(){
-    	        				if($(element).find(".answer").is(":visible")){
-    	        					$(element).find(".answer").slideUp();	
+    	        				if($(element).find(".content").is(":visible")){
+    	        					$(element).find(".content").slideUp();	
     	        				}else{
     	        					if($(element).find(".secret").val()=="false"){
-    	        						$(element).find(".answer").slideDown();
+    	        						$(element).find(".content").slideDown();
     	        					}
     	        				}
     	        			});
@@ -441,11 +441,11 @@
 
         		$(".qnaContent").each(function(index,element){
         			$(element).find(".qnaTitle").click(function(){
-        				if($(element).find(".answer").is(":visible")){
-        					$(element).find(".answer").slideUp();	
+        				if($(element).find(".content").is(":visible")){
+        					$(element).find(".content").slideUp();	
         				}else{
         					if($(element).find(".secret").val()=="false"){
-        						$(element).find(".answer").slideDown();
+        						$(element).find(".content").slideDown();
         					}
         				}
         			});
