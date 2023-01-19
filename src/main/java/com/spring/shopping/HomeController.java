@@ -188,11 +188,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/searchItem", method = RequestMethod.GET)
-	public String getSearchItem(@Valid @RequestParam(value="nameItem")String nameItem,Model model) throws Exception {
+	public String getSearchItem(@Valid @RequestParam(value="nameItem")String nameItem,Model model,HttpSession session) throws Exception {
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		int cartCount = 0;
+		if(vo!=null) {
+			cartCount = cartService.calCount(vo.getMemberId());
+		}
+		
 		List<ItemVO> list = itemService.searchItems(nameItem);
 		boolean exist = false;
 		if(list.size()!=0)exist=true;
 		
+		model.addAttribute("user",vo);
+		model.addAttribute("cartCount",cartCount);
 		model.addAttribute("name",nameItem);
 		model.addAttribute("itemList",list);
 		model.addAttribute("exist",exist);
