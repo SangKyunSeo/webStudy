@@ -14,11 +14,12 @@
  	<result column="image_item" property="imageItem"/>
  	<result column="price_item" property="priceItem"/>
  	<result column="stock_item" property="stockItem"/>
+ 	<result column="category_item" property="categoryItem"/>
  </resultMap>
  
  <insert id="setitem">
- 	INSERT INTO item(id_item,name_item,made_item,image_item,price_item,stock_item) 
- 		VALUES(#{idItem},#{nameItem},#{madeItem},#{imageItem},#{priceItem},#{stockItem})
+ 	INSERT INTO item(id_item,name_item,made_item,image_item,price_item,stock_item,category_item) 
+ 		VALUES(#{idItem},#{nameItem},#{madeItem},#{imageItem},#{priceItem},#{stockItem},#{categoryItem})
  </insert> 
  
   <select id="selectItem" resultMap="itemMap">

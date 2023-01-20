@@ -31,10 +31,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="category?category=all">모든 제품<input type="hidden" id="category" name="category" value="all"></a></li>
+                                <li><a class="dropdown-item" href="category">모든 제품<input type="hidden" id="category" name="category" value="all"></a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="category?category=woman">여성 의류<input type="hidden" id="category" name="category" value="woman"></a></li>
-                                <li><a class="dropdown-item" href="category?category=man">남성 의류<input type="hidden" id="category" name="category" value="man"></a></li>
+                                <li><a class="dropdown-item" href="category">여성 의류<input type="hidden" id="category" name="category" value="woman"></a></li>
+                                <li><a class="dropdown-item" href="category">남성 의류<input type="hidden" id="category" name="category" value="man"></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -89,7 +89,7 @@
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                     <c:forEach items="${itemList}"  var="list" varStatus="status" >
+                     <c:forEach items="${list}"  var="list" varStatus="status" >
 	                    <div class="col mb-5">
 	                        <div class="card h-100">
 	                            <!-- Product image-->

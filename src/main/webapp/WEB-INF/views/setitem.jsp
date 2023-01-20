@@ -17,6 +17,10 @@
 				<input class="form-control" type="text" id="nameItem" name="nameItem">
 			</div>
 			<div class="form-group has-feedback">
+				<label class="control-label" for="nameItem">상품 카테고리</label>
+				<input class="form-control" type="text" id="categoryItem" name="categoryItem">
+			</div>
+			<div class="form-group has-feedback">
 				<label class="control-label" for="madeItem">제조사</label>
 				<input class="form-control" type="text" id="madeItem" name="madeItem">
 			</div>

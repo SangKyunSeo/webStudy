@@ -408,8 +408,8 @@ public class HomeController {
 			list = itemService.list();
 		}else
 			list = itemService.categoryList(category);
-		
-		return null;
+		model.addAttribute("list",list);
+		return "category";
 	}
 	
 }
