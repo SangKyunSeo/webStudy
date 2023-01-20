@@ -115,8 +115,10 @@
 					        </div>
 					        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
 					            <br><br>
-					            <div class="d-flex flex-row align-items-center">
-					                <h4 class="mr-1" ><span id="price">${list.priceItem}</span></h4>
+					            <div class="d-flex flex-row align-items-center item-price">
+					            	<div class="priceItem">
+					                	<h4 class="mr-1" ><span id="price" >${list.priceItem}</span></h4>
+					                </div>
 					            </div>
 					            <h6 class="text-success">배송비 무료</h6>
 					        </div>
@@ -140,7 +142,11 @@
 		<script>
 			$(function(){
 				var check =${exist};
-				var money = $("#price").text().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				
+				$(".item-price").each(function(index,element){
+					var money = $(element).find(".priceItem").text().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$(element).find(".priceItem").text(money);
+				});
 				
 				if(check==false){
 					$("#items").hide();
@@ -182,9 +188,6 @@
 						}
 					}
 				});
-				
-				
-				$("#price").text(money);
 			});
 		</script>
 	</body>

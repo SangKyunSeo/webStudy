@@ -18,7 +18,11 @@
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="nameItem">상품 카테고리</label>
-				<input class="form-control" type="text" id="categoryItem" name="categoryItem">
+				<select name="categoryItem" id="categoryItem">
+					<option value="">카테고리</option>
+					<option value="woman">woman</option>
+					<option value="man">man</option>
+				</select>
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="madeItem">제조사</label>
