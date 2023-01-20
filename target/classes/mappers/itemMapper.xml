@@ -39,4 +39,8 @@
   <update id="update">
   		UPDATE item SET name_item=#{nameItem},made_item=#{madeItem},price_item=#{priceItem},stock_item=#{stockItem} WHERE id_item = #{idItem}
   </update>
+  
+  <select id="categoryList" resultMap="itemMap">
+  	SELECT * FROM item WHERE category_item = #{categoryItem}
+  </select>
 </mapper>

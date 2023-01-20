@@ -101,10 +101,10 @@
 						검색결과가 없습니다.
 					</h2>
 				</div>
-				<div class="col-md-8 cover mt-2" >
-					<a href="#" style="text-decoration-line:none;">
+				<c:forEach items="${itemList}"  var="list" varStatus="status" >
+					<div class="col-md-8 cover mt-2" id="existItem" >
 						<div class="row p-2 bg-white border rounded">
-						<c:forEach items="${itemList}"  var="list" varStatus="status" >
+						<a href="itemdetail/${list.idItem}" style="text-decoration-line:none;" class="row p-2">
 					    	<div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="resources${list.imageItem}" alt="..." /></div>
 					       	<div class="col-md-6 mt-1">
 					       		<br><br>
@@ -120,18 +120,10 @@
 					            </div>
 					            <h6 class="text-success">배송비 무료</h6>
 					        </div>
-					        <form action="/orderParsing" method="GET">
-								<input type="hidden" name="idItem" value="${list.idItem}">
-								<input type="submit" value="주문">
-							</form>
-							<form action="/registCart" method="GET">
-								<input type="hidden" name="idItem" value="${list.idItem}">
-								<input type="submit" value="장바구니">
-							</form>
-					    </c:forEach>
+					       </a>
 						</div>
-					</a>
-				</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 
@@ -153,9 +145,11 @@
 				if(check==false){
 					$("#items").hide();
 					$("#none").show();
+					$("#existItem").hide();
 				}else{
 					$("#items").show();
 					$("#none").hide();
+					$("#existItem").show();
 				}
 				
 				var user = '${user}';
@@ -179,10 +173,6 @@
 						document.searchform.submit();
 					}
 					
-				});
-				
-				$("#cartButton").click(function(){
-					location.href="/myCart";
 				});
 				
 				$(document).ready(function(){

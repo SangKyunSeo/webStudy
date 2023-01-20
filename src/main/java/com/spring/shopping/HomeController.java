@@ -401,4 +401,15 @@ public class HomeController {
 			
 	}
 	
+	@RequestMapping(value="/category",method=RequestMethod.GET)
+	public String showCategory(@RequestParam("category")String category,Model model) throws Exception{
+		List<ItemVO> list;
+		if(category.equals("all")) {
+			list = itemService.list();
+		}else
+			list = itemService.categoryList(category);
+		
+		return null;
+	}
+	
 }

@@ -12,4 +12,5 @@ public interface ItemDAO {
 	public void delete(int idItem) throws Exception;
 	public ItemVO cartItem(int idItem) throws Exception;
 	public void update(ItemVO itemVo) throws Exception;
+	public List<ItemVO> categoryList(String category) throws Exception;
 }

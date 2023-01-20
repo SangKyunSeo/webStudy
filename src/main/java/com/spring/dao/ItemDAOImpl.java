@@ -52,4 +52,9 @@ public class ItemDAOImpl implements ItemDAO{
     public void update(ItemVO itemVo) throws Exception{
     	sqlSession.update(Namespace+".update",itemVo);
     }
+    
+    @Override
+    public List<ItemVO> categoryList(String category) throws Exception{
+    	return sqlSession.selectList(Namespace+".categoryList",category);
+    }
 }

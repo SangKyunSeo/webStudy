@@ -11,6 +11,7 @@ public class ItemVO {
 	private String nameItem;
 	private String madeItem;
 	private String imageItem;
+	private String categoryItem;
 	private int priceItem;
 	private int stockItem;
 	
@@ -50,5 +51,11 @@ public class ItemVO {
 	}
 	public void setStockItem(int stockItem) {
 		this.stockItem = stockItem;
+	}
+	public String getCategoryItem() {
+		return categoryItem;
+	}
+	public void setCategoryItem(String categoryItem) {
+		this.categoryItem = categoryItem;
 	}
 }

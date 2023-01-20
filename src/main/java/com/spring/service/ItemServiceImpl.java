@@ -48,4 +48,9 @@ public class ItemServiceImpl implements ItemService{
 	public void update(ItemVO itemVo) throws Exception{
 		itemdao.update(itemVo);
 	}
+	
+	@Override
+	public List<ItemVO> categoryList(String category) throws Exception{
+		return itemdao.categoryList(category);
+	}
 }
