@@ -30,10 +30,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 제품</a></li>
+                                <li><a class="dropdown-item" href="/category?category=all">모든 제품</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">여성 의류</a></li>
-                                <li><a class="dropdown-item" href="#!">남성 의류</a></li>
+                                <li><a class="dropdown-item" href="/category?category=woman">여성 의류</a></li>
+                                <li><a class="dropdown-item" href="/category?category=man">남성 의류</a></li>
                             </ul>
                         </li>
                     </ul>

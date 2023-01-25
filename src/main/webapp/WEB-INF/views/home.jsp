@@ -77,11 +77,11 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-mint py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
+                <div class="text-center text-black">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <p class="lead fw-normal text-black-50 mb-0">With this shop hompeage template</p>
                 </div>
             </div>
         </header>
@@ -95,12 +95,12 @@
 	                            <!-- Product image-->
 	                            <img class="card-img-top" src="resources${list.imageItem}" alt="..." />
 	                            <!-- Product details-->
-	                            <div class="card-body p-4">
-	                                <div class="text-center">
+	                            <div class="card-body p-4 item-price">
+	                                <div class="text-center priceItem">
 	                                    <!-- Product name-->
 	                                    <h5 class="fw-bolder">${list.nameItem}</h5>
 	                                    <!-- Product price-->
-	                                    ${list.priceItem}
+	                                    <span class="price">${list.priceItem}</span>
 	                                </div>
 	                            </div>
 	                            <!-- Product actions-->
@@ -125,6 +125,12 @@
         <script>
 			$(function(){
 				var user = '${user}';
+				
+				$(".item-price").each(function(index,element){
+					var money = $(element).find(".price").text().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$(element).find(".price").text(money);
+				});
+				
 				if(user==null||user==''||user==""){
 					$("#login").show();
 					$("#logout").hide();

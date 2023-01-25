@@ -31,10 +31,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">모든 제품</a></li>
+                                <li><a class="dropdown-item" href="category?category=all">모든 제품<input type="hidden" id="category" name="category" value="all"></a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">여성 의류</a></li>
-                                <li><a class="dropdown-item" href="#!">남성 의류</a></li>
+                                <li><a class="dropdown-item" href="category?category=woman">여성 의류<input type="hidden" id="category" name="category" value="woman"></a></li>
+                                <li><a class="dropdown-item" href="category?category=man">남성 의류<input type="hidden" id="category" name="category" value="man"></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -77,11 +77,11 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-mint py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
+                <div class="text-center text-black">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                    <p class="lead fw-normal text-black-50 mb-0">With this shop hompeage template</p>
                 </div>
             </div>
         </header>
