@@ -144,7 +144,7 @@
                     <td>${amountItem}</td>
                     <td>${detailList.priceItem}</td>
                     <td>0</td>
-                    <td>${detailList.priceItem}</td>
+                    <td>${amountPrice}</td>
                     <td>0</td>
                     <td>${detailList.idItem}</td>
                   </tr>

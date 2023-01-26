@@ -245,6 +245,8 @@ public class HomeController {
 	@RequestMapping(value="/order",method = RequestMethod.GET)
 	public void orderPageGet(HttpSession session, Model model,OrderVO orderVo) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		
+		
 		model.addAttribute("buyer",vo);
 		model.addAttribute("orderNumber",orderNumber++);
 		model.addAttribute("date",currentDate.toString());
@@ -262,21 +264,31 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/orderParsing",method=RequestMethod.GET)
-	public String orderParsing(@RequestParam(value="amountItem")int amountItem,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes)throws Exception{
+	public String orderParsing(@RequestParam(value="amountItem")int amountItem,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes,HttpSession session)throws Exception{
 		ItemVO detailList = itemService.detailList(idItem);
+		
+		String dest = (String)session.getAttribute("dest");
+		String redirect = (dest == null) ? "/itemdetail/{idItem}" : dest;
+		
 		redirectAttributes.addFlashAttribute("detailList",detailList);
 		redirectAttributes.addFlashAttribute("orderNumber",orderNumber++);
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());
 		redirectAttributes.addFlashAttribute("amountItem",amountItem);
-		return "redirect:order";
+		redirectAttributes.addFlashAttribute("amountPrice",amountItem*detailList.getPriceItem());
+		
+		return "redirect:" + redirect;
 	}
 	
 	
 	@RequestMapping(value="/registCart",method=RequestMethod.GET)
 	public String registCart(HttpSession session,CartVO cartVo,RedirectAttributes redirectAttributes) throws Exception{
+		
 		cartVo.setPriceCart(cartVo.getAmountCart()*cartVo.getPriceCart());
 		cartService.register(cartVo);
-		return "redirect:myCart";
+		String redirect = "";
+		redirect = "/myCart";
+		
+		return "redirect:" + redirect;
 	}
 	
 	@RequestMapping(value="/deleteCart",method=RequestMethod.GET)

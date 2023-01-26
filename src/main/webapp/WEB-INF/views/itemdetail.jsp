@@ -446,14 +446,14 @@
         			$("#amountItem").val(amount);
         			$("#amountCart").val(amount);
         			
-        		})
+        		});
         		$("#cart").click(function(){
-        			if(window.confirm("상품이 장바구니에 담겼습니다.\n 바로 확인하시겠습니까?")){
-        				document.cartForm.action = "/registCart";
-            			document.cartForm.submit();
-        			}else{
-        				location.href("/itemdetail/${item.idItem}");
-        			}
+	        		if(window.confirm("상품이 장바구니에 담겼습니다.\n 바로 확인하시겠습니까?")){
+	        			document.cartForm.action = "/registCart";
+	            		document.cartForm.submit();
+	        		}else{
+	        			location.href("/itemdetail/${item.idItem}");
+	        		}
         			
         		});
 
