@@ -127,7 +127,7 @@
 <body>
 	<div class="container">
 		<h2>장바구니</h2>
-		<form action="/successOrder" name="orderForm" id="orderForm" method="POST">
+		<form action="/deleteCart" name="orderForm" id="orderForm" method="GET">
 			<table class="orderInfo">
             	<thead>
                 	<th>선택</th>
@@ -156,11 +156,9 @@
                       	<td>0</td>
              			<td>
              				<div class="btn">
-             					<form action="/deleteCart" method="GET">
-             						<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
-             						<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
-             						<input type="submit" value="삭제">
-             					</form>
+             					<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
+             					<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
+             					<input type="submit" value="삭제">
              				</div>
              			</td>
              		</tr>
@@ -178,7 +176,7 @@
         </table>
 		<div class="centered">
 			<input type="submit" name="buy" id="buy" value="결제">
-			<input type="button" name="cancel" id="cancel" value="취소">
+			<input type="button" name="home" id="home" value="메인페이지 이동">
 		</div>
 		</form>
 	</div>
@@ -186,8 +184,8 @@
 <script>
 $(function(){
 	
-	$("#cancel").click(function(){
-		location.href="/itemdetail/${detailList.idItem}";
+	$("#home").click(function(){
+		location.href="/";
 	});
 	
 	$(".selectItemCheckbox").on("change",function(){

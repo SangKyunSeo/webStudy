@@ -227,8 +227,15 @@ public class HomeController {
 	@RequestMapping(value="/loginCheck", method = RequestMethod.POST)
 	public String login_check(@ModelAttribute MemberVO vo, HttpSession session,RedirectAttributes redirectAttributes)throws Exception {
 		String email = memService.loginCheck(vo, session);
+		String dest = (String)session.getAttribute("dest");
+		String redirect = "";
 		if(email!=null) {
-			return "redirect:/";
+			if(dest == null) {
+				redirect = "/";
+			}else {
+				redirect = dest;
+			}
+			return "redirect:" + redirect;
 		}else {
 			redirectAttributes.addFlashAttribute("msg","Error");
 			return "redirect:/login";
@@ -245,7 +252,6 @@ public class HomeController {
 	@RequestMapping(value="/order",method = RequestMethod.GET)
 	public void orderPageGet(HttpSession session, Model model,OrderVO orderVo) throws Exception{
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
-		
 		
 		model.addAttribute("buyer",vo);
 		model.addAttribute("orderNumber",orderNumber++);
@@ -279,7 +285,8 @@ public class HomeController {
 	
 	@RequestMapping(value="/registCart",method=RequestMethod.GET)
 	public String registCart(HttpSession session,CartVO cartVo,RedirectAttributes redirectAttributes) throws Exception{
-		
+		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
+		cartVo.setMemberCart(vo.getMemberId());
 		cartVo.setPriceCart(cartVo.getAmountCart()*cartVo.getPriceCart());
 		cartService.register(cartVo);
 		String redirect = "";

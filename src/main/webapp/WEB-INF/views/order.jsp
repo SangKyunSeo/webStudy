@@ -185,6 +185,12 @@
                   </table>
 			</fieldset>
 			<div class="centered">
+				<input type="hidden" name="memberId" id="memberId" value="${buyer.memberId}"/>
+				<input type="hidden" name="addressOrder" id="addressOrder" value="${buyer.memberAddress}"/>
+				<input type="hidden" name="dateOrder" id="dateOrder" value="${date}"/>
+				<input type="hidden" name="idItem" id="idItem" value="${detailList.idItem}"/>
+				<input type="hidden" name="amountOrder" id="amountOrder" value="${amountItem}"/>
+				<input type="hidden" name="priceOrder" id="priceOrder" value="${detailList.priceItem}"/>
 				<input type="submit" name="buy" id="buy" value="결제">
 				<input type="button" name="cancel" id="cancel" value="취소">
 			</div>

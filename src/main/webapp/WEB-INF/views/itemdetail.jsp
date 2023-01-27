@@ -68,7 +68,7 @@
 								<input class="btn btn-outline-dark flex-shrink-0" type="submit" value="주문">
 							</form>
 							<form action="/registCart" name="cartForm" method="GET">
-								<input type="hidden" name="memberCart" id="memberCart" value="${user.memberId}">
+								<!--  <input type="hidden" name="memberCart" id="memberCart" value="${user.memberId}">-->
 								<input type="hidden" name="itemCart" id="itemCart" value="${item.idItem}">
 								<input type="hidden" name="nameCart" id="nameCart" value="${item.nameItem}">
 								<input type="hidden" name="amountCart" id="amountCart">
