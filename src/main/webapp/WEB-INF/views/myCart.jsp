@@ -127,7 +127,7 @@
 <body>
 	<div class="container">
 		<h2>장바구니</h2>
-		<form action="/deleteCart" name="orderForm" id="orderForm" method="GET">
+		
 			<table class="orderInfo">
             	<thead>
                 	<th>선택</th>
@@ -155,12 +155,14 @@
                       	<td>${list.priceCart}</td>
                       	<td>0</td>
              			<td>
-             				<div class="btn">
-             					<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
-             					<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
-             					<input type="submit" value="삭제">
-             				</div>
-             			</td>
+	             			<div class="btn">
+	             				<form action="/deleteCart" name="orderForm" id="orderForm" method="GET">
+	             					<input type="submit" id="delBtn" value="삭제">
+	             					<input type="hidden" name="memberCart" id="memberCart"value="${list.memberCart}">
+	             					<input type="hidden" name="itemCart" id="itemCart" value="${list.itemCart}">
+	             				</form>
+	             			</div>
+             			</td>	
              		</tr>
              	</c:forEach>
                 </table>
@@ -178,7 +180,7 @@
 			<input type="submit" name="buy" id="buy" value="결제">
 			<input type="button" name="home" id="home" value="메인페이지 이동">
 		</div>
-		</form>
+		
 	</div>
 </body>
 <script>
