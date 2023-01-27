@@ -266,17 +266,14 @@ public class HomeController {
 	@RequestMapping(value="/orderParsing",method=RequestMethod.GET)
 	public String orderParsing(@RequestParam(value="amountItem")int amountItem,@RequestParam(value="idItem")int idItem,RedirectAttributes redirectAttributes,HttpSession session)throws Exception{
 		ItemVO detailList = itemService.detailList(idItem);
-		
-		String dest = (String)session.getAttribute("dest");
-		String redirect = (dest == null) ? "/itemdetail/{idItem}" : dest;
-		
+
 		redirectAttributes.addFlashAttribute("detailList",detailList);
 		redirectAttributes.addFlashAttribute("orderNumber",orderNumber++);
 		redirectAttributes.addFlashAttribute("date",currentDate.toString());
 		redirectAttributes.addFlashAttribute("amountItem",amountItem);
 		redirectAttributes.addFlashAttribute("amountPrice",amountItem*detailList.getPriceItem());
 		
-		return "redirect:" + redirect;
+		return "redirect:order";
 	}
 	
 	
