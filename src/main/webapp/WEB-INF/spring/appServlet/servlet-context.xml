@@ -36,6 +36,7 @@
 		<interceptor>
 			<mapping path="/registCart"/>
 			<mapping path="/orderParsing"/>
+			<mapping path="/myCart"/>
 				<beans:bean id="commonInterceptor" class="com.spring.shopping.LoginCheckIntercepter"/>
 		</interceptor>
 	</interceptors>
