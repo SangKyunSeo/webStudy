@@ -103,6 +103,11 @@ public class HomeController {
 		ItemVO detailItem = itemService.detailList(idItem);
 		List<ReviewVO> reviewList = reviewService.reviewList(idItem);
 		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
+		int cartCount = 0;
+		if(vo!=null) {
+			cartCount = cartService.calCount(vo.getMemberId());
+		}
+		
 		double sumReview =0;
 		double avgReview =0;
 		if(!reviewList.isEmpty()) {
@@ -132,6 +137,7 @@ public class HomeController {
 			model.addAttribute("avgReview",0);
 		}
 		model.addAttribute("user",vo);
+		model.addAttribute("cartCount",cartCount);
 		model.addAttribute("date",currentDate.toString());
 		model.addAttribute("inquiryList",inquiryList);
 		model.addAttribute("item",detailItem);

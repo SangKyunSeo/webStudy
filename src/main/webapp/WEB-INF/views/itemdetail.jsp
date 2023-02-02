@@ -37,11 +37,11 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                      <form class="d-flex" >
+                        <button class="btn btn-outline-dark" id="cartButton" name="cartButton" type="button">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            장바구니
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${cartCount}</span>
                         </button>
                     </form>
                 </div>
@@ -435,6 +435,10 @@
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
         		
         		});
+        		
+        		$("#cartButton").click(function(){
+					location.href="/myCart";
+				});
         		
         		$("#qnaWrite").click(function(){
         			window.name = "parentForm";
