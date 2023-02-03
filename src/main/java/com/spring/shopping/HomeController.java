@@ -41,6 +41,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dto.CartVO;
 import com.spring.dto.InquiryVO;
+import com.spring.dto.ItemDetailVO;
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 import com.spring.dto.OrderPageItemVO;
@@ -196,9 +197,39 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping(value="/setItemDetail",method=RequestMethod.GET)
-	public void setDetailItem() throws Exception{
+	@RequestMapping(value="/setItemDetail", method = RequestMethod.GET)
+	public void getsetDetailItem() throws Exception{
+		logger.info("get set Item Detail");
+	}
+	
+	@RequestMapping(value="/setItemDetail",method=RequestMethod.POST)
+	public void setDetailItem(@RequestParam("file")List<MultipartFile> multiFileList,ItemDetailVO itemDetailVo, HttpServletRequest req) throws Exception{
+		System.out.println("받아온것: " + multiFileList);
+		ServletContext servletContext = req.getSession().getServletContext();
+		String webappRoot = servletContext.getRealPath("/");
+		String relativeFolder = File.separator + "resources" + File.separator + "detalImg" + File.separator;
 		
+		File checkFile = new File(webappRoot + relativeFolder);
+		
+		if(!checkFile.exists())checkFile.mkdirs();
+		
+		List<String> fileList = new ArrayList<>();
+		for(int i=0;i<multiFileList.size();i++) {
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid.toString() + "_" + multiFileList.get(i).getOriginalFilename();
+			fileList.add(fileName);
+		}
+		
+		for(int i=0;i<fileList.size();i++) {
+			FileCopyUtils.copy(multiFileList.get(i).getBytes(),new File(webappRoot + relativeFolder + fileList.get(i)));
+		}
+		
+		for(int i=0;i<fileList.size();i++) {
+			if(i==0)itemDetailVo.setFirstDetail(File.separator + "detailImg" + File.separator + fileList.get(i));
+			else if(i==1)itemDetailVo.setSecondDetail(File.separator + "detailImg" + File.separator + fileList.get(i));
+			else if(i==2)itemDetailVo.setThirdDetail(File.separator + "detailImg" + File.separator + fileList.get(i));
+		}
+		itemService.registerDetail(itemDetailVo);
 	}
 	
 	@RequestMapping(value="/searchItem", method = RequestMethod.GET)

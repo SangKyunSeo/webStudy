@@ -11,24 +11,17 @@
 	상품상세등록
 </h1>
 	<section id="container">
-		<form action="/setItemDetail" enctype="multipart/form-data"method="get">
+		<form action="/setItemDetail" enctype="multipart/form-data"method="post">
 			<div class="form-group has-feedback">
 				상품번호 : ${idItem}
+				<input type="hidden" id="idItem" name="idItem" value="${idItem}">
 			</div>
 			<div class="form-group has-feedback">
 				상품명 : ${nameItem}
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
-				<input class="form-control" type="file" id="file" name="file">
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
-				<input class="form-control" type="file" id="file" name="file">
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
-				<input class="form-control" type="file" id="file" name="file">
+				<input class="form-control" type="file" id="file" name="file" multiple>
 			</div>
 			<div class="form-group has-feedback">
 				<button class="btn btn-success" type="submit" id="submit">등록</button>
@@ -39,15 +32,7 @@
 	
 	</section>
 <script>
-	$("#file").change(function(){
-		if(this.files && this.files[0]){
-			var reader = new FileReader;
-			reader.onload = function(data){
-				$(".select_img img").attr("src",data.target.result).width(500);
-			}
-			reader.readAsDataURL(this.files[0]);
-		}
-	});
+	
 </script>
 </body>
 </html>

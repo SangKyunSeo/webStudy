@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.spring.dao.ItemDAO;
+import com.spring.dto.ItemDetailVO;
 import com.spring.dto.ItemVO;
 
 @Service
@@ -19,6 +20,10 @@ public class ItemServiceImpl implements ItemService{
 		itemdao.register(itemVo);
 	}
 	
+	@Override
+	public void registerDetail(ItemDetailVO itemDetailVo) throws Exception{
+		itemdao.registerDetail(itemDetailVo);
+	}
 	@Override
 	public List<ItemVO> list() throws Exception{
 		return itemdao.list();

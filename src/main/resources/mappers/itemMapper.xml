@@ -25,6 +25,11 @@
  		</selectKey>
  </insert> 
  
+ <insert id="registerDetail">
+ 	INSERT INTO item_detail(id_item_detail,id_item,first_detail,second_detail,third_detail)
+ 		VALUES(#{idItemDetail},#{idItem},#{firstDetail},#{secondDetail},#{thirdDetail})
+ </insert>
+ 
   <select id="selectItem" resultMap="itemMap">
         SELECT * FROM item
   </select>

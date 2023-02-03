@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.spring.dto.ItemDetailVO;
 import com.spring.dto.ItemVO;
 import com.spring.dto.MemberVO;
 
@@ -21,6 +22,11 @@ public class ItemDAOImpl implements ItemDAO{
     @Override
     public void register(ItemVO itemVo) throws Exception{
     	sqlSession.insert(Namespace+".setitem",itemVo);
+    }
+    
+    @Override
+    public void registerDetail(ItemDetailVO itemDetailVo) throws Exception{
+    	sqlSession.insert(Namespace+".registerDetail",itemDetailVo);
     }
     
     @Override
