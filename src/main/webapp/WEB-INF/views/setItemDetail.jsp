@@ -19,7 +19,15 @@
 				상품명 : ${nameItem}
 			</div>
 			<div class="form-group has-feedback">
-				<label class="control-label" for="imageItem">이미지</label>
+				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
+				<input class="form-control" type="file" id="file" name="file">
+			</div>
+			<div class="form-group has-feedback">
+				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
+				<input class="form-control" type="file" id="file" name="file">
+			</div>
+			<div class="form-group has-feedback">
+				<label class="control-label" for="imageItem">상품상세내용 이미지</label>
 				<input class="form-control" type="file" id="file" name="file">
 			</div>
 			<div class="form-group has-feedback">
