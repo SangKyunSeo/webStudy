@@ -40,6 +40,11 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
+	public ItemDetailVO getItemDetail(int idItem) throws Exception{
+		return itemdao.getItemDetail(idItem);
+	}
+	
+	@Override
 	public void delete(int idItem) throws Exception{
 		itemdao.delete(idItem);
 	}

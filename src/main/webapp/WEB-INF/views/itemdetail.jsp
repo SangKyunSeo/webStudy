@@ -90,19 +90,13 @@
         <!-- 상품 이미지 -->
 		<div class="container px-4 px-lg-4 align-items-center">
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${itemDetail.firstDetail}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${itemDetail.secondDetail}"  alt="..." height="600" />
         	</div>
         	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
-        	</div>
-        	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
-        	</div>
-        	<div class="col-md-12">
-        		<img class="prod-img mb-5 mb-md-0" src="../resources${item.imageItem}"  alt="..." height="600" />
+        		<img class="prod-img mb-5 mb-md-0" src="../resources${itemDetail.thirdDetail}"  alt="..." height="600" />
         	</div>
         </div>
         

@@ -17,6 +17,13 @@
  	<result column="category_item" property="categoryItem"/>
  </resultMap>
  
+ <resultMap type="ItemDetailVO" id="itemDetailMap">
+ 	<result column="id_item_detail" property="idItemDetail"/>
+ 	<result column="id_item" property="idItem"/>
+ 	<result column="first_detail" property="firstDetail"/>
+ 	<result column="second_detail" property="secondDetail"/>
+ 	<result column="third_detail" property="thirdDetail"/>
+ </resultMap>
  <insert id="setitem" parameterType="ItemVO">
  	INSERT INTO item(id_item,name_item,made_item,image_item,price_item,stock_item,category_item) 
  		VALUES(#{idItem},#{nameItem},#{madeItem},#{imageItem},#{priceItem},#{stockItem},#{categoryItem})
@@ -30,6 +37,9 @@
  		VALUES(#{idItemDetail},#{idItem},#{firstDetail},#{secondDetail},#{thirdDetail})
  </insert>
  
+ <select id="getItemDetail" resultMap="itemDetailMap">
+ 	SELECT * FROM item_detail WHERE id_item = #{idItem}
+ </select>
   <select id="selectItem" resultMap="itemMap">
         SELECT * FROM item
   </select>

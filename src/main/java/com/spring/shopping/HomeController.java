@@ -102,6 +102,8 @@ public class HomeController {
 	public String testitemdetail(@PathVariable("idItem")int idItem,HttpSession session, Model model) throws Exception {
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		ItemVO detailItem = itemService.detailList(idItem);
+		ItemDetailVO itemDetailVo = itemService.getItemDetail(idItem);
+		
 		List<ReviewVO> reviewList = reviewService.reviewList(idItem);
 		List<InquiryVO> inquiryList = inquiryService.inquiryList(idItem);
 		int cartCount = 0;
@@ -140,6 +142,7 @@ public class HomeController {
 		model.addAttribute("user",vo);
 		model.addAttribute("cartCount",cartCount);
 		model.addAttribute("date",currentDate.toString());
+		model.addAttribute("itemDetail",itemDetailVo);
 		model.addAttribute("inquiryList",inquiryList);
 		model.addAttribute("item",detailItem);
 		model.addAttribute("priceItem",priceForm.format(detailItem.getPriceItem()));
@@ -207,7 +210,7 @@ public class HomeController {
 		System.out.println("받아온것: " + multiFileList);
 		ServletContext servletContext = req.getSession().getServletContext();
 		String webappRoot = servletContext.getRealPath("/");
-		String relativeFolder = File.separator + "resources" + File.separator + "detalImg" + File.separator;
+		String relativeFolder = File.separator + "resources" + File.separator + "detailImg" + File.separator;
 		
 		File checkFile = new File(webappRoot + relativeFolder);
 		
