@@ -17,9 +17,12 @@
  	<result column="category_item" property="categoryItem"/>
  </resultMap>
  
- <insert id="setitem">
+ <insert id="setitem" parameterType="ItemVO">
  	INSERT INTO item(id_item,name_item,made_item,image_item,price_item,stock_item,category_item) 
  		VALUES(#{idItem},#{nameItem},#{madeItem},#{imageItem},#{priceItem},#{stockItem},#{categoryItem})
+ 		<selectKey resultType="int" keyProperty="idItem" order="AFTER">
+ 			SELECT LAST_INSERT_ID()
+ 		</selectKey>
  </insert> 
  
   <select id="selectItem" resultMap="itemMap">

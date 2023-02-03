@@ -178,7 +178,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/setitem", method = RequestMethod.POST)
-	public void postSetItem(@RequestParam("file")MultipartFile file,ItemVO itemVo,HttpServletRequest req) throws Exception{
+	public String postSetItem(@RequestParam("file")MultipartFile file,ItemVO itemVo,HttpServletRequest req,RedirectAttributes rttr) throws Exception{
 		logger.info("post Set Item");
 		ServletContext servletContext = req.getSession().getServletContext(); 
 		String webappRoot = servletContext.getRealPath("/");
@@ -190,6 +190,14 @@ public class HomeController {
 		
 		itemVo.setImageItem(File.separator + "img" + File.separator + fileName);
 		itemService.register(itemVo);
+		rttr.addFlashAttribute("idItem",itemVo.getIdItem());
+		rttr.addFlashAttribute("nameItem",itemVo.getNameItem());
+		return "redirect:setItemDetail";
+		
+	}
+	
+	@RequestMapping(value="/setItemDetail",method=RequestMethod.GET)
+	public void setDetailItem() throws Exception{
 		
 	}
 	
