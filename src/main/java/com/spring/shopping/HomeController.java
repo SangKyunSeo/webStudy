@@ -207,7 +207,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/setItemDetail",method=RequestMethod.POST)
 	public void setDetailItem(@RequestParam("file")List<MultipartFile> multiFileList,ItemDetailVO itemDetailVo, HttpServletRequest req) throws Exception{
-		System.out.println("받아온것: " + multiFileList);
+		
 		ServletContext servletContext = req.getSession().getServletContext();
 		String webappRoot = servletContext.getRealPath("/");
 		String relativeFolder = File.separator + "resources" + File.separator + "detailImg" + File.separator;
@@ -390,6 +390,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/regReview",method=RequestMethod.GET)
 	public void registReview(ReviewVO reviewVo, Model model, HttpSession session) throws Exception{
+		// 로그인 인터셉터 등록 필요
 		MemberVO vo = (MemberVO)session.getAttribute("LoginVo");
 		model.addAttribute("user",vo);
 		model.addAttribute("date",currentDate.toString());

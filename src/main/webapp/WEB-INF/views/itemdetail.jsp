@@ -108,7 +108,7 @@
 			    	<a href="#itemReview" class="nav-link"><div>상품평</div> </a>
 			    </li>
 			    <li class="nav-item">
-			    	<a href="#" class="nav-link"><div>상품문의</div> </a>
+			    	<a href="#itemqna" class="nav-link"><div>상품문의</div> </a>
 			    </li>
 			    <li class="nav-item">
 			    	<a href="#" class="nav-link"><div>배송/교환/반품</div> </a>
@@ -426,6 +426,7 @@
         		var user = "${user.memberId}";
         		$("#reviewWrite").click(function(){
         			window.name = "myform";
+        			
         			openWin = window.open("/regReview","childForm","width=600,height=400,resizable=no,scrollbars=no")
         		
         		});
