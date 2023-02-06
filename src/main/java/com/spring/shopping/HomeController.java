@@ -196,6 +196,7 @@ public class HomeController {
 		itemService.register(itemVo);
 		rttr.addFlashAttribute("idItem",itemVo.getIdItem());
 		rttr.addFlashAttribute("nameItem",itemVo.getNameItem());
+		
 		return "redirect:setItemDetail";
 		
 	}
