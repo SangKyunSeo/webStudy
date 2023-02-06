@@ -206,7 +206,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/setItemDetail",method=RequestMethod.POST)
-	public void setDetailItem(@RequestParam("file")List<MultipartFile> multiFileList,ItemDetailVO itemDetailVo, HttpServletRequest req) throws Exception{
+	public String setDetailItem(@RequestParam("file")List<MultipartFile> multiFileList,ItemDetailVO itemDetailVo, HttpServletRequest req) throws Exception{
 		
 		ServletContext servletContext = req.getSession().getServletContext();
 		String webappRoot = servletContext.getRealPath("/");
@@ -233,6 +233,7 @@ public class HomeController {
 			else if(i==2)itemDetailVo.setThirdDetail(File.separator + "detailImg" + File.separator + fileList.get(i));
 		}
 		itemService.registerDetail(itemDetailVo);
+		return "redirect:setitem";
 	}
 	
 	@RequestMapping(value="/searchItem", method = RequestMethod.GET)
